@@ -10,7 +10,7 @@ const helvetica = localFont({
 export const metadata = {
   title: 'THIS IS KOSTÜME', 
   icons: {
-    url: './icon.svg',
+    url: 'public/icon.svg',
     type: 'image/svg'
   }
 }
