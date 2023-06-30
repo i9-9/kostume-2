@@ -2,7 +2,7 @@ import './globals.css'
 import localFont from 'next/font/local'
 
 const helvetica = localFont({
-  src: './helvetica.ttf', 
+  src: './fonts/Helvetica.ttf', 
   display: 'swap',
 })
 
