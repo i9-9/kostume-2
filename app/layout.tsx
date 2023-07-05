@@ -8,11 +8,7 @@ const helvetica = localFont({
 
 
 export const metadata = {
-  title: 'THIS IS KOSTÜME', 
-  icons: {
-    url: 'public/icon.svg',
-    type: 'image/svg'
-  }
+  title: 'THIS IS KOSTÜME'
 }
 
 export default function RootLayout({
