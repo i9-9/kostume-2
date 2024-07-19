@@ -9,8 +9,8 @@ export default function Home() {
         <p className="title">KOSTÜME</p>
     </div>
       <div className="flex flex-col md:flex-row justify-between mt-6 items-center">
-        <Link href='https://eshop.kostumeweb.net/ar/' className="link-location mb-4 md:mb-0 md:pr-10">Argentina</Link>
-        <Link href='https://eshop.kostumeweb.net/us/' className="link-location">Worldwide</Link>
+        <Link href='/home' className="link-location mb-4 md:mb-0 md:pr-10">Argentina</Link>
+        <Link href='/home' className="link-location">Worldwide</Link>
       </div>
     </main>
   )

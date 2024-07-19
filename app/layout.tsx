@@ -18,7 +18,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={helvetica.className}>
-      <body>{children}</body>
+      <body className='min-h-screen bg-black text-white'>{children}
+      </body>
     </html>
   )
 }
