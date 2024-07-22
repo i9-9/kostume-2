@@ -1,27 +1,26 @@
 import Image from 'next/image'
 import React from 'react'
+import images from '../data/gallery'
 
 const Gallery = () => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-      <div className="col-span-2">
-        <Image src="/men.png" alt="Image 1" width={600} height={800} className="aspect-square object-cover" />
-      </div>
-      <div className="col-span-2">
-        <Image src="/women.png" alt="Image 2" width={600} height={800} className="aspect-square object-cover" />
-      </div>
-      <div >
-        <Image src="/ss1.jpeg" alt="Image 3" width={600} height={800} className="aspect-square object-cover" />
-      </div>
-      <div >
-        <Image src="/ss2.jpeg" alt="Image 4" width={600} height={800} className="aspect-square object-cover" />
-      </div>
-      <div >
-        <Image src="/ss3.jpeg" alt="Image 5" width={600} height={800} className="aspect-square object-cover" />
-      </div>
-      <div >
-        <Image src="/ss4.jpeg" alt="Image 6" width={600} height={800} className="aspect-square object-cover" />
-      </div>
+    <div className="grid grid-cols-2 gap-2 md:grid-cols-4 px-8">
+      {images.map((image, index) => (
+        <div key={index} className={`relative group ${index < 2 ? 'md:col-span-2 md:row-span-1' : 'md:col-span-1 md:row-span-1'}`}>
+          <div className="relative w-full h-0 pb-[100%]">
+            <Image 
+              src={image.src} 
+              alt={image.title} 
+              layout="fill"
+              objectFit="cover"
+              className="transition duration-300 group-hover:opacity-50 group-hover:brightness-110"
+            />
+          </div>
+          <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition duration-300 bg-white bg-opacity-50 group-hover:cursor-pointer">
+            <span className="text-white text-lg">{image.title}</span>
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

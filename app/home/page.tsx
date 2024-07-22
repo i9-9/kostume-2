@@ -11,6 +11,7 @@ const Home = () => {
         <Marquee/>
         <Header/>
         <VideoHero/>
+        <p className='bg-[#121212] text-extraxs text-center p-4 my-4'>Original ready-to-wear designed in Buenos Aires. Made in Argentina</p>
         <Gallery/>
         <Footer/>
 
