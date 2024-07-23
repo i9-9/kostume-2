@@ -9,7 +9,19 @@ module.exports = {
     extend: {
       fontSize: {
         extraxs: ['10px', '11.5px']
-      }  
+      },
+      maxHeight: {
+        '0': '0',
+        'screen': '100vh',
+      },
+      transitionProperty: {
+        'max-height': 'max-height'
+      }
+    }
+  },
+  variants: {
+    extend: {
+      maxHeight: ['responsive', 'hover', 'focus'],
     }
   },
   plugins: [],

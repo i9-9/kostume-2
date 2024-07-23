@@ -1,7 +1,10 @@
+'use client'
+
 import Link from 'next/link'
 import React from 'react'
 import footer from '../data/footer'
 import SectionAccordion from './SectionAccordion';
+import Newsletter from './Newsletter';
 
 interface LinkItem {
   href: string;
@@ -22,6 +25,7 @@ const Footer = () => {
         {footer.map((item, index) => (
           <Section key={index} title={item.title} links={item.links} />
         ))}
+        <Newsletter/> 
         </div>
         <div className='flex lg:hidden flex-col'>
         {footer.map((item, index) => (
