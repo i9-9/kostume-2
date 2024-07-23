@@ -35,7 +35,7 @@ const Footer = () => {
         ))}
         </div>
       </div>
-      <div className='border-t py-3 border-t-white/30 text-center'>© KOSTÜME 2024</div>
+      <div className='border-t py-6 border-t-white/30 text-center text-[8px]'>© KOSTÜME 2024</div>
     </div>
   )
 }

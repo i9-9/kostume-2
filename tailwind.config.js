@@ -16,6 +16,9 @@ module.exports = {
       },
       transitionProperty: {
         'max-height': 'max-height'
+      },
+      colors: {
+        black: '#070707'
       }
     }
   },

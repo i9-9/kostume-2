@@ -5,6 +5,9 @@ import React, { useState } from 'react'
 import { AiOutlineClose } from "react-icons/ai";
 import { TbMenu } from "react-icons/tb";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { HiOutlineMenuAlt4 } from "react-icons/hi";
+import { RiCloseFill } from "react-icons/ri";
+
 
 const menuItems = [
   { href: "https://eshop.kostumeweb.net/47aw24/", label: "#47AW24" },
@@ -22,13 +25,13 @@ const Header = () => {
   const handleNav = () => setNav(!nav);
 
   return (
-    <div className='w-full z-20 ease-in duration-300 h-fit py-2 bg-black flex flex-col font-semibold justify-between lg:justify-center items-center text-extraxs'>
+    <div className='w-full z-20 ease-in duration-300 h-fit py-3 bg-black flex flex-col font-semibold justify-between lg:justify-center items-center text-extraxs'>
       <div className='flex justify-between items-center w-full lg:w-auto px-4'>
         <div onClick={handleNav} className="z-10 block lg:hidden">
           {nav ? (
-            <AiOutlineClose className="transition-transform duration-300 ease-in-out" style={{ color: "#ffffff" }} size={30} />
+            <RiCloseFill className="transition-transform duration-300 ease-in-out" style={{ color: "#ffffff" }} size={24} />
           ) : (
-            <TbMenu className="transition-transform duration-300 ease-in-out" style={{ color: "#ffffff" }} size={30} />
+            <HiOutlineMenuAlt4 className="transition-transform duration-300 ease-in-out" style={{ color: "#ffffff" }} size={24} />
           )}
         </div>
         <div className="flex-grow text-center">
@@ -58,7 +61,7 @@ const Header = () => {
       <div className="hidden lg:flex lg:flex-row lg:items-center">
         <ul className="flex items-center">
           {menuItems.map((item, index) => (
-            <li key={index} className="mx-4 hover:text-gray-500 border-none">
+            <li key={index} className="px-4 py-3 hover:text-gray-500 border-none">
               <Link href={item.href}>{item.label}</Link>
             </li>
           ))}

@@ -13,7 +13,7 @@ const SectionAccordion: React.FC<SectionProps> = ({ title, links }) => {
     <div className="flex justify-between items-center py-3" onClick={() => setAccordionOpen(!accordionOpen)}>
       <div className="text-extraxs uppercase mr-2 font-sem">{title}</div>
       <div className="text-gray-500 lg:mx-8 mt-2">
-        {accordionOpen ? <IoIosArrowUp /> : <IoIosArrowDown />}
+        {accordionOpen ? <IoIosArrowUp color='white' /> : <IoIosArrowDown color='white' />}
       </div>
     </div>
     <div
