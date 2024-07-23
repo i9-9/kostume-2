@@ -10,10 +10,10 @@ import Footer from '../components/Footer';
 export type Region = 'Argentina' | 'Worldwide';
 
 const Home = () => {
-  const [region, setRegion] = useState<Region | null>(null);
+  const [region, setRegion] = useState<Region>("Argentina");
 
   useEffect(() => {
-    const savedRegion = localStorage.getItem('region') as Region | "";
+    const savedRegion = localStorage.getItem('region') as Region | "Argentina";
     if (savedRegion) {
       setRegion(savedRegion);
     }
@@ -32,7 +32,7 @@ const Home = () => {
   return (
     <div className='w-full min-h-screen bg-black'>
         <Marquee marqueeText={marqueeText[region]}/>
-        <Header/>
+        <Header link={externalLinks[region]}/>
         <VideoHero/>
         <p className='bg-[#121212] text-xs text-center p-4 my-4'>Original ready-to-wear designed in Buenos Aires. Made in Argentina</p>
         <Gallery link={externalLinks[region]}/>
