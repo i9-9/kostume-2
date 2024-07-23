@@ -11,12 +11,16 @@ const Gallery = () => {
           key={index}
           className={`relative group ${
             index < 2
-              ? "md:col-span-2 md:row-span-1"
-              : "md:col-span-1 md:row-span-1"
+              ? "md:col-span-2 md:row-span-1" 
+              : "md:col-span-1 md:row-span-2" 
           }`}
         >
           <Link href={image.link}>
-            <div className="relative w-full h-0 pb-[100%]">
+            <div
+              className={`relative w-full h-0 ${
+                index < 2 ? "pb-[150%] lg:pb-[100%]" : "pb-[150%]"
+              }`}
+            >
               <Image
                 src={image.src}
                 alt={image.title}
