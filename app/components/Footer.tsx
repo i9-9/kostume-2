@@ -42,7 +42,7 @@ const Footer = () => {
 
 const Section: React.FC<SectionProps> =  ({ title, links }) => (
   <div className={`${title === "Newsletter" ? 'col-span-4' : 'col-span-2'} flex flex-col gap-y-3`}>
-    <p className='font-semibold'>{title}</p>
+    <p className='font-bold'>{title}</p>
     {links.map((link, index) => (
       <Link key={index} href={link.href}>{link.text}</Link>
     ))}

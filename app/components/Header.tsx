@@ -25,7 +25,7 @@ const Header = () => {
   const handleNav = () => setNav(!nav);
 
   return (
-    <div className='w-full z-20 ease-in duration-300 h-fit py-3 bg-black flex flex-col font-semibold justify-between lg:justify-center items-center text-extraxs'>
+    <div className='w-full z-20 ease-in duration-300 h-fit pt-2 bg-black flex flex-col font-semibold justify-between lg:justify-center items-center text-extraxs'>
       <div className='flex justify-between items-center w-full lg:w-auto px-4'>
         <div onClick={handleNav} className="z-10 block lg:hidden">
           {nav ? (
@@ -61,7 +61,7 @@ const Header = () => {
       <div className="hidden lg:flex lg:flex-row lg:items-center">
         <ul className="flex items-center">
           {menuItems.map((item, index) => (
-            <li key={index} className="px-4 py-3 hover:text-gray-500 border-none">
+            <li key={index} className="px-4 py-2 hover:text-gray-500 border-none">
               <Link href={item.href}>{item.label}</Link>
             </li>
           ))}
