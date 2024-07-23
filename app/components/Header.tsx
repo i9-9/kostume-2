@@ -24,15 +24,17 @@ const Header = () => {
   return (
     <div className='w-full z-20 ease-in duration-300 h-fit py-2 bg-black flex flex-col font-semibold justify-between lg:justify-center items-center text-extraxs'>
       <div className='flex justify-between items-center w-full lg:w-auto px-4'>
-        <Link href="/">
-          <Image src="/logo.svg" width={150} height={30} alt='Kostume' className='py-2 lg:py-1 lg:pb-4' />
-        </Link>
-        <div onClick={handleNav} className="block lg:hidden z-10">
+        <div onClick={handleNav} className="z-10 block lg:hidden">
           {nav ? (
             <AiOutlineClose className="transition-transform duration-300 ease-in-out" style={{ color: "#ffffff" }} size={30} />
           ) : (
             <TbMenu className="transition-transform duration-300 ease-in-out" style={{ color: "#ffffff" }} size={30} />
           )}
+        </div>
+        <div className="flex-grow text-center">
+          <Link href="/">
+            <Image src="/logo.svg" width={150} height={30} alt='Kostume' className='py-2 lg:py-1 lg:pb-4 mx-auto' />
+          </Link>
         </div>
       </div>
       
