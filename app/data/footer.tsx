@@ -11,21 +11,21 @@ const footer: SectionProps[] = [
     {
       title: 'Info',
       links: [
-        { href: 'mailto:contacto@kostumeweb.net', text: 'ABOUT US' },
-        { href: 'https://wa.me/5491167671108', text: 'FAQ' }
+        { href: 'https://eshop.kostumeweb.net/us/about-us/', text: 'ABOUT US' },
+        { href: 'https://eshop.kostumeweb.net/us/faqs/', text: 'FAQ' }
       ]
     },
     {
       title: 'Social M.',
       links: [
-        { href: 'mailto:contacto@kostumeweb.net', text: 'INSTAGRAM' },
-        { href: 'https://wa.me/5491167671108', text: 'TIKTOK' }
+        { href: 'https://www.instagram.com/kostumeba', text: 'INSTAGRAM' },
+        { href: 'https://www.tiktok.com/@kostumeba', text: 'TIKTOK' }
       ]
     },
     {
       title: 'Store',
       links: [
-        { href: 'mailto:contacto@kostumeweb.net', text: 'HONDURAS 4771, PALERMO' },
+        { href: 'https://maps.app.goo.gl/6bjuZRECUuptnavN8 ', text: 'HONDURAS 4771, PALERMO' },
         { href: 'https://wa.me/5491167671108', text: '+54 9 11 5350 5298' }
       ]
     }  

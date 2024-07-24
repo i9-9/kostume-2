@@ -49,11 +49,11 @@ const Header: React.FC<HeaderProps> = ({ link }) => {
       <div className={`lg:hidden fixed inset-0 bg-black z-10 overflow-hidden transition-max-height duration-300 ease-in-out ${nav ? 'max-h-screen mt-16' : 'max-h-0 mt-16'}`}>
         <ul className="flex flex-col lg:items-center lg:justify-center h-full w-full">
           {menuItems.map((item, index) => (
-            <li key={index} className="p-4 hover:text-gray-500 border-b w-full">
+            <li key={index} className={`p-4 hover:text-gray-500 border-b w-full ${index === menuItems.length - 1 ? 'text-yellow-400' : 'text-white'}`}>
               <Link onClick={handleNav} href={`${link}/${item.href}`}>
                 <div className='flex justify-between w-full'>
                   <p>{item.label}</p>
-                  <MdOutlineKeyboardArrowRight color='white' size={16} />
+                  <MdOutlineKeyboardArrowRight color='white' size={20} />
                 </div>
               </Link>
             </li>
@@ -65,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({ link }) => {
       <div className="hidden lg:flex lg:flex-row lg:items-center">
         <ul className="flex items-center">
           {menuItems.map((item, index) => (
-            <li key={index} className="px-4 py-2 hover:text-gray-500 border-none">
+            <li key={index} className={`px-4 py-2 hover:text-gray-500 border-none ${index === menuItems.length - 1 ? 'text-yellow-400' : 'text-white'}`}>
               <Link href={`${link}/${item.href}`}>{item.label}</Link>
             </li>
           ))}
