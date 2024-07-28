@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({ link }) => {
 
   return (
     <div className="w-full z-20 ease-in duration-300 h-fit pt-2 pb-2 lg:pb-0 bg-black flex font-semibold justify-between lg:justify-center items-center text-extraxs">
-      <div className="flex justify-between items-center w-full lg:w-auto px-4">
+      <div className="flex justify-between items-center w-full lg:w-auto px-4 lg:px-0 lg:mr-auto">
         <div onClick={handleNav} className="z-10 block lg:hidden">
           {nav ? (
             <RiCloseFill className="transition-transform duration-300 ease-in-out" style={{ color: "#ffffff" }} size={24} />
@@ -35,9 +35,9 @@ const Header: React.FC<HeaderProps> = ({ link }) => {
             <HiOutlineMenuAlt4 className="transition-transform duration-300 ease-in-out" style={{ color: "#ffffff" }} size={24} />
           )}
         </div>
-        <div className="flex-grow text-center">
+        <div className="flex-grow lg:flex lg:items-center lg:justify-center">
           <Link href="/">
-            <Image src="/logo.svg" width={150} height={30} alt="Kostume" className="py-2 lg:py-1 lg:pb-4 mx-auto" />
+            <Image src="/kostume_logo.svg" width={150} height={30} alt="Kostume" className="py-2 lg:py-1 lg:pb-4 mx-auto lg:mx-0" />
           </Link>
         </div>
       </div>
@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ link }) => {
       </div>
 
       {/* Desktop Menu */}
-      <div className="hidden lg:flex lg:flex-row lg:items-center">
+      <div className="hidden lg:flex lg:items-center lg:flex-grow lg:justify-center">
         <ul className="flex items-center">
           {menuItems.map((item, index) => (
             <li
