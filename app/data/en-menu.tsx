@@ -3,7 +3,7 @@ const menuItemsEn = [
     { href: "women/", label: "WOMEN", subcategories: ["TOPS & T-SHIRTS", "SHIRTS", "DRESSES & JUMPSUITS", "PANTS & SKIRTS", "COATS", "BODIES & SWIMSUITS", "ACCESORIES"] },
     { href: "wild-object/", label: "WILD OBJECT", subcategories: [] },
     { href: "re-con-figure/", label: "RE.CON-FIGURE", subcategories: [] },
-    { href: "peces-raros-kostume/", label: "PECES RAROS . KOSTUME", subcategories: [] }
+    { href: "peces-raros-kostume/", label: "PECES RAROS . KOSTÜME", subcategories: [] }
   ];
 
 export default menuItemsEn;

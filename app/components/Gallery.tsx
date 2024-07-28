@@ -19,8 +19,8 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
               : "md:col-span-1 md:row-span-2" 
           }`}
         >
-          <Link href={`${link}/${item.link}`}>
-            <div
+        <Link href={`${item.title === "SEAMM" || "KOSTÜME STORE" ? item.link : `${link}/${item.link}`}`}>
+          <div
               className={`relative w-full h-0 ${
                 index < 2 ? "pb-[150%] lg:pb-[100%]" : "pb-[150%]"
               }`}
@@ -41,14 +41,14 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
                 alt={item.title}
                 layout="fill"
                 objectFit="cover"
-                className="transition duration-300 group-hover:opacity-50 group-hover:brightness-110 saturate-0 "
+                className="transition duration-300 group-hover:opacity-50 group-hover:brightness-110  "
               />
 
               )}
             </div>
             <div className="absolute inset-0 flex justify-center items-center opacity-0 group-hover:opacity-100 transition duration-300 bg-white bg-opacity-50 group-hover:cursor-pointer">
               <span className={`text-white font-bold ${
-                index < 2 ? "text-xl lg:text-3xl" : "text-xl"
+                index < 2 ? "text-lg lg:text-xl" : "text-lg"
               } `}>{item.title}</span>
             </div>
           </Link>
