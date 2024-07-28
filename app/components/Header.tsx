@@ -1,32 +1,52 @@
-'use client'
-import Image from "next/image";
-import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { RiCloseFill } from "react-icons/ri";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import Image from 'next/image';
 
-const menuItems = [
-  { href: "47aw24/", label: "#47AW24", subcategories: ['DESCUBRIR #47AW24'] },
-  { href: "descubrir1/", label: "#46SS24", subcategories: ['DISCOVER #46SS24'] },
-  { href: "hmen/", label: "MEN", subcategories: ['T-SHIRTS', 'SHIRTS', 'PANTS & SKIRTS', 'COATS', 'JUMPSUITS', 'ACCESSORIES'] },
-  { href: "women/", label: "WOMEN", subcategories: ['TOPS & T-SHIRTS', 'SHIRTS', 'DRESSES & JUMPSUITS', 'PANTS & SKIRTS', 'COATS', 'BODIES & SWIMSUITS', 'ACCESSORIES'] },
-  { href: "wild-object/", label: "WILD OBJECT", subcategories: ['DISCOVER WILD OBJECT'] },
-  { href: "re-con-figure/", label: "RE.CON.FIGURE", subcategories: ['DISCOVER RE.CON.FIGURE'] },
-  { href: "peces-raros-kostume/descubrir-pr-k/", label: "PECES RAROS", subcategories: ['DISCOVER PR . K'] },
-];
-
-interface HeaderProps {
-  link: string;
-}
-
-const Header: React.FC<HeaderProps> = ({ link }) => {
+const Header: React.FC<{ link: string }> = ({ link }) => {
   const [nav, setNav] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [submenuVisible, setSubmenuVisible] = useState(false);
 
   const handleNav = () => setNav(!nav);
 
+  const menuItems = [
+    { href: "men/", label: "MEN", subcategories: ["REMERAS", "CAMISAS", "FALDAS Y PANTALONES", "ABRIGOS", "ENTEROS", "ACCESORIOS"] },
+    { href: "women/", label: "WOMEN", subcategories: ["TOPS Y REMERAS", "CAMISAS", "VESTIDOS Y ENTEROS", "FALDAS Y PANTALONES", "ABRIGOS", "BODIES Y TRAJES DE BAÑO", "ACCESORIOS"] },
+    { href: "wild-object/", label: "WILD OBJECT", subcategories: [] },
+    { href: "re-con-figure/", label: "RE.CON-FIGURE", subcategories: [] },
+    { href: "peces-raros-kostume/", label: "PECES RAROS . KOSTUME", subcategories: [] }
+  ];
+
+  const handleMouseEnter = (label: string) => {
+    setActiveMenu(label);
+    setSubmenuVisible(true);
+  };
+
+  const handleMouseLeave = () => {
+    setTimeout(() => {
+      if (!submenuVisible) {
+        setActiveMenu(null);
+      }
+    }, 100); 
+  };
+
+  const handleSubmenuMouseEnter = () => setSubmenuVisible(true);
+  const handleSubmenuMouseLeave = () => {
+    setSubmenuVisible(false);
+    setTimeout(() => {
+      if (!submenuVisible) {
+        setActiveMenu(null);
+      }
+    }, 100); 
+  };
+
+  const currentSubcategories = menuItems.find(item => item.label === activeMenu)?.subcategories || [];
+
   return (
-    <div className="w-full z-20 ease-in duration-300 h-fit pt-2 pb-2 lg:pb-0 bg-black flex font-semibold justify-between lg:justify-center items-center text-extraxs">
+    <div className="w-full z-20 mx-4 ease-in duration-300 h-fit pt-2 pb-2 lg:pb-0 bg-black flex font-semibold justify-between lg:justify-start items-center text-extraxs">
       <div className="flex justify-between items-center w-full lg:w-auto px-4 lg:px-0 lg:mr-auto">
         <div onClick={handleNav} className="z-10 block lg:hidden">
           {nav ? (
@@ -35,14 +55,13 @@ const Header: React.FC<HeaderProps> = ({ link }) => {
             <HiOutlineMenuAlt4 className="transition-transform duration-300 ease-in-out" style={{ color: "#ffffff" }} size={24} />
           )}
         </div>
-        <div className="flex-grow lg:flex lg:items-center lg:justify-center">
+        <div className="flex-grow lg:flex lg:items-center lg:justify-start">
           <Link href="/">
-            <Image src="/kostume_logo.svg" width={150} height={30} alt="Kostume" className="py-2 lg:py-1 lg:pb-4 mx-auto lg:mx-0" />
+            <Image src="/kostume_logo.svg" width={150} height={30} alt='Kostume' className='py-2 lg:py-1 lg:pb-4 mx-auto lg:mx-0' />
           </Link>
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <div className={`lg:hidden fixed inset-0 bg-black z-10 overflow-hidden transition-max-height duration-300 ease-in-out ${nav ? 'max-h-screen mt-16' : 'max-h-0 mt-16'}`}>
         <ul className="flex flex-col lg:items-center lg:justify-center h-full w-full">
           {menuItems.map((item, index) => (
@@ -58,30 +77,42 @@ const Header: React.FC<HeaderProps> = ({ link }) => {
         </ul>
       </div>
 
-      {/* Desktop Menu */}
-      <div className="hidden lg:flex lg:items-center lg:flex-grow lg:justify-center">
-        <ul className="flex items-center">
+      <div className="hidden lg:flex lg:items-center lg:flex-grow lg:justify-center relative">
+        <ul className="flex items-center relative">
           {menuItems.map((item, index) => (
             <li
               key={index}
-              className={`relative px-4 py-2 hover:text-gray-500 border-none ${index === menuItems.length - 1 ? 'text-yellow-400' : 'text-white'}`}
+              className="relative px-4 py-2 hover:text-gray-500"
+              onMouseEnter={() => handleMouseEnter(item.label)}
+              onMouseLeave={handleMouseLeave}
             >
               <Link href={`${link}/${item.href}`}>{item.label}</Link>
-              {/* Submenu */}
-              {item.subcategories && (
-                <ul className="hidden absolute left-0 top-full bg-black shadow-lg group-hover:block">
-                  {item.subcategories.map((subcategory, subIndex) => (
-                    <li key={subIndex} className="hover:text-gray-500 px-4 py-2">
-                      <Link href={`${link}/${item.href}/${subcategory.toLowerCase().replace(/\s/g, '-')}`}>
-                        {subcategory}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
             </li>
           ))}
         </ul>
+        {currentSubcategories.length > 0 && activeMenu && (
+          <div
+            className="absolute top-full left-0 right-0 bg-black bg-opacity-90 p-4 grid gap-4 grid-cols-3 text-[8px] transition-transform duration-300 ease-in-out z-50"
+            onMouseEnter={handleSubmenuMouseEnter}
+            onMouseLeave={handleSubmenuMouseLeave}
+            style={{
+              transform: submenuVisible ? 'translateY(0)' : 'translateY(-100%)',
+              visibility: submenuVisible ? 'visible' : 'hidden',
+              opacity: submenuVisible ? 1 : 0,
+              transition: 'transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out'
+            }}
+          >
+            {currentSubcategories.map((sub, subIndex) => (
+              <Link 
+                key={subIndex} 
+                href={`${link}/${sub.toLowerCase().replace(/ /g, '-')}`} 
+                className="text-white hover:underline"
+              >
+                {sub}
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
