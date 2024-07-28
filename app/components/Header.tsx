@@ -4,21 +4,19 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { RiCloseFill } from "react-icons/ri";
 import Image from 'next/image';
+import { MenuItemProps } from '../home/page';
 
-const Header: React.FC<{ link: string }> = ({ link }) => {
+interface HeaderProps {
+  link: string;
+  menu: MenuItemProps[];
+}
+
+const Header: React.FC<HeaderProps> = ({ link, menu }) => {
   const [nav, setNav] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [submenuVisible, setSubmenuVisible] = useState(false);
 
   const handleNav = () => setNav(!nav);
-
-  const menuItems = [
-    { href: "men/", label: "MEN", subcategories: ["REMERAS", "CAMISAS", "FALDAS Y PANTALONES", "ABRIGOS", "ENTEROS", "ACCESORIOS"] },
-    { href: "women/", label: "WOMEN", subcategories: ["TOPS Y REMERAS", "CAMISAS", "VESTIDOS Y ENTEROS", "FALDAS Y PANTALONES", "ABRIGOS", "BODIES Y TRAJES DE BAÑO", "ACCESORIOS"] },
-    { href: "wild-object/", label: "WILD OBJECT", subcategories: [] },
-    { href: "re-con-figure/", label: "RE.CON-FIGURE", subcategories: [] },
-    { href: "peces-raros-kostume/", label: "PECES RAROS . KOSTUME", subcategories: [] }
-  ];
 
   const handleMouseEnter = (label: string) => {
     setActiveMenu(label);
@@ -43,11 +41,11 @@ const Header: React.FC<{ link: string }> = ({ link }) => {
     }, 100); 
   };
 
-  const currentSubcategories = menuItems.find(item => item.label === activeMenu)?.subcategories || [];
+  const currentSubcategories = menu.find(item => item.label === activeMenu)?.subcategories || [];
 
   return (
     <div className="w-full z-20 mx-4 ease-in duration-300 h-fit pt-2 pb-2 lg:pb-0 bg-black flex font-semibold justify-between lg:justify-start items-center text-extraxs">
-      <div className="flex justify-between items-center w-full lg:w-auto px-4 lg:px-0 lg:mr-auto">
+      <div className="flex justify-between items-center w-full lg:w-auto px-4 lg:px-0  lg:mr-auto">
         <div onClick={handleNav} className="z-10 block lg:hidden">
           {nav ? (
             <RiCloseFill className="transition-transform duration-300 ease-in-out" style={{ color: "#ffffff" }} size={24} />
@@ -57,15 +55,15 @@ const Header: React.FC<{ link: string }> = ({ link }) => {
         </div>
         <div className="flex-grow lg:flex lg:items-center lg:justify-start">
           <Link href="/">
-            <Image src="/kostume_logo.svg" width={150} height={30} alt='Kostume' className='py-2 lg:py-1 lg:pb-4 mx-auto lg:mx-0' />
+            <Image src="/kostume_logo.svg" width={150} height={30} alt='Kostume' className='py-2 lg:py-1 lg:pb-4 mx-auto  lg:mx-0' />
           </Link>
         </div>
       </div>
 
       <div className={`lg:hidden fixed inset-0 bg-black z-10 overflow-hidden transition-max-height duration-300 ease-in-out ${nav ? 'max-h-screen mt-16' : 'max-h-0 mt-16'}`}>
         <ul className="flex flex-col lg:items-center lg:justify-center h-full w-full">
-          {menuItems.map((item, index) => (
-            <li key={index} className={`p-4 hover:text-gray-500 border-b w-full ${index === menuItems.length - 1 ? 'text-yellow-400' : 'text-white'}`}>
+          {menu.map((item, index) => (
+            <li key={index} className={`p-4 hover:text-gray-500 border-b w-full ${index === menu.length - 1 ? 'text-yellow-400' : 'text-white'}`}>
               <Link onClick={handleNav} href={`${link}/${item.href}`}>
                 <div className='flex justify-between w-full'>
                   <p>{item.label}</p>
@@ -79,7 +77,7 @@ const Header: React.FC<{ link: string }> = ({ link }) => {
 
       <div className="hidden lg:flex lg:items-center lg:flex-grow lg:justify-center relative">
         <ul className="flex items-center relative">
-          {menuItems.map((item, index) => (
+          {menu.map((item, index) => (
             <li
               key={index}
               className="relative px-4 py-2 hover:text-gray-500"
@@ -105,7 +103,7 @@ const Header: React.FC<{ link: string }> = ({ link }) => {
             {currentSubcategories.map((sub, subIndex) => (
               <Link 
                 key={subIndex} 
-                href={`${link}/${sub.toLowerCase().replace(/ /g, '-')}`} 
+                href={`${link}/${activeMenu.toLowerCase()}/${sub.toLowerCase().replace(/ /g, '-')}`} 
                 className="text-white hover:underline"
               >
                 {sub}
