@@ -1,7 +1,7 @@
 import { SectionProps } from "../components/Footer";
 
 const footer: SectionProps[] = [
-    {
+    { 
       title: 'Contact',
       links: [
         { href: 'mailto:contacto@kostumeweb.net', text: 'EMAIL' },

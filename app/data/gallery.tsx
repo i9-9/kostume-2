@@ -4,12 +4,12 @@ interface ImageProps {
 }
 
 const images = [
-    { src: '/men.png', title: 'MEN', link: "men/" },
-    { src: '/women.png', title: 'WOMEN', link: "women/" },
-    { src: '/ss1.jpeg', title: '#46SS24', link: "descubrir1/" },
-    { src: '/ss2.jpeg', title: 'RE.CON.FIGURE', link: "re-con-figure/"},
-    { src: '/ss3.jpeg', title: '#47AW24', link: "47aw24/"  },
-    { src: '/ss4.jpeg', title: 'WILD OBJECT', link: "wild-object/" },
+    { src: '/PECES.jpg', title: 'PECES RAROS . KOSTÜME', link: "peces-raros-kostume/", type: "image" },
+    { src: '/WOMEN.jpg', title: 'KOSTÜME WOMEN', link: "women/", type: "image" },
+    { src: '/x3-seamm.mp4', title: 'SEAMM', link: "descubrir1/", type: "video" },
+    { src: '/MEN.jpg', title: 'KOSTÜME MEN', link: "men/", type: "image"},
+    { src: '/x3-mujer.mp4', title: '#47AW24', link: "47aw24/", type: "video"  },
+    { src: '/STORE.jpg', title: 'KOSTÜME STORE', link: "https://maps.app.goo.gl/6bjuZRECUuptnavN8", type: "image" },
   ];
 
 export default images;
