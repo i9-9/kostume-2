@@ -9,7 +9,7 @@ interface GalleryProps {
 
 const Gallery: React.FC<GalleryProps> = ({ link }) => {
   return (
-    <div className="grid grid-cols-2 gap-2 md:grid-cols-4 px-8">
+    <div className="grid grid-cols-2 gap-2 md:grid-cols-4 px-4 lg:px-8">
       {images.map((item, index) => (
         <div
           key={index}
@@ -19,8 +19,8 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
               : "md:col-span-1 md:row-span-2" 
           }`}
         >
-        <Link href={`${item.title === "SEAMM" || "KOSTÜME STORE" ? item.link : `${link}/${item.link}`}`}>
-          <div
+        <Link href={item.title === "SEAMM" || item.title === "KOSTÜME STORE" ? item.link : `${link}/${item.link}`}>
+        <div
               className={`relative w-full h-0 ${
                 index < 2 ? "pb-[150%] lg:pb-[100%]" : "pb-[150%]"
               }`}
