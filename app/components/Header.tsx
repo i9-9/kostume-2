@@ -49,24 +49,30 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
       <div className="flex justify-between items-center w-full lg:w-auto lg:mr-auto">
         <div onClick={handleNav} className="z-10 block lg:hidden">
           {nav ? (
-            <RiCloseFill
+            <Image 
+              src="/close.svg"
               className="transition-transform duration-300 ease-in-out"
               style={{ color: "#ffffff" }}
-              size={24}
+              width={20}
+              alt="Close"
+              height={20}
             />
           ) : (
-            <HiOutlineMenuAlt4
+            <Image
+              src="/hamburger.svg"
               className="transition-transform duration-300 ease-in-out"
               style={{ color: "#ffffff" }}
-              size={24}
+              width={20}
+              alt="Close"
+              height={20}
             />
           )}
         </div>
-        <div className="flex-grow lg:flex lg:items-center lg:justify-start">
+        <div className="flex-grow lg:flex lg:justify-start">
           <Link href="/">
             <Image
               src="/kostume_logo.svg"
-              width={150}
+              width={130}
               height={30}
               alt="Kostume"
               className="py-2 mx-auto lg:ml-4"
@@ -80,17 +86,14 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
           nav ? "max-h-screen mt-16" : "max-h-0 mt-16"
         }`}
       >
-        <ul className="flex flex-col lg:items-center lg:justify-center h-full w-full">
+        <ul className="flex flex-col lg:items-center lg:justify-center h-full w-full pt-8">
           {menu.map((item, index) => (
             <li
               key={index}
-              className={` hover:text-gray-500 border-b mx-4 py-4 ${
-                index === menu.length - 1 ? "text-yellow-400" : "text-white"
-              }`}
-            >
+              className={`hover:text-gray-500 border-b mx-4 py-4 text-white/80 ${index === 0 ? "border-t" : ""}`}>
               <Link onClick={handleNav} href={`${link}/${item.href}`}>
                 <div className="flex justify-between">
-                  <p>{item.label}</p>
+                  <p className="self-center text-white">{item.label}</p>
                   <MdOutlineKeyboardArrowRight color="white" size={20} />
                 </div>
               </Link>
