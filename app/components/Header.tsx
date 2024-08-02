@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+import { MenuItemProps } from "../home/page";
 
 interface HeaderProps {
   link: string;
@@ -42,8 +43,8 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
     menu.find((item) => item.label === activeMenu)?.subcategories || [];
 
   return (
-    <div className="max-w-full z-20 items-center mx-4 ease-in duration-300 py-2 h-fit bg-black flex font-semibold justify-between lg:justify-start text-extraxs">
-      <div className="flex justify-between items-center w-full lg:w-auto lg:mr-auto">
+    <div className="max-w-full z-20 items-center pr-4 ease-in duration-300 py-2 h-fit bg-black flex font-semibold justify-between lg:justify-start text-extraxs">
+      <div className="flex justify-between items-center w-full lg:w-auto">
         <div onClick={handleNav} className="z-10 block lg:hidden">
           {nav ? (
             <Image
@@ -126,7 +127,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
                 "transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out",
             }}
           >
-            {currentSubcategories.map((sub, subIndex) => (
+            {currentSubcategories.map((sub: any, subIndex: any) => (
               <Link
                 key={subIndex}
                 href={`${link}/${activeMenu.toLowerCase()}/${sub
