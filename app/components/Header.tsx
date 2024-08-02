@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
-import { MdOutlineKeyboardArrowRight } from "react-icons/md";
-import { HiOutlineMenuAlt4 } from "react-icons/hi";
-import { RiCloseFill } from "react-icons/ri";
 import Image from "next/image";
-import { MenuItemProps } from "../home/page";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 interface HeaderProps {
   link: string;
@@ -45,11 +42,11 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
     menu.find((item) => item.label === activeMenu)?.subcategories || [];
 
   return (
-    <div className="max-w-full z-20 items-center mx-4 ease-in duration-300 py-2 h-fit  bg-black flex font-semibold justify-between lg:justify-start text-extraxs">
+    <div className="max-w-full z-20 items-center mx-4 ease-in duration-300 py-2 h-fit bg-black flex font-semibold justify-between lg:justify-start text-extraxs">
       <div className="flex justify-between items-center w-full lg:w-auto lg:mr-auto">
         <div onClick={handleNav} className="z-10 block lg:hidden">
           {nav ? (
-            <Image 
+            <Image
               src="/close.svg"
               className="transition-transform duration-300 ease-in-out"
               style={{ color: "#ffffff" }}
@@ -68,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
             />
           )}
         </div>
-        <div className="flex-grow lg:flex lg:justify-start">
+        <div className="flex-grow lg:flex lg:justify-start h-full">
           <Link href="/">
             <Image
               src="/kostume_logo.svg"
@@ -90,7 +87,8 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
           {menu.map((item, index) => (
             <li
               key={index}
-              className={`hover:text-gray-500 border-b mx-4 py-4 text-white/80 ${index === 0 ? "border-t" : ""}`}>
+              className={`hover:text-gray-500 border-b mx-4 py-4 text-white/80 ${index === 0 ? "border-t" : ""}`}
+            >
               <Link onClick={handleNav} href={`${link}/${item.href}`}>
                 <div className="flex justify-between">
                   <p className="self-center text-white">{item.label}</p>
@@ -102,8 +100,8 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
         </ul>
       </div>
 
-      <div className="hidden lg:flex lg:items-center lg:flex-grow lg:justify-center relative">
-        <ul className="flex items-center relative">
+      <div className="hidden lg:flex lg:items-center lg:flex-grow lg:justify-center relative w-full h-full">
+        <ul className="flex items-center relative h-full">
           {menu.map((item, index) => (
             <li
               key={index}
@@ -117,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
         </ul>
         {currentSubcategories.length > 0 && activeMenu && (
           <div
-            className="absolute top-full w-full left-0 right-0 bg-black bg-opacity-90 p-4 grid gap-4 grid-cols-3 text-[8px] transition-transform duration-300 ease-in-out z-50"
+            className="absolute top-full left-0 w-full bg-black bg-opacity-90 p-4 grid gap-4 grid-cols-3 text-[8px] transition-transform duration-300 ease-in-out z-50"
             onMouseEnter={handleSubmenuMouseEnter}
             onMouseLeave={handleSubmenuMouseLeave}
             style={{
