@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
             />
           )}
         </div>
-        <div className="flex-grow lg:flex lg:justify-start h-full">
+        <div className="flex-grow flex lg:justify-start h-full self-center w-full lg:w-fit justify-center">
           <Link href="/">
             <Image
               src="/kostume_logo.svg"
@@ -132,7 +132,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
         </ul>
       </div>
 
-      <div className="hidden lg:flex lg:items-center lg:flex-grow lg:justify-center relative w-full h-full">
+      <div className="hidden lg:flex lg:items-center lg:flex-grow lg:justify-center relative w-full h-fit left-0 lg:absolute">
         <ul className="flex items-center relative h-full">
           {menu.map((item, index) => (
             <li
