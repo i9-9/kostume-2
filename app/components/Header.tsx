@@ -74,10 +74,10 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
           <Link href="/">
             <Image
               src="/kostume_logo.svg"
-              width={130}
+              width={125}
               height={30}
               alt="Kostume"
-              className="py-2 mx-auto lg:ml-4"
+              className="py-2 lg:ml-4"
             />
           </Link>
         </div>
