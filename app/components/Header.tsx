@@ -147,7 +147,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
         </ul>
         {currentSubcategories.length > 0 && activeMenu && (
           <div
-            className="absolute top-full left-0 w-full bg-black bg-opacity-90 p-4 grid gap-4 grid-cols-3 text-[8px] transition-transform duration-300 ease-in-out z-50"
+            className="absolute top-full left-0 w-full bg-black bg-opacity-90 p-4 grid gap-4 grid-cols-3 text-[10px] transition-transform duration-300 ease-in-out z-50"
             onMouseEnter={handleSubmenuMouseEnter}
             onMouseLeave={handleSubmenuMouseLeave}
             style={{

@@ -15,3 +15,16 @@
     @apply text-white font-extrabold text-4xl mb-2 mx-2 md:text-5xl lg:text-7xl;
   }
 }
+
+
+@font-face {
+  font-family: 'HelveticaNeue';
+  src: url('/HelveticaNeueBold.otf') format('otf');
+  font-weight: normal;
+  font-style: bold;
+}
+
+.text-title {
+  font-family: 'HelveticaNeue', sans-serif;
+  font-weight: bold;
+}

@@ -12,7 +12,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-24 bg-black">
-      <div className="flex flex-col md:flex-row justify-center items-center">
+      <div className="flex flex-col md:flex-row justify-center items-center text-title">
         <p className="title">THIS</p>
         <p className="title">IS</p>
         <p className="title">KOSTÜME</p>
