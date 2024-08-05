@@ -15,6 +15,7 @@ export interface MenuItemProps {
   href: string;
   label: string; 
   subcategories: string[];
+  links: string[];
 }
 
 const Home: React.FC = () => {

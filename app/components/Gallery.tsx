@@ -41,11 +41,11 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
                     alt={item.title}
                     layout="fill"
                     objectFit="cover"
-                    className="transition duration-300 group-hover:opacity-50 group-hover:brightness-110"
+                    className="transition duration-700 group-hover:opacity-50 group-hover:brightness-110"
                   />
                 )}
               </div>
-              <div className="absolute inset-0 flex justify-center items-center opacity-100 lg:opacity-0 group-hover:opacity-100 transition duration-300 bg-white bg-opacity-50 group-hover:cursor-pointer">
+              <div className="absolute inset-0 flex justify-center items-center opacity-100 lg:opacity-0 group-hover:opacity-100 transition duration-700 bg-white bg-opacity-50 group-hover:cursor-pointer">
                 <span
                   className={`text-white text-center font-bold ${
                     index < 2 ? "text-lg lg:text-xl" : "text-lg"

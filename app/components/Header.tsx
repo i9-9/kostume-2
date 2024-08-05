@@ -43,6 +43,8 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
     setActiveMenu(activeMenu === label ? null : label);
   };
 
+  const links = menu.find((item) => item.label === activeMenu)?.links || [];
+  
   const currentSubcategories =
     menu.find((item) => item.label === activeMenu)?.subcategories || [];
 
@@ -84,54 +86,53 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
       </div>
 
       <div
-        className={`lg:hidden fixed inset-0 bg-black z-10 overflow-hidden transition-max-height duration-300 ease-in-out ${
-          nav ? "max-h-screen mt-16" : "max-h-0 mt-16"
-        }`}
+  className={`lg:hidden fixed inset-0 bg-black z-10 overflow-hidden transition-max-height duration-300 ease-in-out ${
+    nav ? "max-h-screen mt-16" : "max-h-0 mt-16"
+  }`}
+>
+  <ul className="flex flex-col lg:items-center lg:justify-center h-full w-full pt-8">
+    {menu.map((item, index) => (
+      <li
+        key={index}
+        className={`lg:hover:text-gray-500 border-b mx-4 py-4 text-white ${index === 0 ? "border-t" : ""}`}
       >
-        <ul className="flex flex-col lg:items-center lg:justify-center h-full w-full pt-8">
-          {menu.map((item, index) => (
-            <li
-              key={index}
-              className={`lg:hover:text-gray-500 border-b mx-4 py-4 text-white ${index === 0 ? "border-t" : ""}`}
+        {item.subcategories && item.subcategories.length > 0 ? (
+          <>
+            <div
+              className="flex justify-between cursor-pointer"
+              onClick={() => handleSubmenuToggle(item.label)}
             >
-              {item.subcategories && item.subcategories.length > 0 ? (
-                <>
-                  <div
-                    className="flex justify-between cursor-pointer"
-                    onClick={() => handleSubmenuToggle(item.label)}
-                  >
-                    <p className="self-center text-white">{item.label}</p>
-                    {activeMenu === item.label ? (
-                      <MdOutlineKeyboardArrowDown color="white" size={20} />
-                    ) : (
-                      <MdOutlineKeyboardArrowRight color="white" size={20} />
-                    )}
-                  </div>
-                  {activeMenu === item.label && (
-                    <ul className="pl-4 mt-2">
-                      {item.subcategories.map((sub, subIndex) => (
-                        <li key={subIndex} className="py-2">
-                          <Link onClick={handleNav} href={`${link}/${item.href}/${sub.toLowerCase().replace(/ /g, "-")}`}>
-                            {sub}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </>
+              <p className="self-center text-white">{item.label}</p>
+              {activeMenu === item.label ? (
+                <MdOutlineKeyboardArrowDown color="white" size={20} />
               ) : (
-                <Link onClick={handleNav} href={`${link}/${item.href}`}>
-                  <div className="flex justify-between">
-                    <p className="self-center text-white">{item.label}</p>
-                    <MdOutlineKeyboardArrowRight color="white" size={20} />
-                  </div>
-                </Link>
+                <MdOutlineKeyboardArrowRight color="white" size={20} />
               )}
-            </li>
-          ))}
-        </ul>
-      </div>
-
+            </div>
+            <div className={`transition-max-height duration-300 ease-in-out overflow-hidden ${activeMenu === item.label ? 'max-h-screen' : 'max-h-0'}`}>
+              <ul className="pl-4 mt-2">
+                {item.subcategories.map((sub, subIndex) => (
+                  <li key={subIndex} className="py-2">
+                    <Link onClick={handleNav} href={`${link}/${item.href}/${links[subIndex]}`}>
+                      {sub}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        ) : (
+          <Link onClick={handleNav} href={`${link}/${item.href}`}>
+            <div className="flex justify-between">
+              <p className="self-center text-white">{item.label}</p>
+              <MdOutlineKeyboardArrowRight color="white" size={20} />
+            </div>
+          </Link>
+        )}
+      </li>
+    ))}
+  </ul>
+</div>
       <div className="hidden lg:flex lg:items-center lg:flex-grow lg:justify-center relative w-full h-fit left-0 lg:absolute">
         <ul className="flex items-center relative h-full">
           {menu.map((item, index) => (
@@ -161,7 +162,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
             {currentSubcategories.map((sub: any, subIndex: any) => (
               <Link
                 key={subIndex}
-                href={`${link}/${activeMenu.toLowerCase()}/${sub.toLowerCase().replace(/ /g, "-")}`}
+                href={`${link}/${activeMenu.toLowerCase()}/${links[subIndex]}`}
                 className="text-white font-normal hover:underline"
               >
                 {sub}
