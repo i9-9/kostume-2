@@ -99,7 +99,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
         {item.subcategories && item.subcategories.length > 0 ? (
           <>
             <div
-              className="flex justify-between cursor-pointer"
+              className="flex justify-between cursor-pointer "
               onClick={() => handleSubmenuToggle(item.label)}
             >
               <p className="self-center text-white">{item.label}</p>
@@ -109,7 +109,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
                 <MdOutlineKeyboardArrowRight color="white" size={20} />
               )}
             </div>
-            <div className={`transition-max-height duration-300 ease-in-out overflow-hidden ${activeMenu === item.label ? 'max-h-screen' : 'max-h-0'}`}>
+            <div className={`transition-max-height duration-300 font-normal ease-in-out overflow-hidden ${activeMenu === item.label ? 'max-h-screen' : 'max-h-0'}`}>
               <ul className="pl-4 mt-2">
                 {item.subcategories.map((sub, subIndex) => (
                   <li key={subIndex} className="py-2">

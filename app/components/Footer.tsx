@@ -19,7 +19,7 @@ export interface SectionProps {
 
 const Footer = () => {
   return (
-    <div className='flex flex-col text-extraxs border-t border-t-white/30 mt-4 mx-4 lg:mx-8'>
+    <div className='flex flex-col text-extraxs border-t border-t-white mt-4 mx-4 lg:mx-8'>
       <div className='w-full pt-0 lg:pt-6 pb-6'>
         <div className='hidden lg:grid lg:grid-cols-12 lg:gap-6 uppercase'>
         {footer.map((item, index) => (
@@ -35,7 +35,7 @@ const Footer = () => {
         ))}
         </div>
       </div>
-      <div className='border-t py-6 border-t-white/30 text-center text-[8px]'>© KOSTÜME 2024</div>
+      <div className='py-6 text-center text-[8px]'>© KOSTÜME 2024</div>
     </div>
   )
 }
