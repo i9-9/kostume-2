@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import Marquee from '../components/Marquee';
 import VideoHero from '../components/VideoHero';
 import Gallery from '../components/Gallery';
@@ -25,6 +25,10 @@ const Home: React.FC = () => {
     const savedRegion = localStorage.getItem('region') as Region | null;
     if (savedRegion) {
       setRegion(savedRegion);
+    } else {
+      const defaultRegion: Region = 'Argentina';
+      setRegion(defaultRegion);
+      localStorage.setItem('region', defaultRegion);
     }
   }, []);
 
