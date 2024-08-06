@@ -1,4 +1,4 @@
-import Image from "next/image";
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import images from "../data/gallery";
 import Link from "next/link";
@@ -27,21 +27,19 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
               >
                 {item.type === "video" ? (
                   <video
-                    src={item.src}
-                    className="absolute inset-0 w-full h-full object-cover transition duration-300 group-hover:opacity-50 group-hover:brightness-110"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    style={{ width: '100%', height: '100%' }}
-                  />
-                ) : (
-                  <Image
+                  src={item.src}
+                  className="absolute inset-0 w-full h-full object-cover transition duration-300 group-hover:opacity-50 group-hover:brightness-110"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{ objectFit: 'cover' }}
+                />
+              ) : (
+                  <img
                     src={item.src}
                     alt={item.title}
-                    layout="fill"
-                    objectFit="cover"
-                    className="transition duration-700 group-hover:opacity-50 group-hover:brightness-110"
+                    className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:opacity-50 group-hover:brightness-110"
                   />
                 )}
               </div>
