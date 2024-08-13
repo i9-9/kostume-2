@@ -25,7 +25,7 @@ const footer: SectionProps[] = [
     {
       title: 'Store',
       links: [
-        { href: 'https://maps.app.goo.gl/6bjuZRECUuptnavN8 ', text: 'HONDURAS 4771, PALERMO' },
+        { href: 'https://maps.app.goo.gl/Va5Tjw4gF4NMDg3g7 ', text: 'HONDURAS 4771, PALERMO' },
         { href: 'https://wa.me/5491167671108', text: '+54 9 11 5350 5298' }
       ]
     }  

@@ -46,7 +46,7 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
               <div className="absolute inset-0 flex justify-center items-center opacity-100 lg:opacity-0 group-hover:opacity-100 transition duration-700 bg-white bg-opacity-50 group-hover:cursor-pointer">
                 <span
                   className={`text-white text-center font-bold ${
-                    index < 2 ? "text-lg lg:text-xl" : "text-lg"
+                    index < 2 ? "text-sm lg:text-lg" : "text-sm lg:text-base"
                   }`}
                 >
                   {item.title}
