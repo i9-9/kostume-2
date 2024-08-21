@@ -7,15 +7,33 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
+    // Get the current visit count from localStorage, or default to 0
+    let visitCount = parseInt(localStorage.getItem('visitCount') || '0', 10);
+
+    // Increment the visit count
+    visitCount += 1;
+
+    // Store the updated visit count in localStorage
+    localStorage.setItem('visitCount', visitCount.toString());
+
+    // Get the region from localStorage
     const region = localStorage.getItem('region');
-    
-    if (region) {
+
+    // Redirect to pre-landing page every 5 visits, or if no region is set
+    if (visitCount % 5 === 0 || !region) {
+      // Reset the visit count to 0 after 5 visits
+      localStorage.setItem('visitCount', '0');
+    } else if (region) {
+      // Otherwise, redirect to the home page
       router.push('/home');
     }
   }, [router]);
 
   const handleSelection = (region: string) => {
+    // Set the selected region in localStorage
     localStorage.setItem('region', region);
+
+    // Redirect to the home page
     router.push('/home');
   };
 
