@@ -38,7 +38,13 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
               : "md:col-span-1 md:row-span-2"
           }`}
         >
-          <Link href={item.title === "SEAMM" || item.title === "KOSTÜME STORE" ? item.link : `${link}/${item.link}`}>
+          <Link
+            href={
+              item.title === "SEAMM" || item.title === "KOSTÜME STORE"
+                ? item.link
+                : `${link}/${item.link}`
+            }
+          >
             <div
               className={`relative w-full h-0 ${
                 index < 2 ? "pb-[150%] lg:pb-[100%]" : "pb-[150%]"
@@ -47,22 +53,28 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
               {item.type === "video" ? (
                 <video
                   src={item.src}
-                  className="absolute inset-0 w-full h-full object-cover transition duration-300 group-hover:opacity-20 group-hover:brightness-110"
+                  className="absolute inset-0 w-full h-full object-cover"
                   autoPlay
                   loop
                   muted
                   playsInline
-                  style={{ objectFit: 'cover' }}
+                  style={{ objectFit: "cover" }}
                 />
               ) : (
                 <img
                   src={item.src}
                   alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:opacity-20 group-hover:brightness-110"
+                  className="absolute inset-0 w-full h-full object-cover"
                 />
               )}
             </div>
-            <div className="absolute inset-0 flex justify-center items-center opacity-100 lg:opacity-0 group-hover:opacity-100 transition duration-700 bg-white bg-opacity-50 group-hover:cursor-pointer">
+            <div
+              className={`absolute inset-0 flex justify-center items-center bg-black ${
+                window.innerWidth < 768 ? "bg-opacity-50" : "bg-opacity-20"
+              } transition-opacity duration-700 ${
+                window.innerWidth < 768 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+              }`}
+            >
               <span
                 className={`text-white text-center font-bold ${
                   index < 2 ? "text-sm lg:text-lg" : "text-sm lg:text-base"
