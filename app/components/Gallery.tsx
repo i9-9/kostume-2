@@ -1,5 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
-import React from "react";
+import React, { useState, useEffect } from "react";
 import images from "../data/gallery";
 import Link from "next/link";
 
@@ -8,9 +7,29 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({ link }) => {
+  const [imageSet, setImageSet] = useState(
+    typeof window !== "undefined" && window.innerWidth < 768
+      ? images.mobile
+      : images.desktop
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setImageSet(images.mobile);
+      } else {
+        setImageSet(images.desktop);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="grid grid-cols-2 gap-2 md:grid-cols-4 px-4 lg:px-8">
-      {images.map((item, index) => (
+      {imageSet.map((item, index) => (
         <div
           key={index}
           className={`relative group ${
@@ -20,15 +39,15 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
           }`}
         >
           <Link href={item.title === "SEAMM" || item.title === "KOSTÜME STORE" ? item.link : `${link}/${item.link}`}>
-              <div
-                className={`relative w-full h-0 ${
-                  index < 2 ? "pb-[150%] lg:pb-[100%]" : "pb-[150%]"
-                }`}
-              >
-                {item.type === "video" ? (
-                  <video
+            <div
+              className={`relative w-full h-0 ${
+                index < 2 ? "pb-[150%] lg:pb-[100%]" : "pb-[150%]"
+              }`}
+            >
+              {item.type === "video" ? (
+                <video
                   src={item.src}
-                  className="absolute inset-0 w-full h-full object-cover transition duration-300 group-hover:opacity-50 group-hover:brightness-110"
+                  className="absolute inset-0 w-full h-full object-cover transition duration-300 group-hover:opacity-20 group-hover:brightness-110"
                   autoPlay
                   loop
                   muted
@@ -36,22 +55,22 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
                   style={{ objectFit: 'cover' }}
                 />
               ) : (
-                  <img
-                    src={item.src}
-                    alt={item.title}
-                    className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:opacity-50 group-hover:brightness-110"
-                  />
-                )}
-              </div>
-              <div className="absolute inset-0 flex justify-center items-center opacity-100 lg:opacity-0 group-hover:opacity-100 transition duration-700 bg-white bg-opacity-50 group-hover:cursor-pointer">
-                <span
-                  className={`text-white text-center font-bold ${
-                    index < 2 ? "text-sm lg:text-lg" : "text-sm lg:text-base"
-                  }`}
-                >
-                  {item.title}
-                </span>
-              </div>
+                <img
+                  src={item.src}
+                  alt={item.title}
+                  className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:opacity-20 group-hover:brightness-110"
+                />
+              )}
+            </div>
+            <div className="absolute inset-0 flex justify-center items-center opacity-100 lg:opacity-0 group-hover:opacity-100 transition duration-700 bg-white bg-opacity-50 group-hover:cursor-pointer">
+              <span
+                className={`text-white text-center font-bold ${
+                  index < 2 ? "text-sm lg:text-lg" : "text-sm lg:text-base"
+                }`}
+              >
+                {item.title}
+              </span>
+            </div>
           </Link>
         </div>
       ))}
