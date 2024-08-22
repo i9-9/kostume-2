@@ -19,8 +19,8 @@ export interface SectionProps {
 
 const Footer = () => {
   return (
-    <div className='flex flex-col text-extraxs border-t border-t-white lg:border-t-white/30 mt-4 mx-4 lg:mx-8'>
-      <div className='w-full pt-0 lg:pt-6 pb-6'>
+    <div className='flex flex-col text-extraxs border-t-white lg:border-t-white border-t-[0.5px] mt-4 mx-4 lg:mx-8'>
+      <div className='w-full pt-0 lg:pt-6 lg:pb-6'>
         <div className='hidden lg:grid lg:grid-cols-12 lg:gap-6 uppercase'>
         {footer.map((item, index) => (
           <Section key={index} title={item.title} links={item.links} />
@@ -35,7 +35,7 @@ const Footer = () => {
         ))}
         </div>
       </div>
-      <div className='lg:border-t py-6 lg:border-t-white/30 text-center text-[8px]'>© KOSTÜME 2024</div>
+      <div className='py-5 lg:border-t-white lg:border-t-[0.5px] text-center text-[8px]'>© KOSTÜME 2024</div>
     </div>
   )
 }

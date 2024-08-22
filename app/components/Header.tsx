@@ -94,7 +94,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
     {menu.map((item, index) => (
       <li
         key={index}
-        className={`lg:hover:text-gray-500 border-b mx-4 py-4 text-white ${index === 0 ? "border-t" : ""}`}
+        className={`lg:hover:text-gray-500 border-b-[0.5px] mx-4 py-4 text-white ${index === 0 ? "border-t-[0.5px]" : ""}`}
       >
         {item.subcategories && item.subcategories.length > 0 ? (
           <>
@@ -133,12 +133,12 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
     ))}
   </ul>
 </div>
-      <div className="hidden lg:flex lg:items-center lg:flex-grow lg:justify-center relative w-full h-fit left-0 lg:absolute">
+      <div className="hidden lg:flex lg:items-center lg:flex-grow font-bold lg:justify-center relative w-full h-fit left-0 lg:absolute">
         <ul className="flex items-center relative h-full">
           {menu.map((item, index) => (
             <li
               key={index}
-              className="relative px-4 py-2 hover:text-gray-400"
+              className="font-bold relative px-4 py-2 hover:text-gray-400"
               onMouseEnter={() => handleMouseEnter(item.label)}
               onMouseLeave={handleMouseLeave}
             >
