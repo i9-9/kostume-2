@@ -7,11 +7,7 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({ link }) => {
-  const [imageSet, setImageSet] = useState(
-    typeof window !== "undefined" && window.innerWidth < 768
-      ? images.mobile
-      : images.desktop
-  );
+  const [imageSet, setImageSet] = useState(images.desktop); // Default to desktop images
 
   useEffect(() => {
     const handleResize = () => {
@@ -21,6 +17,9 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
         setImageSet(images.desktop);
       }
     };
+
+    // Run the resize handler on mount to set the initial state correctly
+    handleResize();
 
     window.addEventListener("resize", handleResize);
 
@@ -69,10 +68,10 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
               )}
             </div>
             <div
-              className={`absolute inset-0 flex justify-center items-center bg-black ${
-                window.innerWidth < 768 ? "bg-opacity-50" : "bg-opacity-20"
-              } transition-opacity duration-700 ${
-                window.innerWidth < 768 ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+              className={`absolute inset-0 flex justify-center items-center bg-black transition-opacity duration-700 ${
+                typeof window !== "undefined" && window.innerWidth < 768
+                  ? "bg-opacity-50 opacity-100"
+                  : "bg-opacity-20 opacity-0 group-hover:opacity-100"
               }`}
             >
               <span
