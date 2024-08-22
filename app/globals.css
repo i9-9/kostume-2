@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  font-family: 'Helvetica', sans-serif,
+  font-family: 'HelveticaNeue', sans-serif,
 }
 
 @layer components {

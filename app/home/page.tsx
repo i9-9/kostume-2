@@ -52,7 +52,7 @@ const Home: React.FC = () => {
         <Marquee marqueeText={marqueeText[region]} />
         <Header link={externalLinks[region]} menu={menuItem[region]} /> 
         <VideoHero />
-        <p className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
+        <p className='bg-[#121212] lg:text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </p>
         <Gallery link={externalLinks[region]} />
