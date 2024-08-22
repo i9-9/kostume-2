@@ -138,7 +138,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
           {menu.map((item, index) => (
             <li
               key={index}
-              className="relative px-4 py-2 hover:text-gray-500"
+              className="relative px-4 py-2 hover:text-gray-400"
               onMouseEnter={() => handleMouseEnter(item.label)}
               onMouseLeave={handleMouseLeave}
             >
