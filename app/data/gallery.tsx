@@ -14,7 +14,7 @@ const images: ImageSets = {
   desktop: [
       { src: '/48ss25_1.jpg', title: '#48SS25', link: "48ss25/", type: "image" },
       { src: '/48ss25_2.jpg', title: '#48SS25', link: "48ss25/", type: "image" },
-      { src: '/peces_raros_chica.jpg', title: 'PECES RAROS', link: "peces-raros-kostume/", type: "image" },
+      { src: '/peces_raros_chica.jpg', title: 'PECES RAROS . KOSTÜME', link: "peces-raros-kostume/", type: "image" },
       { src: '/kostume_men_chica.jpg', title: 'KOSTÜME MEN', link: "men/", type: "image"},
       { src: '/kostume_women_chica.jpg', title: 'KOSTÜME WOMEN', link: "women/", type: "image"  },
       { src: '/store.jpg', title: 'KOSTÜME STORE', link: "https://maps.app.goo.gl/Va5Tjw4gF4NMDg3g7", type: "image" },

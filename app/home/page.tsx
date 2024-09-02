@@ -38,7 +38,7 @@ const Home: React.FC = () => {
   };
 
   const marqueeText: Record<Region, string>  = {
-    Argentina: '6 CUOTAS SIN INTERÉS HASTA EL 31 DE AGOSTO · ',
+    Argentina: '3 CUOTAS SIN INTERES · ',
     Worldwide: 'WORLDWIDE SHIPPING · ',
   };
 

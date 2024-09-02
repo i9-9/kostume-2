@@ -6,12 +6,11 @@ interface MarqueeProps {
 }
 
 const PromotionsMarquee: React.FC<MarqueeProps> = ({ marqueeText }) => {
-  // Dynamically repeat the marquee text multiple times with spaces in between
   const repeatText = (text: string, times: number): string =>
     Array(times).fill(text).join('');
 
-  // Generate the repeated text with a certain number of repetitions
-  const repeatedText = repeatText(marqueeText, 10); // Repeat 10 times
+  
+  const repeatedText = repeatText(marqueeText, 20);
 
   return (
     <Marquee
