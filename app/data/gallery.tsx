@@ -13,7 +13,7 @@ interface ImageSets {
 const images: ImageSets = {
   desktop: [
     { src: '/48_desktop_2.jpg', title: '#48SS25', link: "48ss25/", type: "image" },
-    { src: '/runway_grande.jpg', title: 'RUNWAY LOOKS', link: "48ss25/", type: "image" },
+    { src: '/runway_grande.jpg', title: 'RUNWAY LOOKS', link: "runway-looks/", type: "image" },
     { src: '/peces_raros_chica.jpg', title: 'PECES RAROS . KOSTÜME', link: "peces-raros-kostume/", type: "image" },
     { src: '/women_2.jpg', title: 'KOSTÜME WOMEN', link: "women/", type: "image"  },
     { src: '/men_2.jpg', title: 'KOSTÜME MEN', link: "men/", type: "image"},
