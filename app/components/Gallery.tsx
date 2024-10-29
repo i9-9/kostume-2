@@ -7,7 +7,7 @@ interface GalleryProps {
 }
 
 const Gallery: React.FC<GalleryProps> = ({ link }) => {
-  const [imageSet, setImageSet] = useState(images.desktop); // Default to desktop images
+  const [imageSet, setImageSet] = useState(images.desktop); 
 
   useEffect(() => {
     const handleResize = () => {
@@ -18,7 +18,6 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
       }
     };
 
-    // Run the resize handler on mount to set the initial state correctly
     handleResize();
 
     window.addEventListener("resize", handleResize);

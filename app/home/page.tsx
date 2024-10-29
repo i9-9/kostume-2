@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import menuItemsEs from '../data/es-menu'; 
 import menuItemsEn from '../data/en-menu';
+import Banner from '../components/Banner';
 
 export type Region = 'Argentina' | 'Worldwide';
 
@@ -55,6 +56,7 @@ const Home: React.FC = () => {
         <p className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </p>
+        <Banner />
         <Gallery link={externalLinks[region]} />
         <Footer />
     </div>
