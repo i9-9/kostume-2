@@ -23,8 +23,8 @@ const images: ImageSets = {
     { src: '/48ss25_mobile.jpg', title: '#48SS25', link: "48ss25/", type: "image" },
     { src: '/runway_mobile.jpg', title: 'RUNWAY LOOKS', link: "runway-looks/", type: "image" },
     { src: '/mobile_peces.jpg', title: 'PECES RAROS . KOSTÜME', link: "peces-raros-kostume/", type: "image" },
-    { src: '/mobile_men1.jpg', title: 'KOSTÜME MEN', link: "men/", type: "image"},
-    { src: '/mobile_women.jpg', title: 'KOSTÜME WOMEN', link: "women/", type: "image"  },
+    { src: '/men_mobile.jpg', title: 'KOSTÜME MEN', link: "men/", type: "image"},
+    { src: '/women_mobile.jpg', title: 'KOSTÜME WOMEN', link: "women/", type: "image"  },
     { src: '/store.jpg', title: 'KOSTÜME STORE', link: "https://maps.app.goo.gl/Va5Tjw4gF4NMDg3g7", type: "image" },
   ]
 };
