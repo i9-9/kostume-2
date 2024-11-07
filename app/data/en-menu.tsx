@@ -5,8 +5,7 @@ const menuItemsEn = [
   { href: "women", label: "WOMEN", subcategories: ["TOPS & T-SHIRTS", "SHIRTS", "DRESSES & JUMPSUITS", "PANTS & SKIRTS", "COATS", "BODIES & SWIMSUITS", "ACCESORIES"], links: ["tops-y-remeras", "camisas", "vestidos-y-enteros", "faldas-y-pantalones", "abrigos", "bodies-y-trajes-de-bano", "accesorios"] },
   { href: "peces-raros-kostume", label: "PECES RAROS . KOSTÜME", subcategories: [], links: [] },
   { href: "runway-looks", label: "RUNWAY LOOKS", subcategories: [], links: [] },
-  { href: "blue-monday", label: "BLUE MONDAY", subcategories: [], links: [] },
-  // { href: "wild-object", label: "WILD OBJECT", subcategories: [], links: [] },
+
 ];
 
 export default menuItemsEn;
