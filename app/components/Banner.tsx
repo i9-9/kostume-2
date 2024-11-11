@@ -40,9 +40,8 @@ const Banner: React.FC<BannerProps> = ({ region, externalLinks }) => {
             className="relative group"
           >
             <img src={image.src} alt={image.title} className="w-full h-auto" />
-            {/* Overlay with text, visible on hover */}
-            <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-opacity duration-700">
-              <span className="text-white text-center font-bold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+            <div className="absolute inset-0 flex justify-center items-center bg-[rgba(0,0,0,0)] group-hover:bg-[rgba(0,0,0,0.3)] transition-colors duration-500 ease-in-out">
+              <span className="text-white text-center font-bold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
                 {image.title}
               </span>
             </div>
