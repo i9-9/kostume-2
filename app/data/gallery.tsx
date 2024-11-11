@@ -14,7 +14,7 @@ const images: ImageSets = {
   desktop: [
     { src: '/48_desktop_2.jpg', title: '#48SS25', link: "48ss25/", type: "image" },
     { src: '/runway_grande.jpg', title: 'RUNWAY LOOKS', link: "runway-looks/", type: "image" },
-    { src: '/img/kostume_w.jpg', title: 'KOSTÜME WOMEN', link: "peces-raros-kostume/", type: "image" },
+    { src: '/img/kostume_w.jpg', title: 'KOSTÜME WOMEN', link: "women/", type: "image" },
     { src: '/img/kostume_m.jpg', title: 'KOSTÜME MEN', link: "men/", type: "image"},
     { src: '/img/runway_g.jpg', title: 'RUNWAY LOOKS', link: "runway-looks/", type: "image"  },
     { src: '/img/store_g.jpg', title: 'KOSTÜME STORE', link: "https://maps.app.goo.gl/Va5Tjw4gF4NMDg3g7", type: "image" },
