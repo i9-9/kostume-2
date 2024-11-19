@@ -1,53 +1,39 @@
+// app/components/Banner.tsx
 import React from "react";
-import banner from "../data/banner";
+import bannerData from "../data/banner";  // Correct import path for banner data
 
 interface BannerProps {
-  region: "Argentina" | "Worldwide";
+  collection: "collection1" | "collection2";  // Specify the collection
+  region: "Argentina" | "Worldwide";           // Specify the region
   externalLinks: Record<"Argentina" | "Worldwide", string>;
+  text: string;                               // Text that will appear on the banner
+  deviceType: "desktop" | "mobile";           // Device type (mobile or desktop)
 }
 
-const Banner: React.FC<BannerProps> = ({ region, externalLinks }) => {
+const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, text, deviceType }) => {
+  // Get the images based on collection and device type
+  const images = bannerData[collection][deviceType];
+
   return (
     <div className="px-4 lg:px-8 my-4">
-      {/* Mobile view */}
-      <div className="block lg:hidden">
-        {banner.mobile.map((image, index) => (
-          <a
-            key={index}
-            href={`${externalLinks[region]}/${image.link}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative"
-          >
+      {images.map((image, index) => (
+        <a
+          key={index}
+          href={`${externalLinks[region]}/${image.link}`}  // Region-specific link
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative group"
+        >
+          <div className="relative">
             <img src={image.src} alt={image.title} className="w-full h-auto" />
-            <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50">
+            <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out z-10">
               <span className="text-white text-center font-bold text-sm">
-                {image.title}
+                {text}
               </span>
             </div>
-          </a>
-        ))}
-      </div>
-
-      {/* Desktop view */}
-      <div className="hidden lg:block">
-        {banner.desktop.map((image, index) => (
-          <a
-            key={index}
-            href={`${externalLinks[region]}/${image.link}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative group"
-          >
-            <img src={image.src} alt={image.title} className="w-full h-auto" />
-            <div className="absolute inset-0 flex justify-center items-center bg-[rgba(0,0,0,0)] group-hover:bg-[rgba(0,0,0,0.3)] transition-colors duration-500 ease-in-out">
-              <span className="text-white text-center font-bold text-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out">
-                {image.title}
-              </span>
-            </div>
-          </a>
-        ))}
-      </div>
+          </div>
+        </a>
+      ))}
     </div>
   );
 };

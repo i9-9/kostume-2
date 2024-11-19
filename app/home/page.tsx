@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Marquee from '../components/Marquee';
 import VideoHero from '../components/VideoHero';
 import Gallery from '../components/Gallery';
@@ -21,6 +21,7 @@ export interface MenuItemProps {
 
 const Home: React.FC = () => {
   const [region, setRegion] = useState<Region>('Argentina');
+  const [deviceType, setDeviceType] = useState<'desktop' | 'mobile'>('desktop');
 
   useEffect(() => {
     const savedRegion = localStorage.getItem('region') as Region | null;
@@ -31,6 +32,22 @@ const Home: React.FC = () => {
       setRegion(defaultRegion);
       localStorage.setItem('region', defaultRegion);
     }
+
+    // Detect device type based on screen width
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setDeviceType('desktop');
+      } else {
+        setDeviceType('mobile');
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();  // Call once on mount to set initial device type
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const externalLinks: Record<Region, string> = {
@@ -38,7 +55,7 @@ const Home: React.FC = () => {
     Worldwide: 'https://eshop.kostumeweb.net/us',
   };
 
-  const marqueeText: Record<Region, string>  = {
+  const marqueeText: Record<Region, string> = {
     Argentina: '3 CUOTAS SIN INTERES · ',
     Worldwide: 'WORLDWIDE SHIPPING · ',
   };
@@ -51,16 +68,24 @@ const Home: React.FC = () => {
   return (
     <div className='max-w-full min-h-screen bg-black'>
         <Marquee marqueeText={marqueeText[region]} />
-        <Header link={externalLinks[region]} menu={menuItem[region]} /> 
-        <VideoHero />
+        <Header link={externalLinks[region]} menu={menuItem[region]} />
+        <Banner collection="collection1" 
+          region={region}
+          externalLinks={externalLinks} 
+          text="#48SS25" 
+          deviceType={deviceType} />
         <p className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </p>
-        <Banner region={region} externalLinks={externalLinks} />
+        <Banner collection="collection1"
+          region={region}
+          externalLinks={externalLinks} 
+          text="SWIMWEAR" 
+          deviceType={deviceType} />
         <Gallery link={externalLinks[region]} />
         <Footer />
     </div>
-  )
+  );
 }
 
 export default Home;
