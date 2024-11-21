@@ -23,10 +23,10 @@ const bannerData: BannerData = {
   },
   collection2: {
     desktop: [
-      { src: "/img/banner_3.jpg", title: "#AW24", link: "aw24", type: "image" },
+      { src: "/img/swimwear_desktop.jpg", title: "SWIMWEAR", link: "swimwear", type: "image" },
     ],
     mobile: [
-      { src: "/img/banner_3_ch.jpg", title: "#AW24", link: "aw24", type: "image" },
+      { src: "/img/swimwear_mobile.jpg", title: "SWIMWEAR", link: "swimwear", type: "image" },
     ],
   },
 };

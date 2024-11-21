@@ -77,7 +77,7 @@ const Home: React.FC = () => {
         <p className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </p>
-        <Banner collection="collection1"
+        <Banner collection="collection2"
           region={region}
           externalLinks={externalLinks} 
           text="SWIMWEAR" 
