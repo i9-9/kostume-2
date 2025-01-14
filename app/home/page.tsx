@@ -9,6 +9,7 @@ import Footer from '../components/Footer';
 import menuItemsEs from '../data/es-menu'; 
 import menuItemsEn from '../data/en-menu';
 import Banner from '../components/Banner';
+import TextBanner from '../components/TextBanner';
 
 export type Region = 'Argentina' | 'Worldwide';
 
@@ -69,19 +70,15 @@ const Home: React.FC = () => {
     <div className='max-w-full min-h-screen bg-black'>
         <Marquee marqueeText={marqueeText[region]} />
         <Header link={externalLinks[region]} menu={menuItem[region]} />
-        <Banner collection="collection1" 
+        <TextBanner text='( This is ) SALE ( 30% en items seleccionados ) ( Solo Online )' />
+        {/* <Banner collection="collection1" 
           region={region}
           externalLinks={externalLinks} 
           text="#48SS25" 
-          deviceType={deviceType} />
+          deviceType={deviceType} /> */}
         <p className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </p>
-        <Banner collection="collection2"
-          region={region}
-          externalLinks={externalLinks} 
-          text="SWIMWEAR" 
-          deviceType={deviceType} />
         <Gallery link={externalLinks[region]} />
         <Footer />
     </div>
