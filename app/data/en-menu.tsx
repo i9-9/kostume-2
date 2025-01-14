@@ -4,6 +4,7 @@ const menuItemsEn = [
   { href: "men", label: "MEN", subcategories: ["T-SHIRTS", "SHIRTS", "PANTS & SKIRTS", "COATS", "JUMPSUITS", "ACCESORIES"], links: ["remeras", "camisas1", "faldas-y-pantalones1", "abrigos1", "enteros", "accesorios1"] },
   { href: "women", label: "WOMEN", subcategories: ["TOPS & T-SHIRTS", "SHIRTS", "DRESSES & JUMPSUITS", "PANTS & SKIRTS", "COATS", "BODIES & SWIMSUITS", "ACCESORIES"], links: ["tops-y-remeras", "camisas", "vestidos-y-enteros", "faldas-y-pantalones", "abrigos", "bodies-y-trajes-de-bano", "accesorios"] },
   { href: "runway-looks", label: "RUNWAY LOOKS", subcategories: [], links: [] },
+  { href: "sale", label: "SALE", subcategories: [], links: [] },
 
 ];
 
