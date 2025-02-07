@@ -1,12 +1,35 @@
 const menuItemsEs = [
-    { href: "47aw24", label: "#47AW24", subcategories: [], links: [] },
-    { href: "48ss25", label: "#48SS25", subcategories: [], links: [] },
-    { href: "men", label: "MEN", subcategories: ["REMERAS", "CAMISAS", "FALDAS Y PANTALONES", "ABRIGOS", "ENTEROS", "ACCESORIOS"], links: ["remeras", "camisas1", "faldas-y-pantalones1", "abrigos1", "enteros", "accesorios1"] },
-    { href: "women", label: "WOMEN", subcategories: ["TOPS Y REMERAS", "CAMISAS", "VESTIDOS Y ENTEROS", "FALDAS Y PANTALONES", "ABRIGOS", "BODIES Y TRAJES DE BAÑO", "ACCESORIOS"], links: ["tops-y-remeras", "camisas", "vestidos-y-enteros", "faldas-y-pantalones", "abrigos", "bodies-y-trajes-de-bano", "accesorios"] },
-    { href: "runway-looks", label: "RUNWAY LOOKS", subcategories: [], links: [] },
-    { href: "sale", label: "SALE", subcategories: [], links: [] },
-  
-  ];
-
+  { href: "48ss25", label: "#48SS25", subcategories: [], links: [] },
+  { href: "49aw25", label: "#49AW25", subcategories: [], links: [] },
+  { href: "ver-todo", label: "VER TODO", subcategories: [
+    "PANTALONES", 
+    "FALDAS", 
+    "BUZOS", 
+    "CAMPERAS Y ABRIGOS", 
+    "CAMISAS", 
+    "VESTIDOS", 
+    "REMERAS", 
+    "TOPS", 
+    "TEJIDOS", 
+    "BODIES", 
+    "TRAJES DE BAÑO", 
+    "ZAPATOS", 
+    "ACCESORIOS"
+  ], links: [
+    "pantalones", 
+    "faldas", 
+    "buzos", 
+    "camperas-y-abrigos", 
+    "camisas", 
+    "vestidos", 
+    "remeras", 
+    "tops", 
+    "tejidos", 
+    "bodies", 
+    "trajes-de-bano", 
+    "zapatos", 
+    "accesorios"
+  ] },
+];
 
 export default menuItemsEs;

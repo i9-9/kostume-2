@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -13,10 +13,11 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
   const [nav, setNav] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [submenuVisible, setSubmenuVisible] = useState(false);
+  const menuItemRefs = useRef<{ [key: string]: HTMLLIElement | null }>({});
 
   const handleNav = () => setNav(!nav);
 
-  const handleMouseEnter = (label: string) => {
+  const handleMouseEnter = (label: string, index: number) => {
     setActiveMenu(label);
     setSubmenuVisible(true);
   };
@@ -44,7 +45,6 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
   };
 
   const links = menu.find((item) => item.label === activeMenu)?.links || [];
-  
   const currentSubcategories =
     menu.find((item) => item.label === activeMenu)?.subcategories || [];
 
@@ -56,7 +56,6 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
             <Image
               src="/close.svg"
               className="transition-transform duration-300 ease-in-out"
-              style={{ color: "#ffffff" }}
               width={20}
               alt="Close"
               height={20}
@@ -65,7 +64,6 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
             <Image
               src="/hamburger.svg"
               className="transition-transform duration-300 ease-in-out"
-              style={{ color: "#ffffff" }}
               width={20}
               alt="Close"
               height={20}
@@ -85,62 +83,75 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
         </div>
       </div>
 
+      {/* Menú móvil */}
       <div
-  className={`lg:hidden fixed inset-0 bg-black z-10 overflow-hidden transition-max-height duration-300 ease-in-out ${
-    nav ? "max-h-screen mt-16" : "max-h-0 mt-16"
-  }`}
->
-  <ul className="flex flex-col lg:items-center lg:justify-center h-full w-full pt-8">
-    {menu.map((item, index) => (
-      <li
-        key={index}
-        className={`lg:hover:text-gray-500 border-b-[0.5px] mx-4 py-4 text-white ${index === 0 ? "border-t-[0.5px]" : ""}`}
+        className={`lg:hidden fixed inset-0 bg-black z-10 overflow-hidden transition-max-height duration-300 ease-in-out ${
+          nav ? "max-h-screen mt-16" : "max-h-0 mt-16"
+        }`}
       >
-        {item.subcategories && item.subcategories.length > 0 ? (
-          <>
-            <div
-              className="flex justify-between cursor-pointer "
-              onClick={() => handleSubmenuToggle(item.label)}
+        <ul className="flex flex-col h-full w-full pt-8">
+          {menu.map((item, index) => (
+            <li
+              key={index}
+              className={`border-b-[0.5px] mx-4 py-4 text-white ${
+                index === 0 ? "border-t-[0.5px]" : ""
+              }`}
             >
-              <p className="self-center text-white">{item.label}</p>
-              {activeMenu === item.label ? (
-                <MdOutlineKeyboardArrowDown color="white" size={20} />
+              {item.subcategories && item.subcategories.length > 0 ? (
+                <>
+                  <div
+                    className="flex justify-between cursor-pointer"
+                    onClick={() => handleSubmenuToggle(item.label)}
+                  >
+                    <p className="self-center">{item.label}</p>
+                    {activeMenu === item.label ? (
+                      <MdOutlineKeyboardArrowDown color="white" size={20} />
+                    ) : (
+                      <MdOutlineKeyboardArrowRight color="white" size={20} />
+                    )}
+                  </div>
+                  <div
+                    className={`transition-max-height duration-300 font-normal ease-in-out overflow-hidden ${
+                      activeMenu === item.label ? "max-h-screen" : "max-h-0"
+                    }`}
+                  >
+                    <ul className="pl-4 mt-2">
+                      {item.subcategories.map((sub, subIndex) => (
+                        <li key={subIndex} className="py-2">
+                          <Link
+                            onClick={handleNav}
+                            href={`${link}/${item.href}/${item.links[subIndex]}`}
+                          >
+                            {sub}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
               ) : (
-                <MdOutlineKeyboardArrowRight color="white" size={20} />
+                <Link onClick={handleNav} href={`${link}/${item.href}`}>
+                  <div className="flex justify-between">
+                    <p className="self-center">{item.label}</p>
+                    <MdOutlineKeyboardArrowRight color="white" size={20} />
+                  </div>
+                </Link>
               )}
-            </div>
-            <div className={`transition-max-height duration-300 font-normal ease-in-out overflow-hidden ${activeMenu === item.label ? 'max-h-screen' : 'max-h-0'}`}>
-              <ul className="pl-4 mt-2">
-                {item.subcategories.map((sub, subIndex) => (
-                  <li key={subIndex} className="py-2">
-                    <Link onClick={handleNav} href={`${link}/${item.href}/${links[subIndex]}`}>
-                      {sub}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </>
-        ) : (
-          <Link onClick={handleNav} href={`${link}/${item.href}`}>
-            <div className="flex justify-between">
-              <p className="self-center text-white">{item.label}</p>
-              <MdOutlineKeyboardArrowRight color="white" size={20} />
-            </div>
-          </Link>
-        )}
-      </li>
-    ))}
-  </ul>
-</div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Menú Desktop */}
       <div className="hidden lg:flex lg:items-center lg:flex-grow font-bold lg:justify-center relative w-full h-fit left-0 lg:absolute">
-        <ul className="flex items-center relative h-full">
+        <ul className="flex items-center relative h-full w-full justify-center">
           {menu.map((item, index) => (
             <li
               key={index}
               className="font-bold relative px-4 py-2 hover:text-gray-400"
-              onMouseEnter={() => handleMouseEnter(item.label)}
+              onMouseEnter={() => handleMouseEnter(item.label, index)}
               onMouseLeave={handleMouseLeave}
+              ref={(el) => (menuItemRefs.current[item.label] = el)}
             >
               <Link href={`${link}/${item.href}`}>{item.label}</Link>
             </li>
@@ -148,26 +159,29 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
         </ul>
         {currentSubcategories.length > 0 && activeMenu && (
           <div
-            className="absolute top-full left-0 w-full bg-black bg-opacity-90 p-4 grid gap-4 grid-cols-3 text-[10px] transition-transform duration-300 ease-in-out z-50"
+            className="absolute top-full bg-black bg-opacity-90 p-4 flex flex-col items-start text-[10px] transition-transform duration-300 ease-in-out z-50 min-w-full"
             onMouseEnter={handleSubmenuMouseEnter}
             onMouseLeave={handleSubmenuMouseLeave}
             style={{
-              transform: submenuVisible ? "translateY(0)" : "translateY(-100%)",
-              visibility: submenuVisible ? "visible" : "hidden",
+              transform: submenuVisible ? "translateY(0)" : "translateY(-20px)",
               opacity: submenuVisible ? 1 : 0,
-              transition:
-                "transform 0.3s ease-in-out, opacity 0.3s ease-in-out, visibility 0.3s ease-in-out",
+              pointerEvents: submenuVisible ? "auto" : "none",
+              left: menuItemRefs.current[activeMenu]?.offsetLeft || 0,
+              width: menuItemRefs.current[activeMenu]?.clientWidth || "auto",
             }}
           >
-            {currentSubcategories.map((sub: any, subIndex: any) => (
-              <Link
-                key={subIndex}
-                href={`${link}/${activeMenu.toLowerCase()}/${links[subIndex]}`}
-                className="text-white font-normal hover:underline"
-              >
-                {sub}
-              </Link>
-            ))}
+            <ul className="flex flex-col space-y-2 w-full">
+              {currentSubcategories.map((sub: any, subIndex: any) => (
+                <li key={subIndex}>
+                  <Link
+                    href={`${link}/${activeMenu.toLowerCase()}/${links[subIndex]}`}
+                    className="text-white text-left font-normal hover:underline"
+                  >
+                    {sub}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </div>
