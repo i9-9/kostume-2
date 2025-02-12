@@ -74,7 +74,7 @@ const Home: React.FC = () => {
         <Banner collection="collection1" 
           region={region}
           externalLinks={externalLinks} 
-          text="#48SS25" 
+          text="#49AW25" 
           deviceType={deviceType} />
         <p className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
