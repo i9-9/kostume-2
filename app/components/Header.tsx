@@ -159,15 +159,16 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
         </ul>
         {currentSubcategories.length > 0 && activeMenu && (
           <div
-            className="absolute top-full bg-black bg-opacity-90 p-4 flex flex-col items-start text-[10px] transition-transform duration-300 ease-in-out z-50 min-w-full"
-            onMouseEnter={handleSubmenuMouseEnter}
+          className="absolute top-full bg-black bg-opacity-90 p-4 flex flex-col items-start text-[10px] transition-transform duration-300 ease-in-out z-50 min-w-[150px] max-w-[300px]"
+          onMouseEnter={handleSubmenuMouseEnter}
             onMouseLeave={handleSubmenuMouseLeave}
             style={{
               transform: submenuVisible ? "translateY(0)" : "translateY(-20px)",
               opacity: submenuVisible ? 1 : 0,
               pointerEvents: submenuVisible ? "auto" : "none",
               left: menuItemRefs.current[activeMenu]?.offsetLeft || 0,
-              width: menuItemRefs.current[activeMenu]?.clientWidth || "auto",
+              width: `${menuItemRefs.current[activeMenu]?.offsetWidth}px` || "auto",
+              
             }}
           >
             <ul className="flex flex-col space-y-2 w-full">
