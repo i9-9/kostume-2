@@ -1,6 +1,7 @@
 const menuItemsEs = [
   { href: "48ss25", label: "#48SS25", subcategories: [], links: [] },
   { href: "49aw25", label: "#49AW25", subcategories: [], links: [] },
+  { href: "denim", label: "DENIM", subcategories: [], links: [] },
   { href: "ver-todo", label: "VER TODO", subcategories: [
     "PANTALONES", 
     "FALDAS", 
@@ -14,7 +15,8 @@ const menuItemsEs = [
     "BODIES", 
     "TRAJES DE BAÑO", 
     "ZAPATOS", 
-    "ACCESORIOS"
+    "ACCESORIOS",
+    "GAFAS"
   ], links: [
     "pantalones", 
     "faldas", 
@@ -28,7 +30,8 @@ const menuItemsEs = [
     "bodies", 
     "trajes-de-bano", 
     "zapatos", 
-    "accesorios"
+    "accesorios",
+    "gafas"
   ] },
 ];
 

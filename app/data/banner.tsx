@@ -15,10 +15,10 @@ interface BannerData {
 const bannerData: BannerData = {
   collection1: {
     desktop: [
-      { src: "/img/banner_1.jpg", title: "#48SS25", link: "48ss25", type: "image" },
+      { src: "/img/banner_1.jpg", title: "#49AW25", link: "49aw25", type: "image" },
     ],
     mobile: [
-      { src: "/img/banner_ch.jpg", title: "#48SS25", link: "48ss25", type: "image" },
+      { src: "/img/banner_ch.jpg", title: "#49AW25", link: "49aw25", type: "image" },
     ],
   },
   collection2: {

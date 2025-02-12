@@ -1,25 +1,23 @@
-// app/components/Banner.tsx
 import React from "react";
-import bannerData from "../data/banner";  // Correct import path for banner data
+import bannerData from "../data/banner";
 
 interface BannerProps {
-  collection: "collection1" | "collection2";  // Specify the collection
-  region: "Argentina" | "Worldwide";           // Specify the region
+  collection: "collection1" | "collection2";
+  region: "Argentina" | "Worldwide";
   externalLinks: Record<"Argentina" | "Worldwide", string>;
-  text: string;                               // Text that will appear on the banner
-  deviceType: "desktop" | "mobile";           // Device type (mobile or desktop)
+  text: string;
+  deviceType: "desktop" | "mobile";
 }
 
 const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, text, deviceType }) => {
-  // Get the images based on collection and device type
   const images = bannerData[collection][deviceType];
 
   return (
-    <div className="px-4 lg:px-8 my-4">
+    <div className="px-4 my-4">
       {images.map((image, index) => (
         <a
           key={index}
-          href={`${externalLinks[region]}/${image.link}`}  // Region-specific link
+          href={`${externalLinks[region]}/${image.link}`}
           target="_blank"
           rel="noopener noreferrer"
           className="relative group"
