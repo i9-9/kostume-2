@@ -13,7 +13,7 @@ const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, text
   const images = bannerData[collection][deviceType];
 
   return (
-    <div className="px-4 my-4">
+    <div className="px-4 mt-1 mb-4">
       {images.map((image, index) => (
         <a
           key={index}

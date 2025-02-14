@@ -26,7 +26,7 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 gap-2 md:grid-cols-4 px-4 lg:px-8">
+    <div className="grid grid-cols-2 gap-2 md:grid-cols-4 px-4">
       {imageSet.map((item, index) => (
         <div
           key={index}
