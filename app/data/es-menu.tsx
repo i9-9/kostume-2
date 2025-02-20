@@ -18,20 +18,20 @@ const menuItemsEs = [
     "ACCESORIOS",
     "GAFAS"
   ], links: [
-    "pantalones", 
-    "faldas", 
-    "buzos", 
-    "camperas-y-abrigos", 
-    "camisas", 
-    "vestidos", 
-    "remeras", 
-    "tops", 
+    "pantalones1", 
+    "faldas1", 
+    "buzos1", 
+    "camperas-y-abrigos1", 
+    "camisas3", 
+    "vestidos1", 
+    "remeras1", 
+    "tops1", 
     "tejidos", 
-    "bodies", 
-    "trajes-de-bano", 
-    "zapatos", 
-    "accesorios",
-    "gafas"
+    "bodies1", 
+    "trajes-de-bano1", 
+    "zapatos1", 
+    "accesorios2",
+    "gafas1"
   ] },
 ];
 

@@ -175,7 +175,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
               {currentSubcategories.map((sub: any, subIndex: any) => (
                 <li key={subIndex}>
                   <Link
-                    href={`${link}/${activeMenu.toLowerCase()}/${links[subIndex]}`}
+                    href={`${link}/${menu.find(item => item.label === activeMenu)?.href}/${links[subIndex]}`}
                     className="text-white text-left font-normal hover:underline"
                   >
                     {sub}
