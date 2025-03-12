@@ -13,12 +13,12 @@ interface ImageSets {
 const images: ImageSets = {
   desktop: [
     { src: '/img/denim.jpg', title: 'DENIM', link: "denim", type: "image" },
-    { src: '/img/eyewear.jpg', title: 'EYEWEAR', link: "gafas", type: "image" },
+    { src: '/img/eyewear.jpg', title: 'EYEWEAR', link: "gafas1", type: "image" },
 
   ],
   mobile: [
     { src: '/img/denim_m.jpg', title: 'DENIM', link: "denim", type: "image" },
-    { src: '/img/eyewear_m.jpg', title: 'EYEWEAR', link: "gafas", type: "image" },
+    { src: '/img/eyewear_m.jpg', title: 'EYEWEAR', link: "gafas1", type: "image" },
 
   ]
 };
