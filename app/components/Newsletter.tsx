@@ -46,23 +46,23 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="bg-black w-full h-full">
+    <div className="w-full">
       <h2 className="text-white font-semibold mb-2">NEWSLETTER</h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-full">
-        <div className="flex items-stretch w-full">
-          <div className="flex-grow relative">
+        <div className="flex w-full h-10">
+          <div className="flex-grow h-full">
             <input 
               type="email" 
               placeholder="e-mail..." 
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
-              className="w-full h-full p-2 bg-[#171717] text-white border-none focus:outline-none" 
+              className="w-full h-full px-2 bg-[#171717] text-white border-none focus:outline-none box-border" 
               required
             />
           </div>
           <button 
             type="submit" 
-            className="bg-white p-2 flex items-center justify-center w-10 flex-shrink-0"
+            className="bg-white flex items-center justify-center w-10 h-full flex-shrink-0"
             disabled={loading}
           >
             {loading ? (

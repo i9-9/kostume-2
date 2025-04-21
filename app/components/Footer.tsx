@@ -65,13 +65,33 @@ const Footer = () => {
       />
       
       <div className='w-full lg:pt-6 lg:pb-6'>
-        <motion.div 
-          className='hidden lg:grid lg:grid-cols-12 lg:gap-6 uppercase'
-          variants={containerVariants}
-        >
-          {footer.map((item, index) => (
-            <Section key={index} title={item.title} links={item.links} index={index} />
-          ))}
+        {/* Desktop layout */}
+        <div className='hidden lg:flex lg:flex-row lg:gap-6 uppercase'>
+          {/* First set of columns */}
+          <div className="flex-1 grid grid-cols-8 gap-6">
+            {footer.map((item, index) => (
+              <motion.div 
+                key={index}
+                className="col-span-2"
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      delay: 0.2 + (index * 0.1),
+                      duration: 0.5,
+                      ease: [0.25, 0.1, 0.25, 1.0]
+                    }
+                  }
+                }}
+              >
+                <Section title={item.title} links={item.links} index={index} />
+              </motion.div>
+            ))}
+          </div>
+          
+          {/* Newsletter section */}
           <motion.div 
             variants={{
               hidden: { opacity: 0, y: 20 },
@@ -85,11 +105,13 @@ const Footer = () => {
                 }
               }
             }}
-            className="col-span-6 w-full"
+            className="w-4/12"
           >
             <Newsletter /> 
           </motion.div>
-        </motion.div>
+        </div>
+
+        {/* Mobile layout */}
         <div className='flex lg:hidden flex-col'>
           {footer.map((item, index) => (
             <motion.div 
@@ -160,40 +182,9 @@ const Section: React.FC<SectionProps & { index: number }> = ({ title, links, ind
     })
   };
 
-  // Main section animation
-  const sectionVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.2 + (index * 0.1),
-        duration: 0.5,
-        ease: [0.25, 0.1, 0.25, 1.0]
-      }
-    }
-  };
-
   return (
-    <motion.div 
-      className={`${title === "Newsletter" ? 'col-span-6' : 'col-span-2'} flex flex-col gap-y-3 relative`}
-      variants={sectionVariants}
-    >
-      <motion.p 
-        className='font-bold'
-        variants={{
-          hidden: { opacity: 0 },
-          visible: { 
-            opacity: 1,
-            transition: { 
-              delay: 0.2 + (index * 0.1),
-              duration: 0.5 
-            }
-          }
-        }}
-      >
-        {title}
-      </motion.p>
+    <div className="flex flex-col gap-y-3">
+      <p className='font-bold'>{title}</p>
       {links.map((link, i) => (
         <motion.div
           key={i}
@@ -208,7 +199,7 @@ const Section: React.FC<SectionProps & { index: number }> = ({ title, links, ind
           </Link>
         </motion.div>
       ))}
-    </motion.div>
+    </div>
   );
 };
 
