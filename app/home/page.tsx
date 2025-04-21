@@ -10,6 +10,8 @@ import menuItemsEs from '../data/es-menu';
 import menuItemsEn from '../data/en-menu';
 import Banner from '../components/Banner';
 import TextBanner from '../components/TextBanner';
+import Script from 'next/script';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export type Region = 'Argentina' | 'Worldwide';
 
@@ -29,7 +31,7 @@ const Home: React.FC = () => {
     if (savedRegion) {
       setRegion(savedRegion);
     } else {
-      const defaultRegion: Region = 'Argentina';
+      const defaultRegion: Region = 'Argentina';  
       setRegion(defaultRegion);
       localStorage.setItem('region', defaultRegion);
     }
@@ -65,23 +67,84 @@ const Home: React.FC = () => {
     Argentina: menuItemsEs,
     Worldwide: menuItemsEn 
   };
+  
+  // JSON-LD structured data for better SEO
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FashionBrand",
+    "name": "KOSTÜME",
+    "url": "https://kostumeweb.net",
+    "logo": "https://kostumeweb.net/kostume_logo.svg",
+    "description": "Original ready-to-wear designed in Buenos Aires. Made in Argentina",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "Argentina",
+      "addressLocality": "Buenos Aires"
+    },
+    "sameAs": [
+      "https://www.instagram.com/kostume_/",
+      "https://www.facebook.com/kostume"
+    ],
+    "potentialAction": {
+      "@type": "ViewAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": region === "Argentina" 
+          ? "https://eshop.kostumeweb.net/ar" 
+          : "https://eshop.kostumeweb.net/us"
+      }
+    }
+  };
+
+  // Page transition variants
+  const pageVariants = {
+    initial: { opacity: 0 },
+    animate: { 
+      opacity: 1,
+      transition: { 
+        duration: 0.5,
+        when: "beforeChildren",
+        staggerChildren: 0.1
+      }
+    },
+    exit: { opacity: 0 }
+  };
 
   return (
-    <div className='max-w-full min-h-screen bg-black'>
+    <>
+      <Script id="json-ld" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(jsonLd)}
+      </Script>
+      <motion.div 
+        className='max-w-full min-h-screen bg-black'
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+      >
         <Marquee marqueeText={marqueeText[region]} />
         <Header link={externalLinks[region]} menu={menuItem[region]} />
         {/* <TextBanner text='( This is ) SALE ( 30% en items seleccionados ) ( Solo Online )' /> */}
-        <Banner collection="collection1" 
+        <Banner 
+          collection="collection1" 
           region={region}
           externalLinks={externalLinks} 
           text="#49AW25" 
-          deviceType={deviceType} />
+          deviceType={deviceType} 
+        />
         <p className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </p>
         <Gallery link={externalLinks[region]} />
-        <Footer />
-    </div>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+        >
+          <Footer />
+        </motion.div>
+      </motion.div>
+    </>
   );
 }
 
