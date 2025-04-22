@@ -34,8 +34,15 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
     setActiveMenu(null);
   };
 
-  const handleSubmenuToggle = (label: string) => {
-    setActiveMenu(activeMenu === label ? null : label);
+  const handleSubmenuToggle = (e: React.MouseEvent, item: MenuItemProps) => {
+    e.preventDefault();
+    
+    if (activeMenu === item.label) {
+      return;
+    } else {
+      setActiveMenu(item.label);
+      e.stopPropagation();
+    }
   };
 
   const links = menu.find((item) => item.label === activeMenu)?.links || [];
@@ -189,25 +196,27 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
 
               {item.subcategories && item.subcategories.length > 0 ? (
                 <>
-                  <motion.div
-                    className="flex justify-between cursor-pointer"
-                    onClick={() => handleSubmenuToggle(item.label)}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ 
-                      delay: index * 0.07,
-                      duration: 0.3,
-                      ease: "easeOut"
-                    }}
-                  >
-                    <p className="self-center">{item.label}</p>
+                  <Link href={`${link}/${item.href}`}>
                     <motion.div
-                      animate={{ rotate: activeMenu === item.label ? 90 : 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="flex justify-between cursor-pointer"
+                      onClick={(e) => handleSubmenuToggle(e, item)}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ 
+                        delay: index * 0.07,
+                        duration: 0.3,
+                        ease: "easeOut"
+                      }}
                     >
-                      <MdOutlineKeyboardArrowRight color="white" size={20} />
+                      <p className="self-center">{item.label}</p>
+                      <motion.div
+                        animate={{ rotate: activeMenu === item.label ? 90 : 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <MdOutlineKeyboardArrowRight color="white" size={20} />
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
+                  </Link>
                   <AnimatePresence>
                     {activeMenu === item.label && (
                       <motion.div
