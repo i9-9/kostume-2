@@ -10,28 +10,49 @@ interface ImageProps {
 
 interface ImageSets {
   desktop: ImageProps[];
+  tablet: ImageProps[];
   mobile: ImageProps[];
 }
 
 const images: ImageSets = {
   desktop: [
     { 
-      src: '/img/denim.jpg', 
+      src: '/img/desktop/denim.png', 
       title: 'DENIM', 
       link: "denim", 
       type: "image",
-      width: 800,
-      height: 1067,
-      aspectRatio: "3/4"
+      width: 720,
+      height: 800,
+      aspectRatio: "9/10"
     },
     { 
-      src: '/img/eyewear.jpg', 
+      src: '/img/desktop/eyewear.png', 
       title: 'EYEWEAR', 
       link: "gafas1", 
       type: "image",
-      width: 800,
-      height: 1067,
-      aspectRatio: "3/4"
+      width: 720,
+      height: 800,
+      aspectRatio: "9/10"
+    },
+  ],
+  tablet: [
+    { 
+      src: '/img/denim.png', 
+      title: 'DENIM', 
+      link: "denim", 
+      type: "image",
+      width: 640,
+      height: 800,
+      aspectRatio: "4/5"
+    },
+    { 
+      src: '/img/eyewear.png', 
+      title: 'EYEWEAR', 
+      link: "gafas1", 
+      type: "image",
+      width: 640,
+      height: 800,
+      aspectRatio: "4/5"
     },
   ],
   mobile: [

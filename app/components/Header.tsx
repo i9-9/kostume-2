@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowDown } from "react-icons/md";
@@ -17,24 +17,78 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
   const menuItemRefs = useRef<{ [key: string]: HTMLLIElement | null }>({});
   // Track if item has been clicked once
   const [clickedOnce, setClickedOnce] = useState<string | null>(null);
+  // Refs for hover intent
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const submenuRef = useRef<HTMLDivElement | null>(null);
+
+  // Control body scroll when mobile menu is open
+  useEffect(() => {
+    if (nav) {
+      // Disable scrolling when nav is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Re-enable scrolling when nav is closed
+      document.body.style.overflow = 'auto';
+    }
+    
+    // Cleanup function to ensure scroll is re-enabled when component unmounts
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [nav]);
 
   const handleNav = () => setNav(!nav);
 
   const handleMouseEnter = (label: string, index: number) => {
+    // Clear any existing timeout
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
     setActiveMenu(label);
     setSubmenuVisible(true);
   };
 
   const handleMouseLeave = () => {
-    setSubmenuVisible(false);
-    setActiveMenu(null);
+    // Delay closing the submenu to allow time to move to it
+    timeoutRef.current = setTimeout(() => {
+      // Check if the cursor is over the submenu
+      if (!isMouseOverSubmenu()) {
+        setSubmenuVisible(false);
+        setActiveMenu(null);
+      }
+    }, 100);
   };
 
-  const handleSubmenuMouseEnter = () => setSubmenuVisible(true);
-  const handleSubmenuMouseLeave = () => {
-    setSubmenuVisible(false);
-    setActiveMenu(null);
+  // Check if mouse is over the submenu element
+  const isMouseOverSubmenu = () => {
+    return document.querySelector(':hover') === submenuRef.current;
   };
+
+  const handleSubmenuMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setSubmenuVisible(true);
+  };
+
+  const handleSubmenuMouseLeave = () => {
+    // Allow a small delay before closing
+    timeoutRef.current = setTimeout(() => {
+      setSubmenuVisible(false);
+      setActiveMenu(null);
+    }, 50);
+  };
+
+  // Cleanup timeouts on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   // Modified function to handle the mobile submenu toggle with separate click tracking
   const handleSubmenuToggle = (e: React.MouseEvent, item: MenuItemProps) => {
@@ -349,6 +403,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
         <AnimatePresence>
           {currentSubcategories.length > 0 && activeMenu && submenuVisible && (
             <motion.div
+              ref={submenuRef}
               className="absolute top-full bg-black bg-opacity-90 p-4 flex flex-col items-start text-[10px] z-50 min-w-[150px] max-w-[300px]"
               onMouseEnter={handleSubmenuMouseEnter}
               onMouseLeave={handleSubmenuMouseLeave}
@@ -358,6 +413,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
               transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1.0] }}
               style={{
                 left: menuItemRefs.current[activeMenu]?.offsetLeft || 0,
+                marginTop: "-2px",
                 width: `${menuItemRefs.current[activeMenu]?.offsetWidth}px` || "auto",
                 transformOrigin: "top center"
               }}

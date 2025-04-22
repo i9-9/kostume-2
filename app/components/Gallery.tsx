@@ -10,12 +10,24 @@ interface GalleryProps {
 const Gallery: React.FC<GalleryProps> = ({ link }) => {
   const [imageSet, setImageSet] = useState(images.desktop);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth < 768;
+      const width = window.innerWidth;
+      const mobile = width < 768;
+      const tablet = width >= 768 && width < 1280;
+      
       setIsMobile(mobile);
-      setImageSet(mobile ? images.mobile : images.desktop);
+      setIsTablet(tablet);
+      
+      if (mobile) {
+        setImageSet(images.mobile);
+      } else if (tablet) {
+        setImageSet(images.tablet); // Use tablet-specific images
+      } else {
+        setImageSet(images.desktop); // Use desktop images for large screens
+      }
     };
 
     handleResize();
@@ -27,11 +39,17 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
 
   // Function to determine aspect ratio class based on device type
   const getAspectRatioClass = (item: typeof imageSet[0]) => {
-    if (item.aspectRatio === "3/4") return "aspect-[3/4]";
-    if (item.aspectRatio === "4/5") return "aspect-[4/5]";
-    if (item.aspectRatio === "2/1") return "aspect-[2/1]";
-    if (item.aspectRatio === "4/3") return "aspect-[4/3]";
-    return "aspect-square"; // Default fallback
+    if (isMobile) {
+      // Mobile aspect ratios
+      if (item.aspectRatio === "4/5") return "aspect-[4/5]";
+      return item.aspectRatio ? `aspect-[${item.aspectRatio}]` : "aspect-square";
+    } else if (isTablet) {
+      // Tablet aspect ratios - works well with current 4/5 ratio
+      return item.aspectRatio ? `aspect-[${item.aspectRatio}]` : "aspect-square";
+    } else {
+      // Desktop - use a slightly wider portrait ratio than 4/5 to prevent side cropping
+      return "aspect-[9/10]"; // Still portrait but slightly wider than 4/5
+    }
   };
 
   // Animation variants for container and items
@@ -90,7 +108,7 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
               {item.type === "video" ? (
                 <video
                   src={item.src}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-contain md:object-cover xl:object-contain"
                   autoPlay
                   loop
                   muted
@@ -101,7 +119,7 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
                 <img
                   src={item.src}
                   alt={`KOSTÜME ${item.title} collection`}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-contain md:object-cover xl:object-contain"
                   loading={index < 2 ? "eager" : "lazy"}
                   width={item.width}
                   height={item.height}
