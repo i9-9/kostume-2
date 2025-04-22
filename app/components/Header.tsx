@@ -15,6 +15,8 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [submenuVisible, setSubmenuVisible] = useState(false);
   const menuItemRefs = useRef<{ [key: string]: HTMLLIElement | null }>({});
+  // Track if item has been clicked once
+  const [clickedOnce, setClickedOnce] = useState<string | null>(null);
 
   const handleNav = () => setNav(!nav);
 
@@ -34,15 +36,27 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
     setActiveMenu(null);
   };
 
+  // Modified function to handle the mobile submenu toggle with separate click tracking
   const handleSubmenuToggle = (e: React.MouseEvent, item: MenuItemProps) => {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault(); // Prevent default link behavior
+    e.stopPropagation(); // Stop event propagation
     
     if (activeMenu === item.label) {
-      setActiveMenu(null);
-      window.location.href = `${link}/${item.href}`;
+      // If menu is already open and this is the second click on same item
+      if (clickedOnce === item.label) {
+        // This is the second click - allow navigation
+        // Reset and navigate
+        setClickedOnce(null);
+        window.location.href = `${link}/${item.href}`;
+      } else {
+        // This is the first click on an already open menu
+        // Mark as clicked once
+        setClickedOnce(item.label);
+      }
     } else {
+      // First click on a closed menu - just open it
       setActiveMenu(item.label);
+      setClickedOnce(null); // Reset click tracking
     }
   };
 

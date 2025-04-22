@@ -1,13 +1,22 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { SectionProps } from './Footer';
 import { IoIosArrowDown } from 'react-icons/io';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useInView, useAnimation } from 'framer-motion';
 
 const SectionAccordion: React.FC<SectionProps> = ({ title, links }) => {
     const [accordionOpen, setAccordionOpen] = useState(false);
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, amount: 0.1 });
+    const controls = useAnimation();
+    
+    useEffect(() => {
+        if (isInView) {
+            controls.start("visible");
+        }
+    }, [isInView, controls]);
 
     // Animation variants
     const linkVariants = {
@@ -47,13 +56,13 @@ const SectionAccordion: React.FC<SectionProps> = ({ title, links }) => {
     };
 
     return (
-        <div className="relative">
+        <div className="relative" ref={ref}>
             {/* Bottom border line */}
             <motion.div
                 className="absolute bottom-0 left-0 h-[0.5px] bg-white/20"
                 variants={lineVariants}
                 initial="hidden"
-                animate={accordionOpen ? "visible" : "hidden"}
+                animate={controls}
             />
 
             <motion.div 
