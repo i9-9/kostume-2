@@ -36,12 +36,13 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
 
   const handleSubmenuToggle = (e: React.MouseEvent, item: MenuItemProps) => {
     e.preventDefault();
+    e.stopPropagation();
     
     if (activeMenu === item.label) {
-      return;
+      setActiveMenu(null);
+      window.location.href = `${link}/${item.href}`;
     } else {
       setActiveMenu(item.label);
-      e.stopPropagation();
     }
   };
 
@@ -196,10 +197,12 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
 
               {item.subcategories && item.subcategories.length > 0 ? (
                 <>
-                  <Link href={`${link}/${item.href}`}>
+                  <div 
+                    className="cursor-pointer"
+                    onClick={(e) => handleSubmenuToggle(e, item)}
+                  >
                     <motion.div
-                      className="flex justify-between cursor-pointer"
-                      onClick={(e) => handleSubmenuToggle(e, item)}
+                      className="flex justify-between"
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ 
@@ -216,7 +219,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
                         <MdOutlineKeyboardArrowRight color="white" size={20} />
                       </motion.div>
                     </motion.div>
-                  </Link>
+                  </div>
                   <AnimatePresence>
                     {activeMenu === item.label && (
                       <motion.div

@@ -34,14 +34,26 @@ const SectionAccordion: React.FC<SectionProps> = ({ title, links }) => {
         }
     };
 
+    // Line animation
+    const lineVariants = {
+        hidden: { width: 0 },
+        visible: {
+            width: "100%",
+            transition: {
+                duration: 0.4,
+                ease: [0.25, 0.1, 0.25, 1.0]
+            }
+        }
+    };
+
     return (
         <div className="relative">
             {/* Bottom border line */}
             <motion.div
-                className="absolute bottom-0 left-0 h-[0.5px] w-0 bg-white/20"
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1.0] }}
+                className="absolute bottom-0 left-0 h-[0.5px] bg-white/20"
+                variants={lineVariants}
+                initial="hidden"
+                animate={accordionOpen ? "visible" : "hidden"}
             />
 
             <motion.div 
