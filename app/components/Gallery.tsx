@@ -78,7 +78,9 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
   return (
     <motion.section 
       aria-label="Product Categories" 
-      className="grid grid-cols-2 gap-2 md:grid-cols-4 px-4"
+      className={`px-4 ${isMobile 
+        ? "flex flex-wrap justify-between" 
+        : "grid grid-cols-2 md:grid-cols-4 gap-2"}`}
       variants={containerVariants}
       initial="hidden"
       animate="show"
@@ -88,9 +90,11 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
           key={index}
           variants={itemVariants}
           className={`relative group ${
-            index < 2
-              ? "md:col-span-2" // Big cards span 2 columns
-              : "md:col-span-1" // Small cards span 1 column
+            isMobile 
+              ? "w-[48%] mb-2" // Mobile: width with space between
+              : index < 2
+                ? "md:col-span-2" // Big cards span 2 columns on tablet+
+                : "md:col-span-1" // Small cards span 1 column on tablet+
           }`}
         >
           <Link

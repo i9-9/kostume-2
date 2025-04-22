@@ -1,5 +1,6 @@
 import './globals.css'
 import localFont from 'next/font/local'
+import { Providers } from './providers'
 
 const helvetica = localFont({
   src: './fonts/Helvetica.ttf', 
@@ -52,7 +53,10 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://eshop.kostumeweb.net" crossOrigin="" />
       </head>
-      <body className='min-h-screen bg-black text-white'>{children}
+      <body className='min-h-screen bg-black text-white'>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )
