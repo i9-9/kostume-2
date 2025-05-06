@@ -116,7 +116,7 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
               whileHover={{ backgroundColor: "rgba(0,0,0,0.6)" }}
             >
               <motion.span
-                className="condensed-bold text-white text-center text-sm"
+                className="condensed-bold text-white text-center text-[11px] md:text-sm"
                 whileHover={{ scale: 1.05 }}
               >
                 {item.title}
