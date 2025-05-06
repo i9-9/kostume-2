@@ -28,3 +28,17 @@
   font-family: 'HelveticaNeue', sans-serif;
   font-weight: bold;
 }
+
+@font-face {
+  font-family: 'Helvetica Neue Condensed Bold';
+  src: url('/fonts/HelveticaNeue-CondensedBold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+.condensed-bold {
+  font-family: 'Helvetica Neue Condensed Bold', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  letter-spacing: 0.01em;
+}

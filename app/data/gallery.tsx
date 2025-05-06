@@ -10,70 +10,229 @@ interface ImageProps {
 
 interface ImageSets {
   desktop: ImageProps[];
-  tablet: ImageProps[];
   mobile: ImageProps[];
 }
 
 const images: ImageSets = {
   desktop: [
     { 
-      src: '/img/desktop/denim.png', 
-      title: 'DENIM', 
-      link: "denim", 
+      src: '/img/desktop/collection1.png', 
+      title: 'STONED SKIRT', 
+      link: "collection1", 
       type: "image",
-      width: 720,
-      height: 800,
-      aspectRatio: "9/10"
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
     },
     { 
-      src: '/img/desktop/eyewear.png', 
-      title: 'EYEWEAR', 
-      link: "gafas1", 
+      src: '/img/desktop/collection2.png', 
+      title: 'ZEFSIDE SUNGLASSES', 
+      link: "collection2", 
       type: "image",
-      width: 720,
-      height: 800,
-      aspectRatio: "9/10"
-    },
-  ],
-  tablet: [
-    { 
-      src: '/img/denim.png', 
-      title: 'DENIM', 
-      link: "denim", 
-      type: "image",
-      width: 640,
-      height: 800,
-      aspectRatio: "4/5"
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
     },
     { 
-      src: '/img/eyewear.png', 
-      title: 'EYEWEAR', 
-      link: "gafas1", 
+      src: '/img/desktop/collection3.png', 
+      title: 'FERAL JACKET', 
+      link: "collection3", 
       type: "image",
-      width: 640,
-      height: 800,
-      aspectRatio: "4/5"
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
     },
+    { 
+      src: '/img/desktop/collection4.png', 
+      title: 'BALOONERISM DRESS', 
+      link: "collection4", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection5.png', 
+      title: 'VELOURIA HOODIE', 
+      link: "collection5", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection6.png', 
+      title: 'SMOOTH BOOTS', 
+      link: "collection6", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection7.png', 
+      title: 'INSOMNIAK JACKET', 
+      link: "collection7", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection8.png', 
+      title: 'RECKONER DRESS', 
+      link: "collection8", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection9.png', 
+      title: 'OBJECTS SWEATSHIRT', 
+      link: "collection9", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection10.png', 
+      title: 'OUTRO MASK', 
+      link: "collection10", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection11.png', 
+      title: 'HASENKAMP PANTS', 
+      link: "collection11", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection12.png', 
+      title: 'ZARS SUNGLASSES', 
+      link: "collection12", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    }
   ],
   mobile: [
     { 
-      src: '/img/denim_m.jpg', 
-      title: 'DENIM', 
-      link: "denim", 
+      src: '/img/desktop/collection1.png', 
+      title: 'STONED SKIRT', 
+      link: "collection1", 
       type: "image",
-      width: 400,
-      height: 500,
-      aspectRatio: "4/5"
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
     },
     { 
-      src: '/img/eyewear_m.jpg', 
-      title: 'EYEWEAR', 
-      link: "gafas1", 
+      src: '/img/desktop/collection2.png', 
+      title: 'ZEFSIDE SUNGLASSES', 
+      link: "collection2", 
       type: "image",
-      width: 400,
-      height: 500,
-      aspectRatio: "4/5"
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
     },
+    { 
+      src: '/img/desktop/collection3.png', 
+      title: 'FERAL JACKET', 
+      link: "collection3", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection4.png', 
+      title: 'BALOONERISM DRESS', 
+      link: "collection4", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection5.png', 
+      title: 'VELOURIA HOODIE', 
+      link: "collection5", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection6.png', 
+      title: 'SMOOTH BOOTS', 
+      link: "collection6", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection7.png', 
+      title: 'INSOMNIAK JACKET', 
+      link: "collection7", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection8.png', 
+      title: 'RECKONER DRESS', 
+      link: "collection8", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection9.png', 
+      title: 'OBJECTS SWEATSHIRT', 
+      link: "collection9", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection10.png', 
+      title: 'OUTRO MASK', 
+      link: "collection10", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection11.png', 
+      title: 'HASENKAMP PANTS', 
+      link: "collection11", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/desktop/collection12.png', 
+      title: 'ZARS SUNGLASSES', 
+      link: "collection12", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    }
   ]
 };
 
