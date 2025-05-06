@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import images from "../data/gallery";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 interface GalleryProps {
@@ -112,7 +113,7 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
               {item.type === "video" ? (
                 <video
                   src={item.src}
-                  className="absolute inset-0 w-full h-full object-contain md:object-cover xl:object-contain"
+                  className="min-w-full min-h-full object-contain md:object-cover xl:object-contain"
                   autoPlay
                   loop
                   muted
@@ -120,13 +121,16 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
                   aria-label={`${item.title} video`}
                 />
               ) : (
-                <img
+                <Image
                   src={item.src}
                   alt={`KOSTÜME ${item.title} collection`}
-                  className="absolute inset-0 w-full h-full object-contain md:object-cover xl:object-contain"
+                  className="min-w-full min-h-full object-contain md:object-cover xl:object-contain"
                   loading={index < 2 ? "eager" : "lazy"}
                   width={item.width}
                   height={item.height}
+                  sizes="(max-width: 768px) 48vw, (max-width: 1280px) 50vw, 25vw"
+                  priority={index < 2}
+                  quality={85}
                 />
               )}
             </div>

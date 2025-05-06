@@ -68,34 +68,6 @@ const Home: React.FC = () => {
     Worldwide: menuItemsEn 
   };
   
-  // JSON-LD structured data for better SEO
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FashionBrand",
-    "name": "KOSTÜME",
-    "url": "https://kostumeweb.net",
-    "logo": "https://kostumeweb.net/kostume_logo.svg",
-    "description": "Original ready-to-wear designed in Buenos Aires. Made in Argentina",
-    "address": {
-      "@type": "PostalAddress",
-      "addressCountry": "Argentina",
-      "addressLocality": "Buenos Aires"
-    },
-    "sameAs": [
-      "https://www.instagram.com/kostume_/",
-      "https://www.facebook.com/kostume"
-    ],
-    "potentialAction": {
-      "@type": "ViewAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": region === "Argentina" 
-          ? "https://eshop.kostumeweb.net/ar" 
-          : "https://eshop.kostumeweb.net/us"
-      }
-    }
-  };
-
   // Page transition variants
   const pageVariants = {
     initial: { opacity: 0 },
@@ -112,9 +84,21 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <Script id="json-ld" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify(jsonLd)}
-      </Script>
+      <Script
+        id="schema-script"
+        type="application/ld+json"
+        strategy="beforeInteractive"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Fashion",
+            name: "KOSTÜME Collections",
+            description: "Explore KOSTÜME premium collections - Original ready-to-wear designed in Buenos Aires.",
+            url: "https://kostumeweb.net/home",
+            // Add more structured data as needed
+          }),
+        }}
+      />
       <motion.div 
         className='max-w-full min-h-screen bg-black'
         variants={pageVariants}
@@ -125,13 +109,14 @@ const Home: React.FC = () => {
         <Marquee marqueeText={marqueeText[region]} />
         <Header link={externalLinks[region]} menu={menuItem[region]} />
         {/* <TextBanner text='( This is ) SALE ( 30% en items seleccionados ) ( Solo Online )' /> */}
-        <Banner 
+        {/* <Banner 
           collection="collection1" 
           region={region}
           externalLinks={externalLinks} 
           text="#49AW25" 
           deviceType={deviceType} 
-        />
+        /> */}
+        <VideoHero />
         <p className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </p>

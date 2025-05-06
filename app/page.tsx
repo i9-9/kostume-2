@@ -11,31 +11,39 @@ export default function Home() {
     // Get the current visit count from localStorage, or default to 0
     let visitCount = parseInt(localStorage.getItem('visitCount') || '0', 10);
 
-    // Increment the visit count
-    visitCount += 1;
-
-    // Store the updated visit count in localStorage
-    localStorage.setItem('visitCount', visitCount.toString());
-
     // Get the region from localStorage
     const region = localStorage.getItem('region');
 
-    // Redirect to pre-landing page every 5 visits, or if no region is set
-    if (visitCount % 5 === 0 || !region) {
+    // Only redirect if we have a region AND it's not the first visit
+    if (region && visitCount > 0) {
+      // Increment the visit count
+      visitCount += 1;
+      localStorage.setItem('visitCount', visitCount.toString());
+
       // Reset the visit count to 0 after 5 visits
+      if (visitCount % 5 === 0) {
       localStorage.setItem('visitCount', '0');
-    } else if (region) {
-      // Otherwise, redirect to the home page
-      router.push('/home');
+      } else {
+        // Redirect to home page
+        window.location.href = '/home/';
+      }
+    } else {
+      // First visit or no region set, stay on this page
+      visitCount += 1;
+      localStorage.setItem('visitCount', visitCount.toString());
     }
-  }, [router]);
+  }, []);
 
   const handleSelection = (region: string) => {
+    try {
     // Set the selected region in localStorage
     localStorage.setItem('region', region);
 
-    // Redirect to the home page
-    router.push('/home');
+      // Use window.location for static export
+      window.location.href = '/home/';
+    } catch (error) {
+      console.error('Error during navigation:', error);
+    }
   };
 
   // Fade transition variants
@@ -70,8 +78,20 @@ export default function Home() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <button onClick={() => handleSelection('Argentina')} className="link-location mb-4 md:mb-0 md:pr-10">Argentina</button>
-        <button onClick={() => handleSelection('Worldwide')} className="link-location">Worldwide</button>
+        <button 
+          onClick={() => handleSelection('Argentina')} 
+          className="link-location mb-4 md:mb-0 md:pr-10"
+          type="button"
+        >
+          Argentina
+        </button>
+        <button 
+          onClick={() => handleSelection('Worldwide')} 
+          className="link-location"
+          type="button"
+        >
+          Worldwide
+        </button>
       </motion.div>
     </motion.main>
   );

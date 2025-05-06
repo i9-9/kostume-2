@@ -1,9 +1,14 @@
 'use client'
 
+import React from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 
-export function Providers({ children }: { children: React.ReactNode }) {
+interface ProvidersProps {
+  children: React.ReactNode
+}
+
+export function Providers({ children }: ProvidersProps) {
   const pathname = usePathname()
 
   return (
