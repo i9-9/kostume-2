@@ -8,8 +8,8 @@ const helvetica = localFont({
 })
 
 export const metadata = {
-  title: 'KOSTÜME | Original Ready-to-Wear Fashion from Buenos Aires',
-  description: 'Discover KOSTÜME - Original ready-to-wear designed in Buenos Aires. Made in Argentina.',
+  title: 'KOSTÜME | Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
+  description: 'Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
   keywords: 'kostume, fashion, clothing, argentina, buenos aires, ready-to-wear, denim, eyewear, argentine fashion, designer clothing',
   metadataBase: new URL('https://kostumeweb.net'),
   alternates: {
@@ -20,44 +20,44 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'KOSTÜME | Premium Fashion from Buenos Aires',
-    description: 'Original ready-to-wear designed in Buenos Aires. Made in Argentina.',
+    title: 'KOSTÜME | Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
+    description: 'Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
     url: 'https://kostumeweb.net',
     siteName: 'KOSTÜME',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: '/img/seo/kostume-og-main.jpg',
+        url: 'https://kostumeweb.net/img/seo/kostume-og-main.jpg',
         width: 1200,
         height: 630,
-        alt: 'KOSTÜME Premium Fashion Collection',
+        alt: 'KOSTÜME Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
       },
       {
-        url: '/img/seo/kostume-denim-og.jpg',
+        url: 'https://kostumeweb.net/img/seo/kostume-denim-og.jpg',
         width: 1200,
         height: 630,
-        alt: 'KOSTÜME Denim Collection',
+        alt: 'KOSTÜME Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
       },
       {
-        url: '/img/seo/kostume-eyewear-og.jpg',
+        url: 'https://kostumeweb.net/img/seo/kostume-eyewear-og.jpg',
         width: 1200,
         height: 630,
-        alt: 'KOSTÜME Eyewear Collection',
+        alt: 'KOSTÜME Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KOSTÜME | Fashion from Buenos Aires',
-    description: 'Original ready-to-wear designed in Buenos Aires. Made in Argentina.',
+    title: 'KOSTÜME | Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
+    description: 'Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
     creator: '@kostume_',
     images: [
       {
-        url: '/img/seo/kostume-twitter-large.jpg',
+        url: 'https://kostumeweb.net/img/seo/kostume-twitter-large.jpg',
         width: 1200,
         height: 600,
-        alt: 'KOSTÜME Premium Fashion Collection',
+        alt: 'KOSTÜME Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
       }
     ],
   },
