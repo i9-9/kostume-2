@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Marquee from '../components/Marquee';
 import VideoHero from '../components/VideoHero';
 import Gallery from '../components/Gallery';
@@ -12,6 +12,7 @@ import Banner from '../components/Banner';
 import TextBanner from '../components/TextBanner';
 import Script from 'next/script';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from '../context/LocationContext';
 
 export type Region = 'Argentina' | 'Worldwide';
 
@@ -23,20 +24,10 @@ export interface MenuItemProps {
 }
 
 const Home: React.FC = () => {
-  const [region, setRegion] = useState<Region>('Argentina');
-  const [deviceType, setDeviceType] = useState<'desktop' | 'mobile'>('desktop');
+  const { region, language } = useLocation();
+  const [deviceType, setDeviceType] = React.useState<'desktop' | 'mobile'>('desktop');
 
   useEffect(() => {
-    const savedRegion = localStorage.getItem('region') as Region | null;
-    if (savedRegion) {
-      setRegion(savedRegion);
-    } else {
-      const defaultRegion: Region = 'Argentina';  
-      setRegion(defaultRegion);
-      localStorage.setItem('region', defaultRegion);
-    }
-
-    // Detect device type based on screen width
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setDeviceType('desktop');
@@ -44,13 +35,9 @@ const Home: React.FC = () => {
         setDeviceType('mobile');
       }
     };
-
     window.addEventListener('resize', handleResize);
-    handleResize();  // Call once on mount to set initial device type
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const externalLinks: Record<Region, string> = {
@@ -120,7 +107,7 @@ const Home: React.FC = () => {
         <p className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </p>
-        <Gallery link={externalLinks[region]} />
+        <Gallery link={externalLinks[region]} location={region === 'Argentina' ? 'ar' : 'us'} />
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -18,7 +18,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection1.png', 
       title: 'STONED SKIRT', 
-      link: "collection1", 
+      link: "falda-stoned", 
       type: "image",
       width: 658,
       height: 823,
@@ -27,7 +27,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection2.png', 
       title: 'ZEFSIDE SUNGLASSES', 
-      link: "collection2", 
+      link: "gafas-zefside", 
       type: "image",
       width: 658,
       height: 823,
@@ -36,7 +36,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection3.png', 
       title: 'FERAL JACKET', 
-      link: "collection3", 
+      link: "campera-feral", 
       type: "image",
       width: 658,
       height: 823,
@@ -45,7 +45,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection4.png', 
       title: 'BALOONERISM DRESS', 
-      link: "collection4", 
+      link: "vestido-balloonerism", 
       type: "image",
       width: 658,
       height: 823,
@@ -54,7 +54,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection5.png', 
       title: 'VELOURIA HOODIE', 
-      link: "collection5", 
+      link: "buzo-velouria-negro", 
       type: "image",
       width: 658,
       height: 823,
@@ -63,7 +63,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection6.png', 
       title: 'SMOOTH BOOTS', 
-      link: "collection6", 
+      link: "botas-smooth", 
       type: "image",
       width: 658,
       height: 823,
@@ -72,7 +72,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection7.png', 
       title: 'INSOMNIAK JACKET', 
-      link: "collection7", 
+      link: "campera-insomnia", 
       type: "image",
       width: 658,
       height: 823,
@@ -81,7 +81,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection8.png', 
       title: 'RECKONER DRESS', 
-      link: "collection8", 
+      link: "vestido-reckoner", 
       type: "image",
       width: 658,
       height: 823,
@@ -90,7 +90,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection9.png', 
       title: 'OBJECTS SWEATSHIRT', 
-      link: "collection9", 
+      link: "buzo-objects-negro", 
       type: "image",
       width: 658,
       height: 823,
@@ -99,7 +99,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection10.png', 
       title: 'OUTRO MASK', 
-      link: "collection10", 
+      link: "mascara-outro", 
       type: "image",
       width: 658,
       height: 823,
@@ -108,7 +108,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection11.png', 
       title: 'HASENKAMP PANTS', 
-      link: "collection11", 
+      link: "pantalon-hasenkamp", 
       type: "image",
       width: 658,
       height: 823,
@@ -117,7 +117,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection12.png', 
       title: 'ZARS SUNGLASSES', 
-      link: "collection12", 
+      link: "gafas-zars", 
       type: "image",
       width: 658,
       height: 823,
@@ -128,7 +128,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection1.png', 
       title: 'STONED SKIRT', 
-      link: "collection1", 
+      link: "falda-stoned", 
       type: "image",
       width: 658,
       height: 823,
@@ -137,7 +137,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection2.png', 
       title: 'ZEFSIDE SUNGLASSES', 
-      link: "collection2", 
+      link: "gafas-zefside", 
       type: "image",
       width: 658,
       height: 823,
@@ -146,7 +146,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection3.png', 
       title: 'FERAL JACKET', 
-      link: "collection3", 
+      link: "campera-feral", 
       type: "image",
       width: 658,
       height: 823,
@@ -155,7 +155,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection4.png', 
       title: 'BALOONERISM DRESS', 
-      link: "collection4", 
+      link: "vestido-balloonerism", 
       type: "image",
       width: 658,
       height: 823,
@@ -164,7 +164,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection5.png', 
       title: 'VELOURIA HOODIE', 
-      link: "collection5", 
+      link: "buzo-velouria-negro", 
       type: "image",
       width: 658,
       height: 823,
@@ -173,7 +173,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection6.png', 
       title: 'SMOOTH BOOTS', 
-      link: "collection6", 
+      link: "botas-smooth", 
       type: "image",
       width: 658,
       height: 823,
@@ -182,7 +182,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection7.png', 
       title: 'INSOMNIAK JACKET', 
-      link: "collection7", 
+      link: "campera-insomnia", 
       type: "image",
       width: 658,
       height: 823,
@@ -191,7 +191,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection8.png', 
       title: 'RECKONER DRESS', 
-      link: "collection8", 
+      link: "vestido-reckoner", 
       type: "image",
       width: 658,
       height: 823,
@@ -200,7 +200,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection9.png', 
       title: 'OBJECTS SWEATSHIRT', 
-      link: "collection9", 
+      link: "buzo-objects-negro", 
       type: "image",
       width: 658,
       height: 823,
@@ -209,7 +209,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection10.png', 
       title: 'OUTRO MASK', 
-      link: "collection10", 
+      link: "mascara-outro", 
       type: "image",
       width: 658,
       height: 823,
@@ -218,7 +218,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection11.png', 
       title: 'HASENKAMP PANTS', 
-      link: "collection11", 
+      link: "pantalon-hasenkamp", 
       type: "image",
       width: 658,
       height: 823,
@@ -227,7 +227,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection12.png', 
       title: 'ZARS SUNGLASSES', 
-      link: "collection12", 
+      link: "gafas-zars", 
       type: "image",
       width: 658,
       height: 823,

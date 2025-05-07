@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 
 interface GalleryProps {
   link: string;
+  location?: "ar" | "us";
 }
 
-const Gallery: React.FC<GalleryProps> = ({ link }) => {
+const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
   const [imageSet, setImageSet] = useState(images.desktop);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -33,6 +34,13 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
 
   // Function to determine aspect ratio class based on device type
   const getAspectRatioClass = () => "aspect-[658/823]";
+
+  // Function to construct the product URL based on location
+  const getProductUrl = (productPath: string) => {
+    const baseUrl = "https://eshop.kostumeweb.net";
+    const path = location === "us" ? "/us/products" : "/productos";
+    return `${baseUrl}${path}/${productPath}/`;
+  };
 
   // Animation variants for container and items
   const containerVariants = {
@@ -72,11 +80,7 @@ const Gallery: React.FC<GalleryProps> = ({ link }) => {
           className="relative group"
         >
           <Link
-            href={
-              item.title === "SEAMM" || item.title === "KOSTÜME STORE"
-                ? item.link
-                : `${link}/${item.link}`
-            }
+            href={getProductUrl(item.link)}
             aria-label={`View ${item.title} collection`}
           >
             {/* Aspect Ratio Container */}

@@ -4,34 +4,59 @@ import Image from "next/image";
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MenuItemProps } from "../home/page";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "../context/LocationContext";
+import menuItemsEs from '../data/es-menu';
+import menuItemsEn from '../data/en-menu';
 
 interface HeaderProps {
   link: string;
   menu: MenuItemProps[];
 }
 
-const Header: React.FC<HeaderProps> = ({ link, menu }) => {
+const LocationToggle: React.FC<{ className?: string }> = ({ className = "" }) => {
+  const { region, setRegion } = useLocation();
+  return (
+    <div className={`flex gap-2 ${className}`}>
+      <span
+        className={`pointer-events-auto cursor-pointer font-bold ${region === "Argentina" ? "text-white" : "text-gray-500"}`}
+        onClick={() => region !== "Argentina" && setRegion("Argentina")}
+        tabIndex={0}
+        role="button"
+        aria-pressed={region === "Argentina"}
+      >
+        ARGENTINA
+      </span>
+      <span
+        className={`pointer-events-auto cursor-pointer font-bold ${region === "Worldwide" ? "text-white" : "text-gray-500"}`}
+        onClick={() => region !== "Worldwide" && setRegion("Worldwide")}
+        tabIndex={0}
+        role="button"
+        aria-pressed={region === "Worldwide"}
+      >
+        WORLDWIDE
+      </span>
+    </div>
+  );
+};
+
+const Header: React.FC = () => {
   const [nav, setNav] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [submenuVisible, setSubmenuVisible] = useState(false);
   const menuItemRefs = useRef<{ [key: string]: HTMLLIElement | null }>({});
-  // Track if item has been clicked once
   const [clickedOnce, setClickedOnce] = useState<string | null>(null);
-  // Refs for hover intent
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const submenuRef = useRef<HTMLDivElement | null>(null);
+  const { region } = useLocation();
+  const menu = region === "Argentina" ? menuItemsEs : menuItemsEn;
+  const link = region === "Argentina" ? "https://eshop.kostumeweb.net/ar" : "https://eshop.kostumeweb.net/us";
 
-  // Control body scroll when mobile menu is open
   useEffect(() => {
     if (nav) {
-      // Disable scrolling when nav is open
       document.body.style.overflow = 'hidden';
     } else {
-      // Re-enable scrolling when nav is closed
       document.body.style.overflow = 'auto';
     }
-    
-    // Cleanup function to ensure scroll is re-enabled when component unmounts
     return () => {
       document.body.style.overflow = 'auto';
     };
@@ -183,10 +208,10 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
   };
 
   return (
-    <div className="max-w-full z-20 items-center pr-4 ease-in duration-300 py-2 h-fit bg-black flex font-semibold justify-between lg:justify-start text-extraxs">
-      <div className="flex justify-between items-center w-full lg:w-auto">
+    <div className="max-w-full z-20 items-center pr-4 ease-in duration-300 py-2 h-fit bg-black flex font-semibold justify-between text-extraxs">
+      <div className="flex items-center flex-grow min-w-0">
         <motion.div 
-          onClick={handleNav} 
+          onClick={() => setNav(!nav)}
           className="pl-4 z-10 block lg:hidden"
           whileTap={{ scale: 0.95 }}
         >
@@ -198,10 +223,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
                 rotate: nav ? 45 : 0,
                 y: nav ? "-50%" : 0
               }}
-              transition={{
-                duration: 0.5,
-                ease: [0.25, 0.1, 0.25, 1.0]
-              }}
+              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
             />
             <motion.div
               className="w-full h-[0.5px] bg-white absolute"
@@ -210,10 +232,7 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
                 rotate: nav ? -45 : 0,
                 y: nav ? "-50%" : 0
               }}
-              transition={{
-                duration: 0.5,
-                ease: [0.25, 0.1, 0.25, 1.0]
-              }}
+              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
             />
           </div>
         </motion.div>
@@ -228,6 +247,10 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
             />
           </Link>
         </div>
+      </div>
+      {/* Desktop Location Toggle at far right */}
+      <div className="hidden lg:flex items-center ml-4 flex-shrink-0 min-w-[140px] z-50 pointer-events-auto">
+        <LocationToggle />
       </div>
 
       {/* Menú móvil */}
@@ -358,12 +381,18 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
             </motion.li>
           ))}
         </motion.ul>
+        {nav && (
+          <div className="absolute bottom-4 w-full flex justify-center">
+            <LocationToggle />
+          </div>
+        )}
       </motion.div>
 
       {/* Menú Desktop */}
       <div className="hidden lg:flex lg:items-center lg:flex-grow font-bold lg:justify-center relative w-full h-fit left-0 lg:absolute">
         <motion.ul 
           className="flex items-center relative h-full w-full justify-center"
+          style={{ position: "relative" }}
           initial="hidden"
           animate="visible"
           variants={{
@@ -397,53 +426,51 @@ const Header: React.FC<HeaderProps> = ({ link, menu }) => {
               transition={{ duration: 0.3 }}
             >
               <Link href={`${link}/${item.href}`}>{item.label}</Link>
+              {/* Dropdown rendered as a child of the active menu item */}
+              {currentSubcategories.length > 0 && activeMenu === item.label && submenuVisible && (
+                <motion.div
+                  ref={submenuRef}
+                  className="absolute top-full left-0 bg-black bg-opacity-90 p-4 flex flex-col items-start text-[10px] z-50 min-w-max"
+                  onMouseEnter={handleSubmenuMouseEnter}
+                  onMouseLeave={handleSubmenuMouseLeave}
+                  initial={{ y: -5, opacity: 0, scaleY: 0.95 }}
+                  animate={{ y: 0, opacity: 1, scaleY: 1 }}
+                  exit={{ y: -5, opacity: 0, scaleY: 0.95 }}
+                  transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1.0] }}
+                  style={{
+                    marginTop: "-2px",
+                    width: "auto",
+                    transformOrigin: "top center"
+                  }}
+                >
+                  <motion.ul 
+                    className="flex flex-col space-y-2 w-full"
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    {currentSubcategories.map((sub: any, subIndex: any) => (
+                      <motion.li 
+                        key={subIndex}
+                        custom={subIndex}
+                        variants={dropdownItemVariants}
+                        whileHover={{ x: 5 }}
+                        transition={{ duration: 0.2 }}
+                      >
+                        <Link
+                          href={`${link}/${menu.find(item => item.label === activeMenu)?.href}/${links[subIndex]}`}
+                          className="text-white text-left font-normal hover:underline"
+                        >
+                          {sub}
+                        </Link>
+                      </motion.li>
+                    ))}
+                  </motion.ul>
+                </motion.div>
+              )}
             </motion.li>
           ))}
         </motion.ul>
-        <AnimatePresence>
-          {currentSubcategories.length > 0 && activeMenu && submenuVisible && (
-            <motion.div
-              ref={submenuRef}
-              className="absolute top-full bg-black bg-opacity-90 p-4 flex flex-col items-start text-[10px] z-50 min-w-[150px] max-w-[300px]"
-              onMouseEnter={handleSubmenuMouseEnter}
-              onMouseLeave={handleSubmenuMouseLeave}
-              initial={{ y: -5, opacity: 0, scaleY: 0.95 }}
-              animate={{ y: 0, opacity: 1, scaleY: 1 }}
-              exit={{ y: -5, opacity: 0, scaleY: 0.95 }}
-              transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1.0] }}
-              style={{
-                left: menuItemRefs.current[activeMenu]?.offsetLeft || 0,
-                marginTop: "-2px",
-                width: `${menuItemRefs.current[activeMenu]?.offsetWidth}px` || "auto",
-                transformOrigin: "top center"
-              }}
-            >
-              <motion.ul 
-                className="flex flex-col space-y-2 w-full"
-                variants={containerVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                {currentSubcategories.map((sub: any, subIndex: any) => (
-                  <motion.li 
-                    key={subIndex}
-                    custom={subIndex}
-                    variants={dropdownItemVariants}
-                    whileHover={{ x: 5 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    <Link
-                      href={`${link}/${menu.find(item => item.label === activeMenu)?.href}/${links[subIndex]}`}
-                      className="text-white text-left font-normal hover:underline"
-                    >
-                      {sub}
-                    </Link>
-                  </motion.li>
-                ))}
-              </motion.ul>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </div>
     </div>
   );
