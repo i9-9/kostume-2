@@ -94,7 +94,7 @@ const Home: React.FC = () => {
         exit="exit"
       >
         <Marquee marqueeText={marqueeText[region]} />
-        <Header link={externalLinks[region]} menu={menuItem[region]} />
+        <Header />
         {/* <TextBanner text='( This is ) SALE ( 30% en items seleccionados ) ( Solo Online )' /> */}
         {/* <Banner 
           collection="collection1" 
