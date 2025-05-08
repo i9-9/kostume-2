@@ -12,10 +12,7 @@ const VideoHero = () => {
           allow="autoplay; fullscreen; picture-in-picture" 
           allowFullScreen>
         </iframe>
-        {/* Overlay text on hover */}
-        <div className="absolute inset-0 flex justify-center items-center z-10 pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-          <span className="text-white text-lg font-bold select-none">#49AW25</span>
-        </div>
+        <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
         <a
           href="https://eshop.kostumeweb.net/ar/49aw25"
           target="_blank"
@@ -35,10 +32,7 @@ const VideoHero = () => {
           allow="autoplay; fullscreen; picture-in-picture" 
           allowFullScreen>
         </iframe>
-        {/* Overlay text on hover */}
-        <div className="absolute inset-0 flex justify-center items-center z-10 pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100">
-          <span className="text-white text-base font-bold select-none">#49AW25</span>
-        </div>
+        <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
         <a
           href="https://eshop.kostumeweb.net/ar/49aw25"
           target="_blank"

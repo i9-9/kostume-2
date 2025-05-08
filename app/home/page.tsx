@@ -100,7 +100,6 @@ const Home: React.FC = () => {
           collection="collection1" 
           region={region}
           externalLinks={externalLinks} 
-          text="#49AW25" 
           deviceType={deviceType} 
         /> */}
         <VideoHero />

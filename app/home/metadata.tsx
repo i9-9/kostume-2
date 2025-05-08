@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 
 // Static metadata for the Home page - will be used during static export
 export const metadata: Metadata = {
-  title: 'KOSTÜME | Collections',
+  title: 'KOSTÜME',
   description: 'Explore KOSTÜME premium collections - Original ready-to-wear designed in Buenos Aires. Featuring denim, eyewear, and more.',
   openGraph: {
-    title: 'KOSTÜME Collections',
+    title: 'KOSTÜME',
     description: 'Explore our latest fashion collections - denim, eyewear and more. Made in Argentina.',
     images: [
       {
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KOSTÜME Collections',
+    title: 'KOSTÜME',
     description: 'Explore our latest fashion collections - denim, eyewear and more. Made in Argentina.',
     images: ['https://kostumeweb.net/img/seo/kostume-collection-og.jpg'],
   }

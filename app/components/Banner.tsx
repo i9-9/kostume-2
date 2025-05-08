@@ -6,11 +6,10 @@ interface BannerProps {
   collection: "collection1" | "collection2";
   region: "Argentina" | "Worldwide";
   externalLinks: Record<"Argentina" | "Worldwide", string>;
-  text: string;
   deviceType: "desktop" | "mobile";
 }
 
-const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, text, deviceType }) => {
+const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, deviceType }) => {
   const images = bannerData[collection][deviceType];
 
   // Animation variants
@@ -21,17 +20,6 @@ const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, text
       y: 0,
       transition: { 
         duration: 0.5,
-        ease: [0.25, 0.1, 0.25, 1.0]
-      }
-    }
-  };
-
-  const textVariants = {
-    initial: { opacity: 0 },
-    hover: { 
-      opacity: 1,
-      transition: { 
-        duration: 0.3,
         ease: [0.25, 0.1, 0.25, 1.0]
       }
     }
@@ -74,7 +62,7 @@ const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, text
           <div className="relative overflow-hidden">
             <motion.img 
               src={image.src} 
-              alt={`KOSTÜME ${image.title} collection - ${text}`} 
+              alt={`KOSTÜME ${image.title} collection`} 
               className="w-full h-auto" 
               loading="eager" 
               width={image.width}
@@ -83,18 +71,11 @@ const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, text
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
             />
             <motion.div 
-              className="absolute inset-0 flex justify-center items-center z-10"
+              className="absolute inset-0 z-10"
               initial="initial"
               whileHover="hover"
               variants={overlayVariants}
-            >
-              <motion.span 
-                className="text-white text-center font-bold text-sm md:text-lg"
-                variants={textVariants}
-              >
-                {text}
-              </motion.span>
-            </motion.div>
+            />
           </div>
         </motion.a>
       ))}

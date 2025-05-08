@@ -1,14 +1,8 @@
 import './globals.css'
-import localFont from 'next/font/local'
 import { Providers } from './providers'
 
-const helvetica = localFont({
-  src: './fonts/Helvetica.ttf', 
-  display: 'swap',
-})
-
 export const metadata = {
-  title: 'KOSTÜME | Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
+  title: 'KOSTÜME',
   description: 'Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
   keywords: 'kostume, fashion, clothing, argentina, buenos aires, ready-to-wear, denim, eyewear, argentine fashion, designer clothing',
   metadataBase: new URL('https://kostumeweb.net'),
@@ -20,7 +14,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'KOSTÜME | Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
+    title: 'KOSTÜME',
     description: 'Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
     url: 'https://kostumeweb.net',
     siteName: 'KOSTÜME',
@@ -32,24 +26,12 @@ export const metadata = {
         width: 1200,
         height: 630,
         alt: 'KOSTÜME Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
-      },
-      {
-        url: 'https://kostumeweb.net/img/seo/kostume-denim-og.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'KOSTÜME Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
-      },
-      {
-        url: 'https://kostumeweb.net/img/seo/kostume-eyewear-og.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'KOSTÜME Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
       }
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KOSTÜME | Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
+    title: 'KOSTÜME',
     description: 'Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
     creator: '@kostume_',
     images: [
@@ -102,7 +84,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={helvetica.className}>
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://eshop.kostumeweb.net" crossOrigin="" />
       </head>
