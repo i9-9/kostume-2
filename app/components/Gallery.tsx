@@ -37,6 +37,9 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
 
   // Function to construct the product URL based on location
   const getProductUrl = (productPath: string) => {
+    if (productPath.startsWith('http')) {
+      return productPath;
+    }
     const baseUrl = "https://eshop.kostumeweb.net";
     const path = location === "us" ? "/us/products" : "/productos";
     return `${baseUrl}${path}/${productPath}/`;

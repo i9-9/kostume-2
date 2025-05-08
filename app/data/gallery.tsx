@@ -72,7 +72,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection7.png', 
       title: 'INSOMNIAK JACKET', 
-      link: "campera-insomnia", 
+      link: "campera-insomniak", 
       type: "image",
       width: 658,
       height: 823,
