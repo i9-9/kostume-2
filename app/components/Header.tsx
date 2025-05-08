@@ -16,7 +16,7 @@ interface HeaderProps {
 const LocationToggle: React.FC<{ className?: string }> = ({ className = "" }) => {
   const { region, setRegion } = useLocation();
   return (
-    <div className={`flex gap-2 ${className}`}>
+    <div className={`flex gap-2 justify-end ${className}`}>
       <span
         className={`pointer-events-auto cursor-pointer font-bold ${region === "Argentina" ? "text-white" : "text-gray-500"}`}
         onClick={() => region !== "Argentina" && setRegion("Argentina")}
@@ -208,7 +208,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="max-w-full z-20 items-center pr-4 ease-in duration-300 py-2 h-fit bg-black flex font-semibold justify-between text-extraxs">
+    <div className="max-w-full z-20 items-center px-4 ease-in duration-300 py-2 h-fit bg-black flex font-semibold justify-between text-extraxs">
       <div className="flex items-center flex-grow min-w-0">
         <motion.div 
           onClick={() => setNav(!nav)}
@@ -243,13 +243,13 @@ const Header: React.FC = () => {
               width={125}
               height={30}
               alt="Kostume"
-              className="py-2 lg:ml-4"
+              className="py-2"
             />
           </Link>
         </div>
       </div>
       {/* Desktop Location Toggle at far right */}
-      <div className="hidden lg:flex items-center ml-4 flex-shrink-0 min-w-[140px] z-50 pointer-events-auto">
+      <div className="hidden lg:flex items-center flex-shrink-0 min-w-[140px] z-50 pointer-events-auto justify-end">
         <LocationToggle />
       </div>
 
