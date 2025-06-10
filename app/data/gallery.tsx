@@ -44,7 +44,7 @@ const images: ImageSets = {
     },
     { 
       src: '/img/desktop/collection4.png', 
-      title: 'BALOONERISM DRESS', 
+      title: 'BALLOONERISM DRESS', 
       link: "vestido-balloonerism", 
       type: "image",
       width: 658,
@@ -154,7 +154,7 @@ const images: ImageSets = {
     },
     { 
       src: '/img/desktop/collection4.png', 
-      title: 'BALOONERISM DRESS', 
+      title: 'BALLOONERISM DRESS', 
       link: "vestido-balloonerism", 
       type: "image",
       width: 658,
@@ -182,7 +182,7 @@ const images: ImageSets = {
     { 
       src: '/img/desktop/collection7.png', 
       title: 'INSOMNIAK JACKET', 
-      link: "campera-insomnia", 
+      link: "campera-insomniak", 
       type: "image",
       width: 658,
       height: 823,

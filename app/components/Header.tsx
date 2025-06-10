@@ -16,9 +16,9 @@ interface HeaderProps {
 const LocationToggle: React.FC<{ className?: string }> = ({ className = "" }) => {
   const { region, setRegion } = useLocation();
   return (
-    <div className={`flex gap-2 justify-end ${className}`}>
+    <div className={`flex gap-2 justify-center ${className}`}>
       <span
-        className={`pointer-events-auto cursor-pointer font-bold ${region === "Argentina" ? "text-white" : "text-gray-500"}`}
+        className={`pointer-events-auto cursor-pointer font-bold py-3 px-4 rounded-sm transition-colors duration-200 ${region === "Argentina" ? "text-white" : "text-gray-500"} lg:py-0 lg:px-0`}
         onClick={() => region !== "Argentina" && setRegion("Argentina")}
         tabIndex={0}
         role="button"
@@ -27,7 +27,7 @@ const LocationToggle: React.FC<{ className?: string }> = ({ className = "" }) =>
         ARGENTINA
       </span>
       <span
-        className={`pointer-events-auto cursor-pointer font-bold ${region === "Worldwide" ? "text-white" : "text-gray-500"}`}
+        className={`pointer-events-auto cursor-pointer font-bold py-3 px-4 rounded-sm transition-colors duration-200 ${region === "Worldwide" ? "text-white" : "text-gray-500"} lg:py-0 lg:px-0`}
         onClick={() => region !== "Worldwide" && setRegion("Worldwide")}
         tabIndex={0}
         role="button"
@@ -297,8 +297,8 @@ const Header: React.FC = () => {
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ 
-                        delay: index * 0.07,
-                        duration: 0.3,
+                        delay: index * 0.15,
+                        duration: 0.6,
                         ease: "easeOut"
                       }}
                     >
@@ -356,8 +356,8 @@ const Header: React.FC = () => {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ 
-                    delay: index * 0.07,
-                    duration: 0.3,
+                    delay: index * 0.15,
+                    duration: 0.6,
                     ease: "easeOut"
                   }}
                 >
@@ -382,8 +382,8 @@ const Header: React.FC = () => {
           ))}
         </motion.ul>
         {nav && (
-          <div className="absolute bottom-4 w-full flex justify-center">
-            <LocationToggle />
+          <div className="absolute bottom-12 w-full flex justify-center px-8">
+            <LocationToggle className="w-full" />
           </div>
         )}
       </motion.div>
@@ -399,7 +399,7 @@ const Header: React.FC = () => {
             hidden: {},
             visible: {
               transition: {
-                staggerChildren: 0.03
+                staggerChildren: 0.08
               }
             }
           }}
@@ -413,8 +413,8 @@ const Header: React.FC = () => {
                 visible: { 
                   opacity: 1,
                   transition: { 
-                    delay: index * 0.03,
-                    duration: 0.25
+                    delay: index * 0.08,
+                    duration: 0.5
                   }
                 }
               }}

@@ -12,7 +12,6 @@ const VideoHero = () => {
           allow="autoplay; fullscreen; picture-in-picture" 
           allowFullScreen>
         </iframe>
-        <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
         <a
           href="https://eshop.kostumeweb.net/ar/49aw25"
           target="_blank"
@@ -32,7 +31,6 @@ const VideoHero = () => {
           allow="autoplay; fullscreen; picture-in-picture" 
           allowFullScreen>
         </iframe>
-        <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-300" />
         <a
           href="https://eshop.kostumeweb.net/ar/49aw25"
           target="_blank"
