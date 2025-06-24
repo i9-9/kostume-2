@@ -274,7 +274,7 @@ const Header: React.FC = () => {
               key={index}
               custom={index}
               variants={menuItemVariants}
-              className="relative mx-4 py-4 text-white"
+              className={`relative mx-4 py-4 ${item.label === "TEMPORARY REDIRECT" ? "text-[#0afd02]" : "text-white"}`}
             >
               {/* Top border line for first item */}
               {index === 0 && (
@@ -307,7 +307,7 @@ const Header: React.FC = () => {
                         animate={{ rotate: activeMenu === item.label ? 90 : 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                       >
-                        <MdOutlineKeyboardArrowRight color="white" size={20} />
+                        <MdOutlineKeyboardArrowRight color={item.label === "TEMPORARY REDIRECT" ? "#0afd02" : "white"} size={20} />
                       </motion.div>
                     </motion.div>
                   </div>
@@ -418,11 +418,15 @@ const Header: React.FC = () => {
                   }
                 }
               }}
-              className="font-bold relative px-4 py-2"
+              className={`font-bold relative px-4 py-2 ${item.label === "TEMPORARY REDIRECT" ? "text-[#0afd02]" : ""}`}
               onMouseEnter={() => handleMouseEnter(item.label, index)}
               onMouseLeave={handleMouseLeave}
               ref={(el) => (menuItemRefs.current[item.label] = el)}
-              whileHover={{ color: "#999999" }}
+              style={item.label === "TEMPORARY REDIRECT" ? { color: "#0afd02" } : {}}
+              whileHover={item.label === "TEMPORARY REDIRECT" ? 
+                { color: "rgb(10, 253, 2, 0.8)" } : 
+                { color: "#999999" }
+              }
               transition={{ duration: 0.3 }}
             >
               <Link href={`${link}/${item.href}`}>{item.label}</Link>

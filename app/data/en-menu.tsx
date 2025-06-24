@@ -33,6 +33,7 @@ const menuItemsEn = [
     "accessories",
     "eyewear"
   ] },
+  { href: "temporaryredirect", label: "TEMPORARY REDIRECT", subcategories: [], links: [] },
 ];
 
 export default menuItemsEn;
