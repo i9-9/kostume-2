@@ -19,7 +19,7 @@ const VideoHero = () => {
           href="https://eshop.kostumeweb.net/temporaryredirect"
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute top-0 left-0 w-full h-full z-20"
+          className="absolute top-0 left-0 w-full h-full z-10"
           aria-label="Ver Temporary Redirect"
           style={{ background: 'rgba(0,0,0,0)', cursor: 'pointer' }}
         />
@@ -40,7 +40,7 @@ const VideoHero = () => {
           href="https://eshop.kostumeweb.net/temporaryredirect"
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute top-0 left-0 w-full h-full z-20"
+          className="absolute top-0 left-0 w-full h-full z-10"
           aria-label="Ver Temporary Redirect"
           style={{ background: 'rgba(0,0,0,0)', cursor: 'pointer' }}
         />

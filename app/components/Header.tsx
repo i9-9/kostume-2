@@ -255,7 +255,7 @@ const Header: React.FC = () => {
 
       {/* Menú móvil */}
       <motion.div
-        className="lg:hidden fixed inset-0 bg-black z-10 overflow-hidden mt-16"
+        className="lg:hidden fixed inset-0 bg-black z-30 overflow-hidden mt-16"
         initial={{ height: 0, opacity: 0 }}
         animate={{ 
           height: nav ? "calc(100vh - 4rem)" : 0,
@@ -361,10 +361,13 @@ const Header: React.FC = () => {
                     ease: "easeOut"
                   }}
                 >
-                  <Link onClick={handleNav} href={`${link}/${item.href}`}>
+                  <Link 
+                    onClick={handleNav} 
+                    href={`${link}/${item.href}`}
+                  >
                     <div className="flex justify-between">
                       <p className="self-center">{item.label}</p>
-                      <MdOutlineKeyboardArrowRight color="white" size={20} />
+                      <MdOutlineKeyboardArrowRight color={item.label === "TEMPORARY REDIRECT" ? "#0afd02" : "white"} size={20} />
                     </div>
                   </Link>
                 </motion.div>
