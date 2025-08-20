@@ -19,9 +19,9 @@ const bannerData: BannerData = {
   collection1: {
     desktop: [
       { 
-        src: "/img/banner_1.jpg", 
-        title: "#49AW25", 
-        link: "49aw25", 
+        src: "/img/banner_825.png", 
+        title: "Rain Capsule", 
+        link: "rain-capsule", 
         type: "image",
         width: 1800,
         height: 900,
@@ -30,8 +30,8 @@ const bannerData: BannerData = {
     ],
     mobile: [
       { 
-        src: "/img/banner_ch.jpg", 
-        title: "#49AW25", 
+        src: "/img/banner_825_mobile.jpg", 
+        title: "Rain Capsule", 
         link: "49aw25", 
         type: "image",
         width: 800,

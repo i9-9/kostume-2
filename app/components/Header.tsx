@@ -208,11 +208,13 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="max-w-full z-20 items-center px-4 ease-in duration-300 py-2 h-fit bg-black flex font-semibold justify-between text-extraxs">
-      <div className="flex items-center flex-grow min-w-0">
+    <div className="max-w-full z-50 items-center px-4 ease-in duration-300 py-2 h-fit bg-black flex font-semibold justify-between text-extraxs relative">
+      {/* Mobile Layout */}
+      <div className="flex lg:hidden items-center justify-between w-full relative">
+        {/* Hamburger Menu - Left */}
         <motion.div 
           onClick={() => setNav(!nav)}
-          className="pl-4 z-10 block lg:hidden"
+          className="z-50 w-8 flex justify-start relative"
           whileTap={{ scale: 0.95 }}
         >
           <div className="w-5 h-5 relative">
@@ -236,6 +238,26 @@ const Header: React.FC = () => {
             />
           </div>
         </motion.div>
+        
+        {/* Logo - Center */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 z-50">
+          <Link href="/">
+            <Image
+              src="/kostume_logo.svg"
+              width={125}
+              height={30}
+              alt="Kostume"
+              className="py-2"
+            />
+          </Link>
+        </div>
+        
+        {/* Empty space for balance - Right */}
+        <div className="w-8"></div>
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden lg:flex items-center flex-grow min-w-0">
         <div className="flex-grow flex lg:justify-start h-full self-center w-full lg:w-fit justify-center">
           <Link href="/">
             <Image
@@ -248,6 +270,7 @@ const Header: React.FC = () => {
           </Link>
         </div>
       </div>
+
       {/* Desktop Location Toggle at far right */}
       <div className="hidden lg:flex items-center flex-shrink-0 min-w-[140px] z-50 pointer-events-auto justify-end">
         <LocationToggle />
@@ -255,16 +278,16 @@ const Header: React.FC = () => {
 
       {/* Menú móvil */}
       <motion.div
-        className="lg:hidden fixed inset-0 bg-black z-30 overflow-hidden mt-16"
+        className="lg:hidden fixed top-0 left-0 w-full h-full bg-black z-20 overflow-hidden"
         initial={{ height: 0, opacity: 0 }}
         animate={{ 
-          height: nav ? "calc(100vh - 4rem)" : 0,
+          height: nav ? "100vh" : 0,
           opacity: nav ? 1 : 0
         }}
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
       >
         <motion.ul 
-          className="flex flex-col h-full w-full pt-8"
+          className="flex flex-col h-full w-full pt-20"
           variants={containerVariants}
           initial="hidden"
           animate={nav ? "visible" : "hidden"}

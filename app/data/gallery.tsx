@@ -16,22 +16,22 @@ interface ImageSets {
 const images: ImageSets = {
   desktop: [
     { 
-      src: '/img/desktop/collection1.png', 
-      title: 'STONED SKIRT', 
-      link: "falda-stoned", 
+      src: '/img/825/denim_desktop.jpg', 
+      title: 'DENIM', 
+      link: "denim", 
       type: "image",
-      width: 658,
-      height: 823,
-      aspectRatio: "658/823"
+      width: 800,
+      height: 1000,
+      aspectRatio: "4/5"
     },
     { 
-      src: '/img/desktop/collection2.png', 
-      title: 'ZEFSIDE SUNGLASSES', 
-      link: "gafas-zefside", 
+      src: '/img/825/eyewear_desktop.jpg', 
+      title: 'EYEWEAR', 
+      link: "ver-todo/gafas1", 
       type: "image",
-      width: 658,
-      height: 823,
-      aspectRatio: "658/823"
+      width: 800,
+      height: 1000,
+      aspectRatio: "4/5"
     },
     { 
       src: '/img/desktop/collection3.png', 
@@ -126,22 +126,22 @@ const images: ImageSets = {
   ],
   mobile: [
     { 
-      src: '/img/desktop/collection1.png', 
-      title: 'STONED SKIRT', 
-      link: "falda-stoned", 
+      src: '/img/825/denim_mobile_825.jpg', 
+      title: 'DENIM', 
+      link: "denim", 
       type: "image",
-      width: 658,
-      height: 823,
-      aspectRatio: "658/823"
+      width: 800,
+      height: 1000,
+      aspectRatio: "4/5"
     },
     { 
-      src: '/img/desktop/collection2.png', 
-      title: 'ZEFSIDE SUNGLASSES', 
-      link: "gafas-zefside", 
+      src: '/img/825/eyewear_mobile_825.jpg', 
+      title: 'EYEWEAR', 
+      link: "ver-todo/gafas1", 
       type: "image",
-      width: 658,
-      height: 823,
-      aspectRatio: "658/823"
+      width: 800,
+      height: 1000,
+      aspectRatio: "4/5"
     },
     { 
       src: '/img/desktop/collection3.png', 
