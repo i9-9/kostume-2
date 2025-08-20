@@ -122,8 +122,8 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
                   />
                 )}
               </div>
-              {/* Overlay Text */}
-              <motion.div
+              {/* Overlay Text - Desactivado temporalmente */}
+              {/* <motion.div
                 className={`absolute inset-0 flex justify-center items-center bg-black transition-opacity duration-700 ${
                   isMobile
                     ? "bg-opacity-50 opacity-100"
@@ -137,7 +137,7 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
                 >
                   {item.title}
                 </motion.span>
-              </motion.div>
+              </motion.div> */}
             </Link>
           </motion.div>
         ))}
