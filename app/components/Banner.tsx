@@ -70,12 +70,13 @@ const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, devi
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
             />
-            <motion.div 
+            {/* Overlay - Desactivado temporalmente */}
+            {/* <motion.div 
               className="absolute inset-0 z-10"
               initial="initial"
               whileHover="hover"
               variants={overlayVariants}
-            />
+            /> */}
           </div>
         </motion.a>
       ))}

@@ -32,7 +32,7 @@ const bannerData: BannerData = {
       { 
         src: "/img/banner_825_mobile.jpg", 
         title: "Rain Capsule", 
-        link: "49aw25", 
+        link: "rain-capsule", 
         type: "image",
         width: 800,
         height: 600,
