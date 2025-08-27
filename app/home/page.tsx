@@ -46,7 +46,7 @@ const Home: React.FC = () => {
   };
 
   const marqueeText: Record<Region, string> = {
-    Argentina: '3 Y 6 CUOTAS SIN INTERES · ',
+    Argentina: '3 CUOTAS SIN INTERES · ',
     Worldwide: 'WORLDWIDE SHIPPING · ',
   };
 
