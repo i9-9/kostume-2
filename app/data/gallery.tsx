@@ -16,45 +16,45 @@ interface ImageSets {
 const images: ImageSets = {
   desktop: [
     { 
-      src: '/img/825/denim_desktop.jpg', 
+      src: '/img/925/desktop/left_big_desktop.jpg', 
+      title: 'LEFT BIG', 
+      link: "50ss26", 
+      type: "image",
+      width: 800,
+      height: 1000,
+      aspectRatio: "4/5"
+    },
+    { 
+      src: '/img/925/desktop/right_big_desktop.jpg', 
+      title: 'RIGHT BIG', 
+      link: "50ss26", 
+      type: "image",
+      width: 800,
+      height: 1000,
+      aspectRatio: "4/5"
+    },
+    { 
+      src: '/img/925/desktop/1_rain_small.jpg', 
+      title: 'RAIN', 
+      link: "rain-capsule", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/925/desktop/2_denim_small.jpg', 
       title: 'DENIM', 
       link: "denim", 
       type: "image",
-      width: 800,
-      height: 1000,
-      aspectRatio: "4/5"
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
     },
     { 
-      src: '/img/825/eyewear_desktop.jpg', 
+      src: '/img/925/desktop/3_eyewear_small.jpg', 
       title: 'EYEWEAR', 
       link: "ver-todo/gafas1", 
-      type: "image",
-      width: 800,
-      height: 1000,
-      aspectRatio: "4/5"
-    },
-    { 
-      src: '/img/desktop/collection3.png', 
-      title: 'FERAL JACKET', 
-      link: "campera-feral", 
-      type: "image",
-      width: 658,
-      height: 823,
-      aspectRatio: "658/823"
-    },
-    { 
-      src: '/img/desktop/collection4.png', 
-      title: 'BALLOONERISM DRESS', 
-      link: "vestido-balloonerism", 
-      type: "image",
-      width: 658,
-      height: 823,
-      aspectRatio: "658/823"
-    },
-    { 
-      src: '/img/desktop/collection5.png', 
-      title: 'VELOURIA HOODIE', 
-      link: "buzo-velouria-negro", 
       type: "image",
       width: 658,
       height: 823,
@@ -126,45 +126,54 @@ const images: ImageSets = {
   ],
   mobile: [
     { 
-      src: '/img/825/denim_mobile_825.jpg', 
+      src: '/img/925/mobile/1_rain_mobile.jpg', 
+      title: 'RAIN', 
+      link: "https://eshop.kostumeweb.net/rain-capsule/", 
+      type: "image",
+      width: 800,
+      height: 1000,
+      aspectRatio: "4/5"
+    },
+    { 
+      src: '/img/925/mobile/2_denim_mobile.jpg', 
+      title: 'DENIM', 
+      link: "https://eshop.kostumeweb.net/ar/50ss26", 
+      type: "image",
+      width: 800,
+      height: 1000,
+      aspectRatio: "4/5"
+    },
+    { 
+      src: '/img/925/mobile/3_eyewear_mobile.jpg', 
+      title: 'EYEWEAR', 
+      link: "https://eshop.kostumeweb.net/ar/50ss26", 
+      type: "image",
+      width: 800,
+      height: 1000,
+      aspectRatio: "4/5"
+    },
+    { 
+      src: '/img/925/desktop/1_rain_small.jpg', 
+      title: 'RAIN', 
+      link: "rain-capsule", 
+      type: "image",
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
+    },
+    { 
+      src: '/img/925/desktop/2_denim_small.jpg', 
       title: 'DENIM', 
       link: "denim", 
       type: "image",
-      width: 800,
-      height: 1000,
-      aspectRatio: "4/5"
+      width: 658,
+      height: 823,
+      aspectRatio: "658/823"
     },
     { 
-      src: '/img/825/eyewear_mobile_825.jpg', 
+      src: '/img/925/desktop/3_eyewear_small.jpg', 
       title: 'EYEWEAR', 
       link: "ver-todo/gafas1", 
-      type: "image",
-      width: 800,
-      height: 1000,
-      aspectRatio: "4/5"
-    },
-    { 
-      src: '/img/desktop/collection3.png', 
-      title: 'FERAL JACKET', 
-      link: "campera-feral", 
-      type: "image",
-      width: 658,
-      height: 823,
-      aspectRatio: "658/823"
-    },
-    { 
-      src: '/img/desktop/collection4.png', 
-      title: 'BALLOONERISM DRESS', 
-      link: "vestido-balloonerism", 
-      type: "image",
-      width: 658,
-      height: 823,
-      aspectRatio: "658/823"
-    },
-    { 
-      src: '/img/desktop/collection5.png', 
-      title: 'VELOURIA HOODIE', 
-      link: "buzo-velouria-negro", 
       type: "image",
       width: 658,
       height: 823,

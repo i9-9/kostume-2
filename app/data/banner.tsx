@@ -16,12 +16,36 @@ interface BannerData {
 }
 
 const bannerData: BannerData = {
+  hero: {
+    desktop: [
+      { 
+        src: "/img/925/desktop/hero.jpg", 
+        title: "Hero", 
+        link: "50ss26", 
+        type: "image",
+        width: 1800,
+        height: 900,
+        aspectRatio: "16/9"
+      },
+    ],
+    mobile: [
+      { 
+        src: "/img/925/mobile/hero_mobile.jpg", 
+        title: "Hero", 
+        link: "50ss26", 
+        type: "image",
+        width: 800,
+        height: 600,
+        aspectRatio: "3/4"
+      },
+    ],
+  },
   collection1: {
     desktop: [
       { 
         src: "/img/banner_825.png", 
         title: "Rain Capsule", 
-        link: "rain-capsule", 
+        link: "50ss26", 
         type: "image",
         width: 1800,
         height: 900,
@@ -32,7 +56,7 @@ const bannerData: BannerData = {
       { 
         src: "/img/banner_825_mobile.jpg", 
         title: "Rain Capsule", 
-        link: "rain-capsule", 
+        link: "50ss26", 
         type: "image",
         width: 800,
         height: 600,

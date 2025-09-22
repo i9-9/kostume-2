@@ -32,8 +32,6 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Function to determine aspect ratio class based on device type
-  const getAspectRatioClass = () => "aspect-[4/5]";
 
   // Function to construct the product URL based on location
   const getProductUrl = (productPath: string) => {
@@ -41,6 +39,26 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
       return productPath;
     }
     const baseUrl = "https://eshop.kostumeweb.net";
+    
+    // Handle different types of links
+    if (productPath === "rain-capsule") {
+      return `${baseUrl}/rain-capsule/`;
+    }
+    
+    if (productPath === "denim") {
+      return `${baseUrl}/denim/`;
+    }
+    
+    if (productPath === "ver-todo/gafas1") {
+      return `${baseUrl}/ver-todo/gafas1/`;
+    }
+    
+    if (productPath === "50ss26") {
+      const regionPath = location === "us" ? "/us" : "/ar";
+      return `${baseUrl}${regionPath}/50ss26`;
+    }
+    
+    // Default product path
     const path = location === "us" ? "/us/products" : "/productos";
     return `${baseUrl}${path}/${productPath}/`;
   };
@@ -68,8 +86,52 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
     }
   };
 
-  // Solo mostrar las primeras 2 imágenes para el layout compacto
-  const compactImageSet = imageSet.slice(0, 2);
+  // Separar las imágenes: primeras 2 para cards grandes, siguientes 3 para cards pequeñas
+  const largeCards = imageSet.slice(0, 2);
+  const smallCards = imageSet.slice(2, 5); // Tomar las siguientes 3
+
+  const renderCard = (item: any, index: number, isLarge: boolean = false) => (
+    <motion.div
+      key={index}
+      variants={itemVariants}
+      className="relative group"
+    >
+      <Link
+        href={getProductUrl(item.link)}
+        aria-label={`View ${item.title} collection`}
+      >
+        {/* Aspect Ratio Container */}
+        <div
+          className={`relative w-full ${
+            isLarge ? "aspect-[4/5]" : "aspect-[4/5]"
+          }`}
+        >
+          {item.type === "video" ? (
+            <video
+              src={item.src}
+              className="min-w-full min-h-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label={`${item.title} video`}
+            />
+          ) : (
+            <Image
+              src={item.src}
+              alt={`KOSTÜME ${item.title} collection`}
+              className="min-w-full min-h-full object-cover"
+              loading="lazy"
+              width={item.width}
+              height={item.height}
+              sizes={isLarge ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 33vw"}
+              quality={85}
+            />
+          )}
+        </div>
+      </Link>
+    </motion.div>
+  );
 
   return (
     <motion.section 
@@ -79,68 +141,20 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
       initial="hidden"
       animate="show"
     >
-      {/* Grid personalizado para 2 columnas que ocupen la mitad de la pantalla cada una */}
+      {/* Cards grandes - Solo en desktop */}
+      {!isMobile && (
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          {largeCards.map((item, index) => renderCard(item, index, true))}
+        </div>
+      )}
+
+      {/* Cards pequeñas - Siempre visibles */}
       <div className={`grid gap-4 ${
         isMobile 
           ? "grid-cols-1" 
-          : "grid-cols-2"
+          : "grid-cols-3"
       }`}>
-        {compactImageSet.map((item, index) => (
-          <motion.div
-            key={index}
-            variants={itemVariants}
-            className="relative group"
-          >
-            <Link
-              href={getProductUrl(item.link)}
-              aria-label={`View ${item.title} collection`}
-            >
-              {/* Aspect Ratio Container */}
-              <div
-                className={`relative w-full ${getAspectRatioClass()}`}
-              >
-                {item.type === "video" ? (
-                  <video
-                    src={item.src}
-                    className="min-w-full min-h-full object-cover"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    aria-label={`${item.title} video`}
-                  />
-                ) : (
-                  <Image
-                    src={item.src}
-                    alt={`KOSTÜME ${item.title} collection`}
-                    className="min-w-full min-h-full object-cover"
-                    loading="lazy"
-                    width={item.width}
-                    height={item.height}
-                    sizes="(max-width: 768px) 50vw, 50vw"
-                    quality={85}
-                  />
-                )}
-              </div>
-              {/* Overlay Text - Desactivado temporalmente */}
-              {/* <motion.div
-                className={`absolute inset-0 flex justify-center items-center bg-black transition-opacity duration-700 ${
-                  isMobile
-                    ? "bg-opacity-50 opacity-100"
-                    : "bg-opacity-20 opacity-0 group-hover:opacity-100"
-                }`}
-                whileHover={{ backgroundColor: "rgba(0,0,0,0.6)" }}
-              >
-                <motion.span
-                  className="condensed-bold text-white text-center text-[11px] md:text-sm"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {item.title}
-                </motion.span>
-              </motion.div> */}
-            </Link>
-          </motion.div>
-        ))}
+        {smallCards.map((item, index) => renderCard(item, index, false))}
       </div>
     </motion.section>
   );

@@ -51,7 +51,7 @@ const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, devi
       {images.map((image, index) => (
         <motion.a
           key={index}
-          href={`${externalLinks[region]}/${image.link}`}
+          href={image.link === "50ss26" ? `https://eshop.kostumeweb.net/${region === 'Argentina' ? 'ar' : 'us'}/50ss26` : `${externalLinks[region]}/${image.link}`}
           target="_blank"
           rel="noopener noreferrer"
           className="relative group"
