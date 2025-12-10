@@ -128,7 +128,7 @@ const images: ImageSets = {
     { 
       src: '/img/925/mobile/1_rain_mobile.jpg', 
       title: 'RAIN', 
-      link: "https://eshop.kostumeweb.net/rain-capsule/", 
+      link: "rain-capsule", 
       type: "image",
       width: 800,
       height: 1000,
@@ -137,7 +137,7 @@ const images: ImageSets = {
     { 
       src: '/img/925/mobile/2_denim_mobile.jpg', 
       title: 'DENIM', 
-      link: "https://eshop.kostumeweb.net/ar/50ss26", 
+      link: "denim", 
       type: "image",
       width: 800,
       height: 1000,
@@ -146,7 +146,7 @@ const images: ImageSets = {
     { 
       src: '/img/925/mobile/3_eyewear_mobile.jpg', 
       title: 'EYEWEAR', 
-      link: "https://eshop.kostumeweb.net/ar/50ss26", 
+      link: "ver-todo/gafas1", 
       type: "image",
       width: 800,
       height: 1000,

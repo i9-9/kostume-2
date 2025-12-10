@@ -20,7 +20,6 @@ const TextBanner: React.FC<TextBannerProps> = ({
       className={`flex justify-center items-center text-center ${backgroundColor} ${textColor} ${padding} ${className}`}
       style={{ minHeight: "280px" }}
     >
-      {/* Desktop view */}
       <a href="https://eshop.kostumeweb.net/sale/" className="hidden sm:flex flex-col justify-center items-center">
         <div className="flex items-center justify-center">
           <div className="text-xl font-light px-2 pl-1">( This is )</div>
@@ -30,7 +29,6 @@ const TextBanner: React.FC<TextBannerProps> = ({
         </div>
       </a>
 
-      {/* Mobile view */}
       <a href="https://eshop.kostumeweb.net/sale/" className="block sm:hidden">
         <div className="flex items-center justify-center">
           <div className="text-md font-light px-2 pl-1">( This is )</div>

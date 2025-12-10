@@ -33,14 +33,12 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
   }, []);
 
 
-  // Function to construct the product URL based on location
   const getProductUrl = (productPath: string) => {
     if (productPath.startsWith('http')) {
       return productPath;
     }
     const baseUrl = "https://eshop.kostumeweb.net";
     
-    // Handle different types of links
     if (productPath === "rain-capsule") {
       return `${baseUrl}/rain-capsule/`;
     }
@@ -58,12 +56,10 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
       return `${baseUrl}${regionPath}/50ss26`;
     }
     
-    // Default product path
     const path = location === "us" ? "/us/products" : "/productos";
     return `${baseUrl}${path}/${productPath}/`;
   };
 
-  // Animation variants for container and items
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
@@ -86,9 +82,8 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
     }
   };
 
-  // Separar las imágenes: primeras 2 para cards grandes, siguientes 3 para cards pequeñas
   const largeCards = imageSet.slice(0, 2);
-  const smallCards = imageSet.slice(2, 5); // Tomar las siguientes 3
+  const smallCards = isMobile ? images.mobile.slice(0, 3) : images.desktop.slice(2, 5);
 
   const renderCard = (item: any, index: number, isLarge: boolean = false) => (
     <motion.div
@@ -100,7 +95,6 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
         href={getProductUrl(item.link)}
         aria-label={`View ${item.title} collection`}
       >
-        {/* Aspect Ratio Container */}
         <div
           className={`relative w-full ${
             isLarge ? "aspect-[4/5]" : "aspect-[4/5]"
@@ -141,14 +135,12 @@ const Gallery: React.FC<GalleryProps> = ({ link, location = "ar" }) => {
       initial="hidden"
       animate="show"
     >
-      {/* Cards grandes - Solo en desktop */}
       {!isMobile && (
         <div className="grid grid-cols-2 gap-4 mb-4">
           {largeCards.map((item, index) => renderCard(item, index, true))}
         </div>
       )}
 
-      {/* Cards pequeñas - Siempre visibles */}
       <div className={`grid gap-4 ${
         isMobile 
           ? "grid-cols-1" 

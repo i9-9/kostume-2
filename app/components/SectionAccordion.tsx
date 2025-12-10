@@ -18,7 +18,6 @@ const SectionAccordion: React.FC<SectionProps> = ({ title, links }) => {
         }
     }, [isInView, controls]);
 
-    // Animation variants
     const linkVariants = {
         hidden: { opacity: 0, x: -10 },
         visible: (i: number) => ({
@@ -43,7 +42,6 @@ const SectionAccordion: React.FC<SectionProps> = ({ title, links }) => {
         }
     };
 
-    // Line animation
     const lineVariants = {
         hidden: { width: 0 },
         visible: {
@@ -57,7 +55,6 @@ const SectionAccordion: React.FC<SectionProps> = ({ title, links }) => {
 
     return (
         <div className="relative" ref={ref}>
-            {/* Bottom border line */}
             <motion.div
                 className="absolute bottom-0 left-0 h-[0.5px] bg-white/20"
                 variants={lineVariants}

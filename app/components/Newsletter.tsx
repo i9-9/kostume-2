@@ -12,26 +12,17 @@ const Newsletter = () => {
     setMessage('');
     
     try {
-      // Get the region from localStorage to determine the correct store URL
       const region = localStorage.getItem('region') || 'Argentina';
       const storeUrl = region === 'Argentina' 
         ? 'https://eshop.kostumeweb.net/ar' 
         : 'https://eshop.kostumeweb.net/us';
       
-      // Create the API endpoint based on the region
       const apiUrl = region === 'Argentina'
         ? 'https://api.tiendanube.com/v1'
         : 'https://api.nuvemshop.com.br/v1';
       
-      // In a real implementation, you would send a request to your backend server 
-      // which would then use the Tienda Nube API with proper authentication
-      // This is a simplified version that simulates the process
       
-      // Simulate API call
-      // In production, you would implement a backend API that uses Tienda Nube's API
-      // POST /customers or similar endpoints to create/update customer with newsletter subscription
       
-      // For now, redirect to the store's newsletter signup
       window.open(`${storeUrl}/account/register?email=${encodeURIComponent(email)}`, '_blank');
       
       console.log(`Email subscribed: ${email} for store: ${storeUrl}`);

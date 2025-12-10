@@ -3,7 +3,7 @@ import bannerData from "../data/banner";
 import { motion } from "framer-motion";
 
 interface BannerProps {
-  collection: "collection1" | "collection2";
+  collection: "collection1" | "collection2" | "hero";
   region: "Argentina" | "Worldwide";
   externalLinks: Record<"Argentina" | "Worldwide", string>;
   deviceType: "desktop" | "mobile";
@@ -12,7 +12,6 @@ interface BannerProps {
 const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, deviceType }) => {
   const images = bannerData[collection][deviceType];
 
-  // Animation variants
   const bannerVariants = {
     hidden: { opacity: 0, y: 5 },
     visible: { 
@@ -70,13 +69,6 @@ const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, devi
               whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
             />
-            {/* Overlay - Desactivado temporalmente */}
-            {/* <motion.div 
-              className="absolute inset-0 z-10"
-              initial="initial"
-              whileHover="hover"
-              variants={overlayVariants}
-            /> */}
           </div>
         </motion.a>
       ))}

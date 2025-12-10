@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Marquee from '../components/Marquee';
 import Gallery from '../components/Gallery';
+import ProductCarousel from '../components/ProductCarousel';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import menuItemsEs from '../data/es-menu'; 
@@ -64,7 +65,6 @@ const Home: React.FC = () => {
     Worldwide: menuItemsEn 
   };
   
-  // Page transition variants
   const pageVariants = {
     initial: { opacity: 0 },
     animate: { 
@@ -103,13 +103,6 @@ const Home: React.FC = () => {
       >
         <Marquee marqueeText={marqueeText[region]} />
         <Header />
-        {/* <TextBanner text='( This is ) SALE ( 30% en items seleccionados ) ( Solo Online )' /> */}
-        {/* <Banner 
-          collection="collection1" 
-          region={region}
-          externalLinks={externalLinks} 
-          deviceType={deviceType} 
-        /> */}
         <Banner 
           collection="hero" 
           region={region}
@@ -119,7 +112,8 @@ const Home: React.FC = () => {
         <p className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </p>
-        <Gallery link={externalLinks[region]} location={region === 'Argentina' ? 'ar' : 'us'} />
+        <ProductCarousel />
+        {/* <Gallery link={externalLinks[region]} location={region === 'Argentina' ? 'ar' : 'us'} /> */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

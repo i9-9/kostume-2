@@ -8,7 +8,6 @@ interface AnimatedHeaderProps {
 }
 
 const AnimatedHeader: React.FC<AnimatedHeaderProps> = ({ title, subtitle, className = "" }) => {
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -32,7 +31,6 @@ const AnimatedHeader: React.FC<AnimatedHeaderProps> = ({ title, subtitle, classN
     }
   };
 
-  // Split the title into words for individual animations
   const words = title.split(' ');
 
   return (

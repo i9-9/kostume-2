@@ -10,7 +10,6 @@ const VideoHero = () => {
 
   return (
     <div className="relative w-full">
-      {/* Desktop Video - Vimeo */}
       <div className="hidden md:block relative group">
         <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
           <iframe
@@ -21,7 +20,6 @@ const VideoHero = () => {
             allowFullScreen
             title="KOSTÜME Hero Video"
           />
-          {/* Overlay transparente para hacer el link clickeable */}
           <a 
             href={rainCapsuleLink}
             target="_blank"
@@ -32,7 +30,6 @@ const VideoHero = () => {
         </div>
       </div>
 
-      {/* Mobile Video - Local */}
       <div className="block md:hidden relative group">
         <a 
           href={rainCapsuleLink}
@@ -50,7 +47,6 @@ const VideoHero = () => {
               controls={false}
             >
               <source src="/video/hero_mobile.mp4" type="video/mp4" />
-              {/* Fallback para navegadores que no soporten video */}
               <div className="absolute inset-0 bg-black flex items-center justify-center">
                 <p className="text-white text-center">Video no disponible</p>
               </div>

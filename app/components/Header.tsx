@@ -65,7 +65,6 @@ const Header: React.FC = () => {
   const handleNav = () => setNav(!nav);
 
   const handleMouseEnter = (label: string, index: number) => {
-    // Clear any existing timeout
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
@@ -75,9 +74,7 @@ const Header: React.FC = () => {
   };
 
   const handleMouseLeave = () => {
-    // Delay closing the submenu to allow time to move to it
     timeoutRef.current = setTimeout(() => {
-      // Check if the cursor is over the submenu
       if (!isMouseOverSubmenu()) {
         setSubmenuVisible(false);
         setActiveMenu(null);
@@ -85,7 +82,6 @@ const Header: React.FC = () => {
     }, 100);
   };
 
-  // Check if mouse is over the submenu element
   const isMouseOverSubmenu = () => {
     return document.querySelector(':hover') === submenuRef.current;
   };
@@ -99,14 +95,12 @@ const Header: React.FC = () => {
   };
 
   const handleSubmenuMouseLeave = () => {
-    // Allow a small delay before closing
     timeoutRef.current = setTimeout(() => {
       setSubmenuVisible(false);
       setActiveMenu(null);
     }, 50);
   };
 
-  // Cleanup timeouts on unmount
   useEffect(() => {
     return () => {
       if (timeoutRef.current) {
@@ -115,27 +109,20 @@ const Header: React.FC = () => {
     };
   }, []);
 
-  // Modified function to handle the mobile submenu toggle with separate click tracking
   const handleSubmenuToggle = (e: React.MouseEvent, item: MenuItemProps) => {
-    e.preventDefault(); // Prevent default link behavior
-    e.stopPropagation(); // Stop event propagation
+    e.preventDefault();
+    e.stopPropagation();
     
     if (activeMenu === item.label) {
-      // If menu is already open and this is the second click on same item
       if (clickedOnce === item.label) {
-        // This is the second click - allow navigation
-        // Reset and navigate
         setClickedOnce(null);
         window.location.href = `${link}/${item.href}`;
       } else {
-        // This is the first click on an already open menu
-        // Mark as clicked once
         setClickedOnce(item.label);
       }
     } else {
-      // First click on a closed menu - just open it
       setActiveMenu(item.label);
-      setClickedOnce(null); // Reset click tracking
+      setClickedOnce(null);
     }
   };
 
@@ -143,7 +130,6 @@ const Header: React.FC = () => {
   const currentSubcategories =
     menu.find((item) => item.label === activeMenu)?.subcategories || [];
 
-  // Animation variants
   const menuItemVariants = {
     hidden: { opacity: 0, y: 5 },
     visible: (i: number) => ({
@@ -182,7 +168,6 @@ const Header: React.FC = () => {
     }
   };
 
-  // Line animation
   const lineVariants = {
     hidden: { width: 0 },
     visible: (i: number) => ({
@@ -209,9 +194,7 @@ const Header: React.FC = () => {
 
   return (
     <div className="max-w-full z-50 items-center px-4 ease-in duration-300 py-2 h-fit bg-black flex font-semibold justify-between text-extraxs relative">
-      {/* Mobile Layout */}
       <div className="flex lg:hidden items-center justify-between w-full relative">
-        {/* Hamburger Menu - Left */}
         <motion.div 
           onClick={() => setNav(!nav)}
           className="z-50 w-8 flex justify-start relative"
@@ -239,7 +222,6 @@ const Header: React.FC = () => {
           </div>
         </motion.div>
         
-        {/* Logo - Center */}
         <div className="absolute left-1/2 transform -translate-x-1/2 z-50">
           <Link href="/">
             <Image
@@ -252,11 +234,9 @@ const Header: React.FC = () => {
           </Link>
         </div>
         
-        {/* Empty space for balance - Right */}
         <div className="w-8"></div>
       </div>
 
-      {/* Desktop Layout */}
       <div className="hidden lg:flex items-center flex-grow min-w-0">
         <div className="flex-grow flex lg:justify-start h-full self-center w-full lg:w-fit justify-center">
           <Link href="/">
@@ -271,12 +251,10 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Desktop Location Toggle at far right */}
       <div className="hidden lg:flex items-center flex-shrink-0 min-w-[140px] z-50 pointer-events-auto justify-end">
         <LocationToggle />
       </div>
 
-      {/* Menú móvil */}
       <motion.div
         className="lg:hidden fixed top-0 left-0 w-full h-full bg-black z-20 overflow-hidden"
         initial={{ height: 0, opacity: 0 }}
@@ -299,7 +277,6 @@ const Header: React.FC = () => {
               variants={menuItemVariants}
               className={`relative mx-4 py-4 ${item.label === "TEMPORARY REDIRECT" ? "text-[#0afd02]" : "text-white"}`}
             >
-              {/* Top border line for first item */}
               {index === 0 && (
                 <motion.div
                   className="absolute top-0 left-0 h-[0.5px] bg-white/20"
@@ -396,7 +373,6 @@ const Header: React.FC = () => {
                 </motion.div>
               )}
 
-              {/* Bottom border line for each item */}
               <motion.div
                 className="absolute bottom-0 left-0 h-[0.5px] bg-white/20"
                 custom={index}
@@ -414,7 +390,6 @@ const Header: React.FC = () => {
         )}
       </motion.div>
 
-      {/* Menú Desktop */}
       <div className="hidden lg:flex lg:items-center lg:flex-grow font-bold lg:justify-center relative w-full h-fit left-0 lg:absolute">
         <motion.ul 
           className="flex items-center relative h-full w-full justify-center"
@@ -456,7 +431,6 @@ const Header: React.FC = () => {
               transition={{ duration: 0.3 }}
             >
               <Link href={`${link}/${item.href}`}>{item.label}</Link>
-              {/* Dropdown rendered as a child of the active menu item */}
               {currentSubcategories.length > 0 && activeMenu === item.label && submenuVisible && (
                 <motion.div
                   ref={submenuRef}

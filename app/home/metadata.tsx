@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 
-// Static metadata for the Home page - will be used during static export
 export const metadata: Metadata = {
   title: 'KOSTÜME',
   description: 'Explore KOSTÜME premium collections - Original ready-to-wear designed in Buenos Aires. Featuring denim, eyewear, and more.',

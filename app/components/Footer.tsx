@@ -28,7 +28,6 @@ const Footer = () => {
     }
   }, [isInView, controls]);
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -48,7 +47,6 @@ const Footer = () => {
       animate={controls}
       variants={containerVariants}
     >
-      {/* Top border line */}
       <motion.div
         className="absolute top-0 left-0 right-0 h-[0.5px] bg-white/20"
         variants={{
@@ -65,9 +63,7 @@ const Footer = () => {
       />
       
       <div className='w-full lg:pt-6 lg:pb-6'>
-        {/* Desktop layout */}
         <div className='hidden lg:flex lg:flex-row lg:gap-6 uppercase'>
-          {/* First set of columns */}
           <div className="flex-1 grid grid-cols-8 gap-6">
             {footer.map((item, index) => (
               <motion.div 
@@ -91,7 +87,6 @@ const Footer = () => {
             ))}
           </div>
           
-          {/* Newsletter section */}
           <motion.div 
             variants={{
               hidden: { opacity: 0, y: 20 },
@@ -111,7 +106,6 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Mobile layout */}
         <div className='flex lg:hidden flex-col'>
           {footer.map((item, index) => (
             <motion.div 
@@ -146,7 +140,6 @@ const Footer = () => {
           }
         }}
       >
-        {/* Top border line for copyright (desktop only) */}
         <motion.div
           className="absolute top-0 left-0 right-0 h-[0.5px] bg-white/20 hidden lg:block"
           variants={{
@@ -168,7 +161,6 @@ const Footer = () => {
 }
 
 const Section: React.FC<SectionProps & { index: number }> = ({ title, links, index }) => {
-  // Sequential fade-in for section content
   const itemVariants = {
     hidden: { opacity: 0, y: 10 },
     visible: (i: number) => ({

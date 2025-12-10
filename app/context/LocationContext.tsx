@@ -15,14 +15,12 @@ export const LocationProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [region, setRegionState] = useState<Region>("Argentina");
   const [language, setLanguage] = useState<Language>("es");
 
-  // Only set initial state from localStorage on mount
   useEffect(() => {
     const stored = localStorage.getItem("region") as Region | null;
     if (stored) {
       setRegionState(stored);
       setLanguage(stored === "Worldwide" ? "en" : "es");
     }
-    // Listen for storage events to sync across tabs
     const onStorage = (e: StorageEvent) => {
       if (e.key === "region" && e.newValue) {
         setRegionState(e.newValue as Region);
