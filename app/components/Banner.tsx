@@ -48,29 +48,25 @@ const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, devi
       variants={bannerVariants}
     >
       {images.map((image, index) => (
-        <motion.a
+        <a
           key={index}
           href={image.link === "50ss26" ? `https://eshop.kostumeweb.net/${region === 'Argentina' ? 'ar' : 'us'}/50ss26` : `${externalLinks[region]}/${image.link}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="relative group"
+          className="relative block"
           aria-label={`View ${image.title} collection`}
-          whileHover={{ scale: 1.005 }}
-          transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1.0] }}
         >
-          <div className="relative overflow-hidden">
-            <motion.img 
+          <div className="relative">
+            <img 
               src={image.src} 
               alt={`KOSTÜME ${image.title} collection`} 
               className="w-full h-auto" 
               loading="eager" 
               width={image.width}
               height={image.height}
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
             />
           </div>
-        </motion.a>
+        </a>
       ))}
     </motion.section>
   );

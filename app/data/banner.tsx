@@ -19,7 +19,7 @@ const bannerData: BannerData = {
   hero: {
     desktop: [
       { 
-        src: "/img/diciembre25/HERO_DESKTOP/KOSTUME 06AGO_1066-.jpg", 
+        src: "/img/1225/hero_desktop.jpg", 
         title: "Hero", 
         link: "50ss26", 
         type: "image",
@@ -30,7 +30,7 @@ const bannerData: BannerData = {
     ],
     mobile: [
       { 
-        src: "/img/diciembre25/HERO_MOBILE/1@2x-100.jpg", 
+        src: "/img/1225/hero_mobile.jpg", 
         title: "Hero", 
         link: "50ss26", 
         type: "image",
