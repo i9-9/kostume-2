@@ -24,8 +24,6 @@ const Newsletter = () => {
       
       
       window.open(`${storeUrl}/account/register?email=${encodeURIComponent(email)}`, '_blank');
-      
-      console.log(`Email subscribed: ${email} for store: ${storeUrl}`);
       setMessage('¡Gracias por suscribirte!');
       setEmail('');
     } catch (error) {

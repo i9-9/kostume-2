@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import footer from '../data/footer'
 import SectionAccordion from './SectionAccordion';
 import Newsletter from './Newsletter';
@@ -17,10 +17,26 @@ export interface SectionProps {
   links: LinkItem[];
 }
 
-const Footer = () => {
+type Region = 'Argentina' | 'Worldwide';
+
+interface FooterProps {
+  region?: Region;
+}
+
+const Footer = ({ region }: FooterProps) => {
   const controls = useAnimation();
   const footerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(footerRef, { once: true, amount: 0.2 });
+
+  const footerResolved = useMemo(() => footer.map(section => ({
+    ...section,
+    links: section.links.map(link => {
+      const href = ('hrefByRegion' in link && link.hrefByRegion && region)
+        ? (link.hrefByRegion[region] ?? link.href)
+        : link.href;
+      return { href, text: link.text };
+    }),
+  })), [region]);
   
   useEffect(() => {
     if (isInView) {
@@ -65,7 +81,7 @@ const Footer = () => {
       <div className='w-full lg:pt-6 lg:pb-6'>
         <div className='hidden lg:flex lg:flex-row lg:gap-6 uppercase'>
           <div className="flex-1 grid grid-cols-8 gap-6">
-            {footer.map((item, index) => (
+            {footerResolved.map((item, index) => (
               <motion.div 
                 key={index}
                 className="col-span-2"
@@ -107,7 +123,7 @@ const Footer = () => {
         </div>
 
         <div className='flex lg:hidden flex-col'>
-          {footer.map((item, index) => (
+          {footerResolved.map((item, index) => (
             <motion.div 
               key={index}
               variants={{

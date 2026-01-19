@@ -1,6 +1,17 @@
-import { SectionProps } from "../components/Footer";
+type Region = 'Argentina' | 'Worldwide';
 
-const footer: SectionProps[] = [
+export interface FooterLinkInput {
+  href: string;
+  text: string;
+  hrefByRegion?: Partial<Record<Region, string>>;
+}
+
+interface FooterSectionInput {
+  title: string;
+  links: FooterLinkInput[];
+}
+
+const footer: FooterSectionInput[] = [
     { 
       title: 'Contact',
       links: [
@@ -11,8 +22,8 @@ const footer: SectionProps[] = [
     {
       title: 'Info',
       links: [
-        { href: 'https://eshop.kostumeweb.net/us/about-us/', text: 'ABOUT US' },
-        { href: 'https://eshop.kostumeweb.net/us/faqs/', text: 'FAQ' }
+        { href: 'https://eshop.kostumeweb.net/us/about-us/', text: 'ABOUT US', hrefByRegion: { Argentina: 'https://eshop.kostumeweb.net/nosotros/', Worldwide: 'https://eshop.kostumeweb.net/us/about-us/' } },
+        { href: 'https://eshop.kostumeweb.net/us/faqs/', text: 'FAQ', hrefByRegion: { Argentina: 'https://eshop.kostumeweb.net/preguntas-frecuentes/', Worldwide: 'https://eshop.kostumeweb.net/us/faqs/' } }
       ]
     },
     {

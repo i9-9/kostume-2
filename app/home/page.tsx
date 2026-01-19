@@ -87,10 +87,13 @@ const Home: React.FC = () => {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Fashion",
+            "@type": "WebPage",
             name: "KOSTÜME Collections",
             description: "Explore KOSTÜME premium collections - Original ready-to-wear designed in Buenos Aires.",
             url: "https://kostumeweb.net/home",
+            isPartOf: {
+              "@id": "https://kostumeweb.net/#website"
+            }
           }),
         }}
       />
@@ -109,17 +112,17 @@ const Home: React.FC = () => {
           externalLinks={externalLinks} 
           deviceType={deviceType} 
         />
-        <p className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
+        <h1 className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
-        </p>
-        <ProductCarousel />
+        </h1>
+        {/* <ProductCarousel /> */}
         {/* <Gallery link={externalLinks[region]} location={region === 'Argentina' ? 'ar' : 'us'} /> */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <Footer />
+          <Footer region={region} />
         </motion.div>
       </motion.div>
       

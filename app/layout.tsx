@@ -1,11 +1,19 @@
 import './globals.css'
 import { Providers } from './providers'
+import OrganizationSchema from './components/OrganizationSchema'
+import LocalBusinessSchema from './components/LocalBusinessSchema'
+import WebsiteSchema from './components/WebsiteSchema'
 
 export const metadata = {
-  title: 'KOSTÜME',
-  description: 'Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
+  title: 'KOSTÜME | Designer Fashion from Buenos Aires | Ready-to-Wear Collection',
+  description: 'Shop KOSTÜME premium ready-to-wear fashion designed in Buenos Aires. Discover our collections of denim, eyewear, and contemporary clothing. Made in Argentina, shipped worldwide.',
   keywords: 'kostume, fashion, clothing, argentina, buenos aires, ready-to-wear, denim, eyewear, argentine fashion, designer clothing',
   metadataBase: new URL('https://kostumeweb.net'),
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+  },
   alternates: {
     canonical: '/',
     languages: {
@@ -14,8 +22,8 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'KOSTÜME',
-    description: 'Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
+    title: 'KOSTÜME | Designer Fashion from Buenos Aires',
+    description: 'Shop KOSTÜME premium ready-to-wear fashion designed in Buenos Aires. Discover our collections of denim, eyewear, and contemporary clothing. Made in Argentina, shipped worldwide.',
     url: 'https://kostumeweb.net',
     siteName: 'KOSTÜME',
     locale: 'en_US',
@@ -31,8 +39,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KOSTÜME',
-    description: 'Original Ready-to-Wear designed in Buenos Aires. Made in Argentina.',
+    title: 'KOSTÜME | Designer Fashion from Buenos Aires',
+    description: 'Shop KOSTÜME premium ready-to-wear fashion designed in Buenos Aires. Discover our collections of denim, eyewear, and contemporary clothing. Made in Argentina, shipped worldwide.',
     creator: '@kostume_',
     images: [
       {
@@ -87,6 +95,9 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://eshop.kostumeweb.net" crossOrigin="" />
+        <OrganizationSchema />
+        <LocalBusinessSchema />
+        <WebsiteSchema />
       </head>
       <body className='min-h-screen bg-black text-white'>
         <Providers>

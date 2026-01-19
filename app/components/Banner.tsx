@@ -39,10 +39,12 @@ const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, devi
     }
   };
 
+  const isHero = collection === "hero";
+
   return (
     <motion.section 
       aria-label="Featured Collection" 
-      className="px-4 mt-1 mb-4"
+      className={isHero ? "w-full h-[calc(100dvh-5.5rem)] overflow-hidden mb-4" : "px-4 mt-1 mb-4"}
       initial="hidden"
       animate="visible"
       variants={bannerVariants}
@@ -53,14 +55,14 @@ const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, devi
           href={image.link === "50ss26" ? `https://eshop.kostumeweb.net/${region === 'Argentina' ? 'ar' : 'us'}/50ss26` : `${externalLinks[region]}/${image.link}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="relative block"
+          className={isHero ? "relative block h-full" : "relative block"}
           aria-label={`View ${image.title} collection`}
         >
-          <div className="relative">
+          <div className={isHero ? "relative h-full w-full overflow-hidden" : "relative"}>
             <img 
               src={image.src} 
               alt={`KOSTÜME ${image.title} collection`} 
-              className="w-full h-auto" 
+              className={isHero ? "w-full h-full object-cover object-center" : "w-full h-auto"} 
               loading="eager" 
               width={image.width}
               height={image.height}

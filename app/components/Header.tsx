@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { MenuItemProps } from "../home/page";
 import { motion, AnimatePresence } from "framer-motion";
@@ -47,6 +48,7 @@ const Header: React.FC = () => {
   const [clickedOnce, setClickedOnce] = useState<string | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const submenuRef = useRef<HTMLDivElement | null>(null);
+  const router = useRouter();
   const { region } = useLocation();
   const menu = region === "Argentina" ? menuItemsEs : menuItemsEn;
   const link = region === "Argentina" ? "https://eshop.kostumeweb.net/ar" : "https://eshop.kostumeweb.net/us";
@@ -116,7 +118,7 @@ const Header: React.FC = () => {
     if (activeMenu === item.label) {
       if (clickedOnce === item.label) {
         setClickedOnce(null);
-        window.location.href = `${link}/${item.href}`;
+        router.push(`${link}/${item.href}`);
       } else {
         setClickedOnce(item.label);
       }
@@ -193,7 +195,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="max-w-full z-50 items-center px-4 ease-in duration-300 py-2 h-fit bg-black flex font-semibold justify-between text-extraxs relative">
+    <div className="max-w-full z-50 items-center px-4 ease-in duration-300 py-4 lg:py-2 h-fit bg-black flex font-semibold justify-between text-extraxs relative">
       <div className="flex lg:hidden items-center justify-between w-full relative">
         <motion.div 
           onClick={() => setNav(!nav)}
@@ -228,7 +230,7 @@ const Header: React.FC = () => {
               src="/kostume_logo.svg"
               width={125}
               height={30}
-              alt="Kostume"
+              alt="KOSTÜME — Inicio"
               className="py-2"
             />
           </Link>
@@ -244,7 +246,7 @@ const Header: React.FC = () => {
               src="/kostume_logo.svg"
               width={125}
               height={30}
-              alt="Kostume"
+              alt="KOSTÜME — Inicio"
               className="py-2"
             />
           </Link>
@@ -264,6 +266,7 @@ const Header: React.FC = () => {
         }}
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
       >
+        <nav className="h-full w-full" aria-label="Menú principal">
         <motion.ul 
           className="flex flex-col h-full w-full pt-20"
           variants={containerVariants}
@@ -383,6 +386,7 @@ const Header: React.FC = () => {
             </motion.li>
           ))}
         </motion.ul>
+        </nav>
         {nav && (
           <div className="absolute bottom-12 w-full flex justify-center px-8">
             <LocationToggle className="w-full" />
@@ -390,7 +394,7 @@ const Header: React.FC = () => {
         )}
       </motion.div>
 
-      <div className="hidden lg:flex lg:items-center lg:flex-grow font-bold lg:justify-center relative w-full h-fit left-0 lg:absolute">
+      <nav className="hidden lg:flex lg:items-center lg:flex-grow font-bold lg:justify-center relative w-full h-fit left-0 lg:absolute" aria-label="Menú principal">
         <motion.ul 
           className="flex items-center relative h-full w-full justify-center"
           style={{ position: "relative" }}
@@ -475,7 +479,7 @@ const Header: React.FC = () => {
             </motion.li>
           ))}
         </motion.ul>
-      </div>
+      </nav>
     </div>
   );
 };

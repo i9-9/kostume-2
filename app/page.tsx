@@ -19,7 +19,7 @@ export default function Home() {
       if (visitCount % 5 === 0) {
       localStorage.setItem('visitCount', '0');
       } else {
-        window.location.href = '/home/';
+        router.push('/home/');
       }
     } else {
       visitCount += 1;
@@ -31,7 +31,7 @@ export default function Home() {
     try {
     localStorage.setItem('region', region);
 
-      window.location.href = '/home/';
+      router.push('/home/');
     } catch (error) {
       console.error('Error during navigation:', error);
     }
@@ -58,9 +58,11 @@ export default function Home() {
       variants={fadeVariants}
     >
       <div className="flex flex-col md:flex-row justify-center items-center text-title">
-        <p className="title">THIS</p>
-        <p className="title">IS</p>
-        <p className="title">KOSTÜME</p>
+        <h1 className="title flex flex-col md:flex-row items-center">
+          <span className="title">THIS</span>
+          <span className="title">IS</span>
+          <span className="title">KOSTÜME</span>
+        </h1>
       </div>
       <motion.div 
         className="flex flex-col md:flex-row justify-between mt-6 items-center"
