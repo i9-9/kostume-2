@@ -195,7 +195,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="max-w-full z-50 items-center px-4 ease-in duration-300 py-4 lg:py-2 h-fit bg-black flex font-semibold justify-between text-extraxs relative">
+    <div className="max-w-full z-50 items-center px-4 ease-in duration-300 py-5 lg:py-2 h-fit bg-black flex font-semibold justify-between text-extraxs relative">
       <div className="flex lg:hidden items-center justify-between w-full relative">
         <motion.div 
           onClick={() => setNav(!nav)}
