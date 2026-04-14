@@ -14,7 +14,7 @@ const PromotionsMarquee: React.FC<MarqueeProps> = ({ marqueeText }) => {
 
   return (
     <Marquee
-      className="w-full bg-black text-[7px] text-white h-fit uppercase py-1 border-b-[0.5px] border-b-white/20"
+      className="w-full bg-white text-[7px] text-black h-fit uppercase py-1 border-b-[0.5px] border-b-black/20"
       speed={50}
       gradient={false}
       pauseOnHover={true}

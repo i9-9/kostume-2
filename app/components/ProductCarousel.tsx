@@ -68,7 +68,7 @@ const ProductCarousel: React.FC = () => {
   };
 
   return (
-    <section className="py-4">
+    <section className="pt-0 pb-4">
       {/* Wrapper for positioning the scroll buttons */}
       <div className="relative">
         {/* Scrollable container with native horizontal scroll */}
@@ -81,50 +81,58 @@ const ProductCarousel: React.FC = () => {
             WebkitOverflowScrolling: "touch",
           }}
         >
-          {carouselProducts.map((product) => (
-            <a
-              key={product.id}
-              href={isArgentina ? product.links.ar : product.links.us}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-shrink-0 block select-none group"
-              style={{
-                width: `calc((100vw - ${gap * (visibleCount + 1)}px) / ${visibleCount})`,
-              }}
-              draggable={false}
-            >
-              <div className="relative aspect-[2/3] overflow-hidden bg-[#e5e5e5]">
-                {/* Primary image */}
-                <Image
-                  src={product.images.primary}
-                  alt={isArgentina ? product.nameAR : product.nameUS}
-                  fill
-                  className="object-contain transition-opacity duration-500 ease-in-out group-hover:opacity-0"
-                  sizes={`(max-width: 768px) 50vw, 33vw`}
-                  draggable={false}
-                />
-                {/* Hover image */}
-                <Image
-                  src={product.images.hover}
-                  alt={`${isArgentina ? product.nameAR : product.nameUS} - alternate view`}
-                  fill
-                  className="object-contain transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
-                  sizes={`(max-width: 768px) 50vw, 33vw`}
-                  draggable={false}
-                />
-              </div>
-              <p className="mt-2 text-xs font-bold text-white uppercase tracking-wide">
-                {isArgentina ? product.nameAR : product.nameUS}
-              </p>
-            </a>
-          ))}
+          {carouselProducts.map((product) => {
+            const hasAlternateImage = product.images.hover !== product.images.primary;
+
+            return (
+              <a
+                key={product.id}
+                href={isArgentina ? product.links.ar : product.links.us}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-shrink-0 block select-none group"
+                style={{
+                  width: `calc((100vw - ${gap * (visibleCount + 1)}px) / ${visibleCount})`,
+                }}
+                draggable={false}
+              >
+                <div className="relative aspect-[3/4] overflow-hidden bg-[#e5e5e5]">
+                  <Image
+                    src={product.images.primary}
+                    alt={isArgentina ? product.nameAR : product.nameUS}
+                    fill
+                    className={`object-contain ${
+                      hasAlternateImage
+                        ? "transition-opacity duration-500 ease-in-out group-hover:opacity-0"
+                        : ""
+                    }`}
+                    sizes={`(max-width: 768px) 50vw, 33vw`}
+                    draggable={false}
+                  />
+                  {hasAlternateImage && (
+                    <Image
+                      src={product.images.hover}
+                      alt={`${isArgentina ? product.nameAR : product.nameUS} - alternate view`}
+                      fill
+                      className="object-contain transition-opacity duration-500 ease-in-out opacity-0 group-hover:opacity-100"
+                      sizes={`(max-width: 768px) 50vw, 33vw`}
+                      draggable={false}
+                    />
+                  )}
+                </div>
+                <p className="mt-2 text-xs font-bold text-black uppercase tracking-wide">
+                  {isArgentina ? product.nameAR : product.nameUS}
+                </p>
+              </a>
+            );
+          })}
         </div>
         
         {/* Left scroll button */}
         {canScrollLeft && (
           <button
             onClick={scrollLeft}
-            className="absolute left-0 top-0 bottom-0 w-16 z-10 flex items-center justify-center cursor-pointer bg-black/10 hover:bg-black/20 transition-colors"
+            className="absolute left-0 top-0 bottom-0 w-16 z-10 flex items-center justify-center cursor-pointer bg-white/80 hover:bg-white transition-colors"
             aria-label="Scroll left"
           >
             <svg
@@ -150,7 +158,7 @@ const ProductCarousel: React.FC = () => {
         {canScrollRight && (
           <button
             onClick={scrollRight}
-            className="absolute right-0 top-0 bottom-0 w-16 z-10 flex items-center justify-center cursor-pointer bg-black/10 hover:bg-black/20 transition-colors"
+            className="absolute right-0 top-0 bottom-0 w-16 z-10 flex items-center justify-center cursor-pointer bg-white/80 hover:bg-white transition-colors"
             aria-label="Scroll right"
           >
             <svg

@@ -1,8 +1,6 @@
 const menuItemsEn = [
-  { href: "49aw25", label: "#49AW25", subcategories: [], links: [] },
-  { href: "50ss26", label: "#50SS26", subcategories: [], links: [] },
+  { href: "51aw26", label: "#51AW26", subcategories: [], links: [] },
   { href: "denim", label: "DENIM", subcategories: [], links: [] },
-  { href: "rain-capsule", label: "RAIN CAPSULE", subcategories: [], links: [] },
   { href: "ver-todo", label: "VIEW ALL", subcategories: [
     "PANTS", 
     "SKIRTS", 

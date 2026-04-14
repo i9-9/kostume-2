@@ -56,7 +56,7 @@ const SectionAccordion: React.FC<SectionProps> = ({ title, links }) => {
     return (
         <div className="relative" ref={ref}>
             <motion.div
-                className="absolute bottom-0 left-0 h-[0.5px] bg-white/20"
+                className="absolute bottom-0 left-0 h-[0.5px] bg-black/20"
                 variants={lineVariants}
                 initial="hidden"
                 animate={controls}
@@ -80,7 +80,7 @@ const SectionAccordion: React.FC<SectionProps> = ({ title, links }) => {
                     animate={{ rotate: accordionOpen ? 180 : 0 }}
                     transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1.0] }}
                 >
-                    <IoIosArrowDown className="text-white cursor-pointer text-lg" size={20} />
+                    <IoIosArrowDown className="text-black cursor-pointer text-lg" size={20} />
                 </motion.div>
             </motion.div>
 

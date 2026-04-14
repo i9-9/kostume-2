@@ -8,7 +8,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import menuItemsEs from '../data/es-menu'; 
 import menuItemsEn from '../data/en-menu';
-import Banner from '../components/Banner';
+import VideoHero from '../components/VideoHero';
 import TextBanner from '../components/TextBanner';
 import PopupModal from '../components/PopupModal';
 import Script from 'next/script';
@@ -98,7 +98,7 @@ const Home: React.FC = () => {
         }}
       />
       <motion.div 
-        className='max-w-full min-h-screen bg-black'
+        className='max-w-full min-h-screen bg-white'
         variants={pageVariants}
         initial="initial"
         animate="animate"
@@ -106,16 +106,11 @@ const Home: React.FC = () => {
       >
         <Marquee marqueeText={marqueeText[region]} />
         <Header />
-        <Banner 
-          collection="hero" 
-          region={region}
-          externalLinks={externalLinks} 
-          deviceType={deviceType} 
-        />
-        <h1 className='bg-[#121212] text-xs text-center font-bold p-4 my-4'>
+        <VideoHero />
+        <h1 className='bg-white text-black text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </h1>
-        {/* <ProductCarousel /> */}
+        <ProductCarousel />
         {/* <Gallery link={externalLinks[region]} location={region === 'Argentina' ? 'ar' : 'us'} /> */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}

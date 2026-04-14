@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const PageLoading: React.FC = () => {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black z-50">
+    <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
       <motion.div
         className="text-center"
         initial={{ opacity: 0 }}
@@ -11,7 +11,7 @@ const PageLoading: React.FC = () => {
         exit={{ opacity: 0 }}
       >
         <motion.h1 
-          className="text-white text-3xl font-bold mb-6"
+          className="text-black text-3xl font-bold mb-6"
           animate={{ 
             opacity: [0.5, 1, 0.5],
             scale: [0.98, 1, 0.98]
@@ -28,7 +28,7 @@ const PageLoading: React.FC = () => {
           {[0, 1, 2].map((index) => (
             <motion.div
               key={index}
-              className="w-3 h-3 bg-white rounded-full"
+              className="w-3 h-3 bg-black rounded-full"
               animate={{
                 scale: [1, 1.5, 1],
                 opacity: [1, 0.5, 1]

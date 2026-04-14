@@ -1,40 +1,74 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
+import { useLocation } from './context/LocationContext';
 
 export default function Home() {
-  const router = useRouter();
+  const { setRegion } = useLocation();
+
+  console.log('[Landing] Component mounted/rendered');
 
   useEffect(() => {
-    let visitCount = parseInt(localStorage.getItem('visitCount') || '0', 10);
+    console.log('[Landing] useEffect running');
 
-    const region = localStorage.getItem('region');
+    try {
+      let visitCount = 0;
+      let region = null;
 
-    if (region && visitCount > 0) {
-      visitCount += 1;
-      localStorage.setItem('visitCount', visitCount.toString());
-
-      if (visitCount % 5 === 0) {
-      localStorage.setItem('visitCount', '0');
-      } else {
-        router.push('/home/');
+      try {
+        visitCount = parseInt(localStorage.getItem('visitCount') || '0', 10);
+        region = localStorage.getItem('region');
+      } catch (e) {
+        // localStorage not available (incognito mode)
+        console.warn('localStorage not available');
       }
-    } else {
-      visitCount += 1;
-      localStorage.setItem('visitCount', visitCount.toString());
+
+      if (region && visitCount > 0) {
+        visitCount += 1;
+        try {
+          localStorage.setItem('visitCount', visitCount.toString());
+        } catch (e) {
+          // Ignore localStorage errors
+        }
+
+        if (visitCount % 5 === 0) {
+          try {
+            localStorage.setItem('visitCount', '0');
+          } catch (e) {
+            // Ignore localStorage errors
+          }
+        } else {
+          window.location.href = '/home/';
+        }
+      } else {
+        visitCount += 1;
+        try {
+          localStorage.setItem('visitCount', visitCount.toString());
+        } catch (e) {
+          // Ignore localStorage errors
+        }
+      }
+    } catch (error) {
+      console.error('Error handling visit count:', error);
     }
   }, []);
 
-  const handleSelection = (region: string) => {
-    try {
-    localStorage.setItem('region', region);
+  const handleSelection = (selectedRegion: "Argentina" | "Worldwide") => {
+    console.log('[Landing] Button clicked:', selectedRegion);
 
-      router.push('/home/');
-    } catch (error) {
-      console.error('Error during navigation:', error);
-    }
+    // Update the context state first - this ensures immediate state update
+    setRegion(selectedRegion);
+    console.log('[Landing] setRegion called');
+
+    // Verify localStorage was updated
+    const stored = localStorage.getItem('region');
+    console.log('[Landing] localStorage after setRegion:', stored);
+
+    // Navigate immediately - use window.location for static export
+    console.log('[Landing] Navigating to /home/');
+    window.location.href = '/home/';
   };
 
   const fadeVariants = {
@@ -51,7 +85,7 @@ export default function Home() {
 
   return (
     <motion.main 
-      className="flex min-h-screen flex-col items-center justify-center p-24 bg-black"
+      className="flex min-h-screen flex-col items-center justify-center p-24 bg-white"
       initial="hidden"
       animate="visible"
       exit="exit"
@@ -64,6 +98,21 @@ export default function Home() {
           <span className="title">KOSTÜME</span>
         </h1>
       </div>
+      <motion.div
+        className="flex justify-center my-6"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+      >
+        <Image
+          src="/img/feb26/location.jpg"
+          alt="Location"
+          width={400}
+          height={300}
+          className="object-contain"
+          priority
+        />
+      </motion.div>
       <motion.div 
         className="flex flex-col md:flex-row justify-between mt-6 items-center"
         initial={{ opacity: 0, y: 20 }}

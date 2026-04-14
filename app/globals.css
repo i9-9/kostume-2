@@ -8,11 +8,11 @@
 
 @layer components {
   .link-location {
-    @apply uppercase text-white font-semibold hover:underline text-xs lg:text-sm;
+    @apply uppercase text-black font-semibold hover:underline text-xs lg:text-sm;
   }
 
   .title {
-    @apply text-white font-extrabold text-4xl mb-2 mx-2 md:text-5xl lg:text-7xl;
+    @apply text-black font-extrabold text-4xl mb-2 mx-2 md:text-5xl lg:text-7xl;
   }
 }
 

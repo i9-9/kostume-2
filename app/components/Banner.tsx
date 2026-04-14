@@ -27,11 +27,11 @@ const Banner: React.FC<BannerProps> = ({ collection, region, externalLinks, devi
   const overlayVariants = {
     initial: { 
       opacity: 0,
-      backgroundColor: "rgba(0, 0, 0, 0)" 
+      backgroundColor: "rgba(255, 255, 255, 0)" 
     },
     hover: { 
       opacity: 1,
-      backgroundColor: "rgba(0, 0, 0, 0.4)",
+      backgroundColor: "rgba(255, 255, 255, 0.4)",
       transition: { 
         duration: 0.5,
         ease: [0.25, 0.1, 0.25, 1.0]

@@ -64,7 +64,7 @@ const Footer = ({ region }: FooterProps) => {
       variants={containerVariants}
     >
       <motion.div
-        className="absolute top-0 left-0 right-0 h-[0.5px] bg-white/20"
+        className="absolute top-0 left-0 right-0 h-[0.5px] bg-black/20"
         variants={{
           hidden: { width: 0 },
           visible: {
@@ -157,7 +157,7 @@ const Footer = ({ region }: FooterProps) => {
         }}
       >
         <motion.div
-          className="absolute top-0 left-0 right-0 h-[0.5px] bg-white/20 hidden lg:block"
+          className="absolute top-0 left-0 right-0 h-[0.5px] bg-black/20 hidden lg:block"
           variants={{
             hidden: { width: 0 },
             visible: {

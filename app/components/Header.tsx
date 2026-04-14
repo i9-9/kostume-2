@@ -16,23 +16,34 @@ interface HeaderProps {
 
 const LocationToggle: React.FC<{ className?: string }> = ({ className = "" }) => {
   const { region, setRegion } = useLocation();
+
+  const handleRegionChange = (newRegion: "Argentina" | "Worldwide") => {
+    if (region !== newRegion) {
+      setRegion(newRegion);
+    }
+  };
+
   return (
     <div className={`flex gap-2 justify-center ${className}`}>
       <span
-        className={`pointer-events-auto cursor-pointer font-bold py-3 px-4 rounded-sm transition-colors duration-200 ${region === "Argentina" ? "text-white" : "text-gray-500"} lg:py-0 lg:px-0`}
-        onClick={() => region !== "Argentina" && setRegion("Argentina")}
+        className={`pointer-events-auto cursor-pointer font-bold py-3 px-4 rounded-sm transition-colors duration-200 ${region === "Argentina" ? "text-black" : "text-gray-500"} lg:py-0 lg:px-0`}
+        onClick={() => handleRegionChange("Argentina")}
+        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleRegionChange("Argentina")}
         tabIndex={0}
         role="button"
         aria-pressed={region === "Argentina"}
+        aria-label="Select Argentina region"
       >
         ARGENTINA
       </span>
       <span
-        className={`pointer-events-auto cursor-pointer font-bold py-3 px-4 rounded-sm transition-colors duration-200 ${region === "Worldwide" ? "text-white" : "text-gray-500"} lg:py-0 lg:px-0`}
-        onClick={() => region !== "Worldwide" && setRegion("Worldwide")}
+        className={`pointer-events-auto cursor-pointer font-bold py-3 px-4 rounded-sm transition-colors duration-200 ${region === "Worldwide" ? "text-black" : "text-gray-500"} lg:py-0 lg:px-0`}
+        onClick={() => handleRegionChange("Worldwide")}
+        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleRegionChange("Worldwide")}
         tabIndex={0}
         role="button"
         aria-pressed={region === "Worldwide"}
+        aria-label="Select Worldwide region"
       >
         WORLDWIDE
       </span>
@@ -52,6 +63,8 @@ const Header: React.FC = () => {
   const { region } = useLocation();
   const menu = region === "Argentina" ? menuItemsEs : menuItemsEn;
   const link = region === "Argentina" ? "https://eshop.kostumeweb.net/ar" : "https://eshop.kostumeweb.net/us";
+
+  console.log('[Header] Rendered with region:', region, 'link:', link);
 
   useEffect(() => {
     if (nav) {
@@ -195,7 +208,7 @@ const Header: React.FC = () => {
   };
 
   return (
-    <div className="max-w-full z-50 items-center px-4 ease-in duration-300 py-5 lg:py-2 h-fit bg-black flex font-semibold justify-between text-extraxs relative">
+    <div className="max-w-full z-50 items-center px-4 ease-in duration-300 py-5 lg:py-2 h-fit bg-white flex font-semibold justify-between text-extraxs relative">
       <div className="flex lg:hidden items-center justify-between w-full relative">
         <motion.div 
           onClick={() => setNav(!nav)}
@@ -204,7 +217,7 @@ const Header: React.FC = () => {
         >
           <div className="w-5 h-5 relative">
             <motion.div
-              className="w-full h-[0.5px] bg-white absolute"
+              className="w-full h-[0.5px] bg-black absolute"
               animate={{
                 top: nav ? "50%" : "30%",
                 rotate: nav ? 45 : 0,
@@ -213,7 +226,7 @@ const Header: React.FC = () => {
               transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
             />
             <motion.div
-              className="w-full h-[0.5px] bg-white absolute"
+              className="w-full h-[0.5px] bg-black absolute"
               animate={{
                 top: nav ? "50%" : "70%",
                 rotate: nav ? -45 : 0,
@@ -231,7 +244,7 @@ const Header: React.FC = () => {
               width={125}
               height={30}
               alt="KOSTÜME — Inicio"
-              className="py-2"
+              className="py-2 invert"
             />
           </Link>
         </div>
@@ -247,7 +260,7 @@ const Header: React.FC = () => {
               width={125}
               height={30}
               alt="KOSTÜME — Inicio"
-              className="py-2"
+              className="py-2 invert"
             />
           </Link>
         </div>
@@ -258,13 +271,14 @@ const Header: React.FC = () => {
       </div>
 
       <motion.div
-        className="lg:hidden fixed top-0 left-0 w-full h-full bg-black z-20 overflow-hidden"
+        className="lg:hidden fixed top-0 left-0 w-full h-full bg-white z-20 overflow-hidden"
         initial={{ height: 0, opacity: 0 }}
-        animate={{ 
+        animate={{
           height: nav ? "100vh" : 0,
           opacity: nav ? 1 : 0
         }}
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1.0] }}
+        style={{ pointerEvents: nav ? 'auto' : 'none' }}
       >
         <nav className="h-full w-full" aria-label="Menú principal">
         <motion.ul 
@@ -278,11 +292,11 @@ const Header: React.FC = () => {
               key={index}
               custom={index}
               variants={menuItemVariants}
-              className={`relative mx-4 py-4 ${item.label === "TEMPORARY REDIRECT" ? "text-[#0afd02]" : "text-white"}`}
+              className={`relative mx-4 py-4 ${item.label === "TEMPORARY REDIRECT" ? "text-[#0afd02]" : "text-black"}`}
             >
               {index === 0 && (
                 <motion.div
-                  className="absolute top-0 left-0 h-[0.5px] bg-white/20"
+                  className="absolute top-0 left-0 h-[0.5px] bg-black/20"
                   variants={topLineVariants}
                   initial="hidden"
                   animate={nav ? "visible" : "hidden"}
@@ -310,7 +324,7 @@ const Header: React.FC = () => {
                         animate={{ rotate: activeMenu === item.label ? 90 : 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                       >
-                        <MdOutlineKeyboardArrowRight color={item.label === "TEMPORARY REDIRECT" ? "#0afd02" : "white"} size={20} />
+                        <MdOutlineKeyboardArrowRight color={item.label === "TEMPORARY REDIRECT" ? "#0afd02" : "black"} size={20} />
                       </motion.div>
                     </motion.div>
                   </div>
@@ -370,14 +384,14 @@ const Header: React.FC = () => {
                   >
                     <div className="flex justify-between">
                       <p className="self-center">{item.label}</p>
-                      <MdOutlineKeyboardArrowRight color={item.label === "TEMPORARY REDIRECT" ? "#0afd02" : "white"} size={20} />
+                      <MdOutlineKeyboardArrowRight color={item.label === "TEMPORARY REDIRECT" ? "#0afd02" : "black"} size={20} />
                     </div>
                   </Link>
                 </motion.div>
               )}
 
               <motion.div
-                className="absolute bottom-0 left-0 h-[0.5px] bg-white/20"
+                className="absolute bottom-0 left-0 h-[0.5px] bg-black/20"
                 custom={index}
                 variants={lineVariants}
                 initial="hidden"
@@ -438,7 +452,7 @@ const Header: React.FC = () => {
               {currentSubcategories.length > 0 && activeMenu === item.label && submenuVisible && (
                 <motion.div
                   ref={submenuRef}
-                  className="absolute top-full left-0 bg-black bg-opacity-90 p-4 flex flex-col items-start text-[10px] z-50 min-w-max"
+                  className="absolute top-full left-0 bg-white border border-black/20 p-4 flex flex-col items-start text-[10px] z-50 min-w-max shadow-lg"
                   onMouseEnter={handleSubmenuMouseEnter}
                   onMouseLeave={handleSubmenuMouseLeave}
                   initial={{ y: -5, opacity: 0, scaleY: 0.95 }}
@@ -467,7 +481,7 @@ const Header: React.FC = () => {
                       >
                         <Link
                           href={`${link}/${menu.find(item => item.label === activeMenu)?.href}/${links[subIndex]}`}
-                          className="text-white text-left font-normal hover:underline"
+                          className="text-black text-left font-normal hover:underline"
                         >
                           {sub}
                         </Link>

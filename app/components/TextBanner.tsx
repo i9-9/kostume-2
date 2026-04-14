@@ -10,8 +10,8 @@ interface TextBannerProps {
 
 const TextBanner: React.FC<TextBannerProps> = ({
   text,
-  backgroundColor = "bg-[#070707]",
-  textColor = "text-white",
+  backgroundColor = "bg-[#f5f5f5]",
+  textColor = "text-black",
   padding = "py-12",
   className = "",
 }) => {

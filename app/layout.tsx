@@ -3,9 +3,10 @@ import { Providers } from './providers'
 import OrganizationSchema from './components/OrganizationSchema'
 import LocalBusinessSchema from './components/LocalBusinessSchema'
 import WebsiteSchema from './components/WebsiteSchema'
+import GoogleAnalytics from './components/GoogleAnalytics'
 
 export const metadata = {
-  title: 'KOSTÜME | Designer Fashion from Buenos Aires | Ready-to-Wear Collection',
+  title: 'KOSTÜME | Ready-to-Wear',
   description: 'Shop KOSTÜME premium ready-to-wear fashion designed in Buenos Aires. Discover our collections of denim, eyewear, and contemporary clothing. Made in Argentina, shipped worldwide.',
   keywords: 'kostume, fashion, clothing, argentina, buenos aires, ready-to-wear, denim, eyewear, argentine fashion, designer clothing',
   metadataBase: new URL('https://kostumeweb.net'),
@@ -22,7 +23,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: 'KOSTÜME | Designer Fashion from Buenos Aires',
+    title: 'KOSTÜME | Ready-to-Wear',
     description: 'Shop KOSTÜME premium ready-to-wear fashion designed in Buenos Aires. Discover our collections of denim, eyewear, and contemporary clothing. Made in Argentina, shipped worldwide.',
     url: 'https://kostumeweb.net',
     siteName: 'KOSTÜME',
@@ -39,7 +40,7 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'KOSTÜME | Designer Fashion from Buenos Aires',
+    title: 'KOSTÜME | Ready-to-Wear',
     description: 'Shop KOSTÜME premium ready-to-wear fashion designed in Buenos Aires. Discover our collections of denim, eyewear, and contemporary clothing. Made in Argentina, shipped worldwide.',
     creator: '@kostume_',
     images: [
@@ -98,8 +99,11 @@ export default function RootLayout({
         <OrganizationSchema />
         <LocalBusinessSchema />
         <WebsiteSchema />
+        {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+          <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+        )}
       </head>
-      <body className='min-h-screen bg-black text-white'>
+      <body className='min-h-screen bg-white text-black'>
         <Providers>
           {children}
         </Providers>

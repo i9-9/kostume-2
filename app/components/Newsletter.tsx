@@ -36,7 +36,7 @@ const Newsletter = () => {
 
   return (
     <div className="w-full">
-      <h2 className="text-white font-semibold mb-2">NEWSLETTER</h2>
+      <h2 className="text-black font-semibold mb-2">NEWSLETTER</h2>
       <form onSubmit={handleSubmit} className="flex flex-col w-full">
         <div className="flex w-full h-10">
           <div className="flex-grow h-full">
@@ -45,24 +45,24 @@ const Newsletter = () => {
               placeholder="e-mail..." 
               value={email} 
               onChange={(e) => setEmail(e.target.value)} 
-              className="w-full h-full px-2 bg-[#171717] text-white border-none focus:outline-none box-border" 
+              className="w-full h-full px-2 bg-[#f0f0f0] text-black border border-black/20 focus:outline-none box-border" 
               required
             />
           </div>
           <button 
             type="submit" 
-            className="bg-white flex items-center justify-center w-10 h-full flex-shrink-0"
+            className="bg-black flex items-center justify-center w-10 h-full flex-shrink-0"
             disabled={loading}
           >
             {loading ? (
-              <span className="animate-pulse">•••</span>
+              <span className="animate-pulse text-white">•••</span>
             ) : (
-              <AiOutlineArrowRight size={20} color='black' />
+              <AiOutlineArrowRight size={20} color='white' />
             )}
           </button>
         </div>
         {message && (
-          <p className="mt-2 text-xs text-white/80">{message}</p>
+          <p className="mt-2 text-xs text-black/80">{message}</p>
         )}
       </form>
     </div>
