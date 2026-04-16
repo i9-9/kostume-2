@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from '../context/LocationContext';
 
 const VIMEO_VIDEO_ID = '1183457699';
@@ -41,8 +41,27 @@ const VideoHero = () => {
     ? 'https://eshop.kostumeweb.net/51aw26/ver-51aw26/'
     : 'https://eshop.kostumeweb.net/us/51aw26/ver-51aw26/';
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [iframeLoaded, setIframeLoaded] = useState(false);
+
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIframeLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.01 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const iframeCommon = {
-    src: VIMEO_EMBED_URL,
+    src: iframeLoaded ? VIMEO_EMBED_URL : undefined,
     title: 'KOSTÜME Hero Video',
     allow: 'autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media',
     referrerPolicy: 'strict-origin-when-cross-origin' as const,
@@ -51,7 +70,7 @@ const VideoHero = () => {
   };
 
   return (
-    <div className="relative h-full min-h-0 w-full flex-1">
+    <div ref={containerRef} className="relative h-full min-h-0 w-full flex-1">
       {/* Mobile: marco vertical 9:16 + video 16:9 en modo cover */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-black md:hidden">
         <a

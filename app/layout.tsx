@@ -96,6 +96,15 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="preconnect" href="https://eshop.kostumeweb.net" crossOrigin="" />
+        <link rel="preconnect" href="https://player.vimeo.com" crossOrigin="" />
+        <link rel="preconnect" href="https://f.vimeocdn.com" crossOrigin="" />
+        <link
+          rel="preload"
+          href="/fonts/HelveticaNeueLTPro-55-Roman.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <OrganizationSchema />
         <LocalBusinessSchema />
         <WebsiteSchema />

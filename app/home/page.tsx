@@ -1,19 +1,19 @@
 "use client"
 
 import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import Marquee from '../components/Marquee';
-import Gallery from '../components/Gallery';
-import ProductCarousel from '../components/ProductCarousel';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import VideoHero from '../components/VideoHero';
+import Script from 'next/script';
+import { motion } from 'framer-motion';
+import { useLocation } from '../context/LocationContext';
 import menuItemsEs from '../data/es-menu'; 
 import menuItemsEn from '../data/en-menu';
-import VideoHero from '../components/VideoHero';
-import TextBanner from '../components/TextBanner';
-import PopupModal from '../components/PopupModal';
-import Script from 'next/script';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useLocation } from '../context/LocationContext';
+
+const ProductCarousel = dynamic(() => import('../components/ProductCarousel'), { ssr: false });
+const Footer = dynamic(() => import('../components/Footer'), { ssr: false });
+const PopupModal = dynamic(() => import('../components/PopupModal'), { ssr: false });
 
 export type Region = 'Argentina' | 'Worldwide';
 
@@ -26,21 +26,7 @@ export interface MenuItemProps {
 
 const Home: React.FC = () => {
   const { region, language } = useLocation();
-  const [deviceType, setDeviceType] = React.useState<'desktop' | 'mobile'>('desktop');
   const [showPopup, setShowPopup] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setDeviceType('desktop');
-      } else {
-        setDeviceType('mobile');
-      }
-    };
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {

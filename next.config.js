@@ -1,16 +1,13 @@
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
   reactStrictMode: true,
   output: 'export',
   trailingSlash: true,
   images: {
     unoptimized: true,
   },
-  };
-  
-  module.exports = {
-    ...nextConfig,
-  };
-  
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+};
+
+module.exports = nextConfig;
