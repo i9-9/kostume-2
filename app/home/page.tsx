@@ -98,15 +98,19 @@ const Home: React.FC = () => {
         }}
       />
       <motion.div 
-        className='max-w-full min-h-screen bg-white'
+        className='max-w-full min-h-screen overflow-x-hidden bg-white'
         variants={pageVariants}
         initial="initial"
         animate="animate"
         exit="exit"
       >
         <Marquee marqueeText={marqueeText[region]} />
-        <Header />
-        <VideoHero />
+        <div className="flex h-[100vh] min-h-0 w-full flex-col shrink-0">
+          <Header />
+          <div className="min-h-0 flex min-w-0 flex-1 flex-col">
+            <VideoHero />
+          </div>
+        </div>
         <h1 className='bg-white text-black text-xs text-center font-bold p-4 my-4'>
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </h1>
