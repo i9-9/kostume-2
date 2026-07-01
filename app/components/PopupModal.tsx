@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLocation } from '../context/LocationContext';
+import { getEshopBase } from '../data/countries';
 
 interface PopupModalProps {
   isOpen: boolean;
@@ -11,11 +12,6 @@ interface PopupModalProps {
 
 const PopupModal: React.FC<PopupModalProps> = ({ isOpen, onClose }) => {
   const { region, language } = useLocation();
-
-  const registerLinks = {
-    Argentina: 'https://eshop.kostumeweb.net/account/register/',
-    Worldwide: 'https://eshop.kostumeweb.net/us/account/register/'
-  };
 
   const modalContent = {
     es: {
@@ -31,9 +27,10 @@ const PopupModal: React.FC<PopupModalProps> = ({ isOpen, onClose }) => {
   };
 
   const content = modalContent[language as keyof typeof modalContent] || modalContent.es;
+  const registerLink = `${getEshopBase(region)}/account/register/`;
 
   const handleSubscribe = () => {
-    window.open(registerLinks[region], '_blank');
+    window.open(registerLink, '_blank');
     onClose();
   };
 
@@ -55,7 +52,6 @@ const PopupModal: React.FC<PopupModalProps> = ({ isOpen, onClose }) => {
             className="relative bg-white border border-black/20 px-16 py-24 max-w-6xl mx-4 text-center shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
             <button
               onClick={onClose}
               className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center cursor-pointer hover:opacity-70 transition-opacity"
@@ -66,12 +62,10 @@ const PopupModal: React.FC<PopupModalProps> = ({ isOpen, onClose }) => {
               </div>
             </button>
 
-            {/* Main Heading */}
             <h2 className="text-black text-xl md:text-2xl font-bold mb-12 uppercase tracking-wide">
               {content.title}
             </h2>
 
-            {/* Body Text */}
             <p className="text-black text-xs md:text-sm mb-16 uppercase leading-relaxed">
               {content.text.split('\n').map((line, index) => (
                 <span key={index}>
@@ -81,7 +75,6 @@ const PopupModal: React.FC<PopupModalProps> = ({ isOpen, onClose }) => {
               ))}
             </p>
 
-            {/* CTA Button */}
             <button
               onClick={handleSubscribe}
               className="bg-transparent border-2 border-black text-black px-8 py-3 uppercase font-bold text-sm md:text-base hover:bg-black hover:text-white transition-all duration-300"

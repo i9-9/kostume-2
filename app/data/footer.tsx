@@ -1,9 +1,9 @@
-type Region = 'Argentina' | 'Worldwide';
-
 export interface FooterLinkInput {
   href: string;
   text: string;
-  hrefByRegion?: Partial<Record<Region, string>>;
+  // If provided, resolve URL as: eshop.kostumeweb.net/{countryCode}/{pathByLang[lang]}
+  // For 'ar', no country prefix is used: eshop.kostumeweb.net/{pathByLang.es}
+  pathByLang?: { es?: string; en?: string };
 }
 
 interface FooterSectionInput {
@@ -22,8 +22,16 @@ const footer: FooterSectionInput[] = [
     {
       title: 'Info',
       links: [
-        { href: 'https://eshop.kostumeweb.net/us/about-us/', text: 'ABOUT US', hrefByRegion: { Argentina: 'https://eshop.kostumeweb.net/nosotros/', Worldwide: 'https://eshop.kostumeweb.net/us/about-us/' } },
-        { href: 'https://eshop.kostumeweb.net/us/faqs/', text: 'FAQ', hrefByRegion: { Argentina: 'https://eshop.kostumeweb.net/preguntas-frecuentes/', Worldwide: 'https://eshop.kostumeweb.net/us/faqs/' } }
+        {
+          href: 'https://eshop.kostumeweb.net/nosotros/',
+          text: 'ABOUT US',
+          pathByLang: { es: 'nosotros/', en: 'about-us/' }
+        },
+        {
+          href: 'https://eshop.kostumeweb.net/preguntas-frecuentes/',
+          text: 'FAQ',
+          pathByLang: { es: 'preguntas-frecuentes/', en: 'faqs/' }
+        }
       ]
     },
     {

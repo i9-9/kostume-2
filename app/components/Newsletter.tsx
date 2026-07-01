@@ -1,10 +1,15 @@
+'use client';
+
 import React, { useState } from 'react';
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { useLocation } from '../context/LocationContext';
+import { getEshopBase } from '../data/countries';
 
 const Newsletter = () => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const { region, language } = useLocation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -12,23 +17,13 @@ const Newsletter = () => {
     setMessage('');
     
     try {
-      const region = localStorage.getItem('region') || 'Argentina';
-      const storeUrl = region === 'Argentina' 
-        ? 'https://eshop.kostumeweb.net/ar' 
-        : 'https://eshop.kostumeweb.net/us';
-      
-      const apiUrl = region === 'Argentina'
-        ? 'https://api.tiendanube.com/v1'
-        : 'https://api.nuvemshop.com.br/v1';
-      
-      
-      
+      const storeUrl = getEshopBase(region);
       window.open(`${storeUrl}/account/register?email=${encodeURIComponent(email)}`, '_blank');
-      setMessage('¡Gracias por suscribirte!');
+      setMessage(language === 'es' ? '¡Gracias por suscribirte!' : 'Thanks for subscribing!');
       setEmail('');
     } catch (error) {
       console.error('Error subscribing to newsletter:', error);
-      setMessage('Error al suscribirse. Intenta nuevamente.');
+      setMessage(language === 'es' ? 'Error al suscribirse. Intenta nuevamente.' : 'Error subscribing. Please try again.');
     } finally {
       setLoading(false);
     }

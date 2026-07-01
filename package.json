@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/copy-root-htaccess.js",
     "start": "next start",
     "lint": "next lint",
     "deploy": "bash scripts/deploy.sh",

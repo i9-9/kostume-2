@@ -2,51 +2,98 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { MdOutlineKeyboardArrowRight, MdOutlineKeyboardArrowDown } from "react-icons/md";
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 import { MenuItemProps } from "../home/page";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "../context/LocationContext";
 import menuItemsEs from '../data/es-menu';
 import menuItemsEn from '../data/en-menu';
-
-interface HeaderProps {
-  link: string;
-  menu: MenuItemProps[];
-}
+import { countries, GROUP_ORDER, countriesByGroup, countryByCode, getEshopBase } from '../data/countries';
 
 const LocationToggle: React.FC<{ className?: string }> = ({ className = "" }) => {
   const { region, setRegion } = useLocation();
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const currentCountry = countryByCode[region];
 
-  const handleRegionChange = (newRegion: "Argentina" | "Worldwide") => {
-    if (region !== newRegion) {
-      setRegion(newRegion);
-    }
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const handleSelect = (code: string) => {
+    setRegion(code);
+    setOpen(false);
   };
 
   return (
-    <div className={`flex gap-2 justify-center ${className}`}>
-      <span
-        className={`pointer-events-auto cursor-pointer font-bold py-3 px-4 rounded-sm transition-colors duration-200 ${region === "Argentina" ? "text-black" : "text-gray-500"} lg:py-0 lg:px-0`}
-        onClick={() => handleRegionChange("Argentina")}
-        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleRegionChange("Argentina")}
-        tabIndex={0}
-        role="button"
-        aria-pressed={region === "Argentina"}
-        aria-label="Select Argentina region"
+    <div className={`relative ${className}`} ref={dropdownRef}>
+      <button
+        className="font-bold text-black py-1 cursor-pointer hover:text-gray-500 transition-colors duration-200 whitespace-nowrap"
+        style={{ display: 'flex', alignItems: 'center', gap: '4px' }}
+        onClick={() => setOpen((v) => !v)}
+        type="button"
+        aria-haspopup="listbox"
+        aria-expanded={open}
       >
-        ARGENTINA
-      </span>
-      <span
-        className={`pointer-events-auto cursor-pointer font-bold py-3 px-4 rounded-sm transition-colors duration-200 ${region === "Worldwide" ? "text-black" : "text-gray-500"} lg:py-0 lg:px-0`}
-        onClick={() => handleRegionChange("Worldwide")}
-        onKeyDown={(e) => (e.key === 'Enter' || e.key === ' ') && handleRegionChange("Worldwide")}
-        tabIndex={0}
-        role="button"
-        aria-pressed={region === "Worldwide"}
-        aria-label="Select Worldwide region"
-      >
-        WORLDWIDE
-      </span>
+        <span style={{ lineHeight: 1 }}>{currentCountry?.label?.toUpperCase() ?? region.toUpperCase()}</span>
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+          style={{ display: 'flex', alignItems: 'center', lineHeight: 0, flexShrink: 0 }}
+        >
+          <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
+            <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </motion.span>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: -6, scaleY: 0.95 }}
+            animate={{ opacity: 1, y: 0, scaleY: 1 }}
+            exit={{ opacity: 0, y: -6, scaleY: 0.95 }}
+            transition={{ duration: 0.18, ease: [0.25, 0.1, 0.25, 1.0] }}
+            style={{ transformOrigin: "top center" }}
+            className="absolute right-0 top-full mt-2 bg-white border border-black/15 shadow-lg z-50 min-w-[180px] py-3 px-4"
+            role="listbox"
+          >
+            {GROUP_ORDER.map((group) => {
+              const groupCountries = countriesByGroup[group];
+              if (!groupCountries) return null;
+              return (
+                <div key={group} className="mb-3 last:mb-0">
+                  <p className="text-[8px] font-bold tracking-widest text-black/40 uppercase mb-1.5">
+                    {group}
+                  </p>
+                  {groupCountries.map((country) => (
+                    <button
+                      key={country.code}
+                      role="option"
+                      aria-selected={region === country.code}
+                      onClick={() => handleSelect(country.code)}
+                      className={`block w-full text-left text-[10px] py-1 font-bold tracking-wider uppercase transition-colors duration-150 ${
+                        region === country.code
+                          ? "text-black"
+                          : "text-gray-400 hover:text-black"
+                      }`}
+                      type="button"
+                    >
+                      {country.label}
+                    </button>
+                  ))}
+                </div>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
@@ -60,11 +107,9 @@ const Header: React.FC = () => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const submenuRef = useRef<HTMLDivElement | null>(null);
   const router = useRouter();
-  const { region } = useLocation();
-  const menu = region === "Argentina" ? menuItemsEs : menuItemsEn;
-  const link = region === "Argentina" ? "https://eshop.kostumeweb.net/ar" : "https://eshop.kostumeweb.net/us";
-
-  console.log('[Header] Rendered with region:', region, 'link:', link);
+  const { region, language } = useLocation();
+  const menu = language === "es" ? menuItemsEs : menuItemsEn;
+  const link = getEshopBase(region);
 
   useEffect(() => {
     if (nav) {
@@ -79,7 +124,7 @@ const Header: React.FC = () => {
 
   const handleNav = () => setNav(!nav);
 
-  const handleMouseEnter = (label: string, index: number) => {
+  const handleMouseEnter = (label: string) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
@@ -403,7 +448,7 @@ const Header: React.FC = () => {
         </nav>
         {nav && (
           <div className="absolute bottom-12 w-full flex justify-center px-8">
-            <LocationToggle className="w-full" />
+            <LocationToggle className="w-full justify-center" />
           </div>
         )}
       </motion.div>
@@ -438,7 +483,7 @@ const Header: React.FC = () => {
                 }
               }}
               className={`font-bold relative px-4 py-2 ${item.label === "TEMPORARY REDIRECT" ? "text-[#0afd02]" : ""}`}
-              onMouseEnter={() => handleMouseEnter(item.label, index)}
+              onMouseEnter={() => handleMouseEnter(item.label)}
               onMouseLeave={handleMouseLeave}
               ref={(el) => (menuItemRefs.current[item.label] = el)}
               style={item.label === "TEMPORARY REDIRECT" ? { color: "#0afd02" } : {}}
@@ -471,7 +516,7 @@ const Header: React.FC = () => {
                     initial="hidden"
                     animate="visible"
                   >
-                    {currentSubcategories.map((sub: any, subIndex: any) => (
+                    {currentSubcategories.map((sub: string, subIndex: number) => (
                       <motion.li 
                         key={subIndex}
                         custom={subIndex}

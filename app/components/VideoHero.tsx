@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useLocation } from '../context/LocationContext';
+import { getEshopBase } from '../data/countries';
 
 const VIMEO_VIDEO_ID = '1183457699';
-const VIMEO_EMBED_URL = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?autoplay=1&muted=1&loop=1&background=1&autopause=0&title=0&byline=0&portrait=0`;
+const VIMEO_EMBED_URL = `https://player.vimeo.com/video/${VIMEO_VIDEO_ID}?autoplay=1&muted=1&loop=1&autopause=0&title=0&byline=0&portrait=0&controls=0&playsinline=1`;
 
 /** Zoom extra hacia el centro: recorta bandas del player (letterbox) que quedan dentro del iframe. */
 const ZOOM_DESKTOP = 1.14;
@@ -37,9 +38,7 @@ const iframeCoverMobilePortrait: React.CSSProperties = {
 
 const VideoHero = () => {
   const { region } = useLocation();
-  const heroLink = region === 'Argentina'
-    ? 'https://eshop.kostumeweb.net/51aw26/ver-51aw26/'
-    : 'https://eshop.kostumeweb.net/us/51aw26/ver-51aw26/';
+  const heroLink = `${getEshopBase(region)}/51aw26/ver-51aw26/`;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);

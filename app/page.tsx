@@ -4,15 +4,12 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useLocation } from './context/LocationContext';
+import { countries, GROUP_ORDER, countriesByGroup } from './data/countries';
 
 export default function Home() {
   const { setRegion } = useLocation();
 
-  console.log('[Landing] Component mounted/rendered');
-
   useEffect(() => {
-    console.log('[Landing] useEffect running');
-
     try {
       let visitCount = 0;
       let region = null;
@@ -21,7 +18,6 @@ export default function Home() {
         visitCount = parseInt(localStorage.getItem('visitCount') || '0', 10);
         region = localStorage.getItem('region');
       } catch (e) {
-        // localStorage not available (incognito mode)
         console.warn('localStorage not available');
       }
 
@@ -29,16 +25,12 @@ export default function Home() {
         visitCount += 1;
         try {
           localStorage.setItem('visitCount', visitCount.toString());
-        } catch (e) {
-          // Ignore localStorage errors
-        }
+        } catch (e) {}
 
         if (visitCount % 5 === 0) {
           try {
             localStorage.setItem('visitCount', '0');
-          } catch (e) {
-            // Ignore localStorage errors
-          }
+          } catch (e) {}
         } else {
           window.location.href = '/home/';
         }
@@ -46,46 +38,33 @@ export default function Home() {
         visitCount += 1;
         try {
           localStorage.setItem('visitCount', visitCount.toString());
-        } catch (e) {
-          // Ignore localStorage errors
-        }
+        } catch (e) {}
       }
     } catch (error) {
       console.error('Error handling visit count:', error);
     }
   }, []);
 
-  const handleSelection = (selectedRegion: "Argentina" | "Worldwide") => {
-    console.log('[Landing] Button clicked:', selectedRegion);
-
-    // Update the context state first - this ensures immediate state update
-    setRegion(selectedRegion);
-    console.log('[Landing] setRegion called');
-
-    // Verify localStorage was updated
-    const stored = localStorage.getItem('region');
-    console.log('[Landing] localStorage after setRegion:', stored);
-
-    // Navigate immediately - use window.location for static export
-    console.log('[Landing] Navigating to /home/');
+  const handleSelection = (code: string) => {
+    setRegion(code);
     window.location.href = '/home/';
   };
 
   const fadeVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
-      transition: { duration: 0.6, ease: "easeInOut" }
+      transition: { duration: 0.6, ease: 'easeInOut' },
     },
-    exit: { 
+    exit: {
       opacity: 0,
-      transition: { duration: 0.6, ease: "easeInOut" }
-    }
+      transition: { duration: 0.6, ease: 'easeInOut' },
+    },
   };
 
   return (
-    <motion.main 
-      className="flex min-h-screen flex-col items-center justify-center p-24 bg-white"
+    <motion.main
+      className="flex min-h-screen flex-col items-center justify-center px-8 py-16 bg-white"
       initial="hidden"
       animate="visible"
       exit="exit"
@@ -98,6 +77,7 @@ export default function Home() {
           <span className="title">KOSTÜME</span>
         </h1>
       </div>
+
       <motion.div
         className="flex justify-center my-6"
         initial={{ opacity: 0, y: 10 }}
@@ -105,34 +85,45 @@ export default function Home() {
         transition={{ delay: 0.2, duration: 0.5 }}
       >
         <Image
-          src="/img/feb26/location.jpg"
+          src="/img/feb26/location.webp"
           alt="Location"
-          width={400}
-          height={300}
-          className="object-contain"
+          width={600}
+          height={800}
+          sizes="(max-width: 768px) 70vw, 320px"
+          className="max-h-[260px] w-auto object-contain"
           priority
         />
       </motion.div>
-      <motion.div 
-        className="flex flex-col md:flex-row justify-between mt-6 items-center"
+
+      <motion.div
+        className="w-full max-w-3xl mt-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.5 }}
       >
-        <button 
-          onClick={() => handleSelection('Argentina')} 
-          className="link-location mb-4 md:mb-0 md:pr-10"
-          type="button"
-        >
-          Argentina
-        </button>
-        <button 
-          onClick={() => handleSelection('Worldwide')} 
-          className="link-location"
-          type="button"
-        >
-          Worldwide
-        </button>
+        <div className="flex flex-wrap justify-center gap-x-12 gap-y-6">
+          {GROUP_ORDER.map((group) => {
+            const groupCountries = countriesByGroup[group];
+            if (!groupCountries) return null;
+            return (
+              <div key={group} className="flex flex-col items-center gap-y-2 min-w-[100px]">
+                <p className="text-[9px] font-bold tracking-widest text-black/40 uppercase mb-1">
+                  {group}
+                </p>
+                {groupCountries.map((country) => (
+                  <button
+                    key={country.code}
+                    onClick={() => handleSelection(country.code)}
+                    className="link-location text-left whitespace-nowrap"
+                    type="button"
+                  >
+                    {country.label}
+                  </button>
+                ))}
+              </div>
+            );
+          })}
+        </div>
       </motion.div>
     </motion.main>
   );

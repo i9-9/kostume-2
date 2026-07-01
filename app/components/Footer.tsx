@@ -17,13 +17,14 @@ export interface SectionProps {
   links: LinkItem[];
 }
 
-type Region = 'Argentina' | 'Worldwide';
-
 interface FooterProps {
-  region?: Region;
+  region?: string;
+  language?: string;
 }
 
-const Footer = ({ region }: FooterProps) => {
+const ESHOP = 'https://eshop.kostumeweb.net';
+
+const Footer = ({ region = 'ar', language = 'es' }: FooterProps) => {
   const controls = useAnimation();
   const footerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(footerRef, { once: true, amount: 0.2 });
@@ -31,12 +32,15 @@ const Footer = ({ region }: FooterProps) => {
   const footerResolved = useMemo(() => footer.map(section => ({
     ...section,
     links: section.links.map(link => {
-      const href = ('hrefByRegion' in link && link.hrefByRegion && region)
-        ? (link.hrefByRegion[region] ?? link.href)
-        : link.href;
-      return { href, text: link.text };
+      if (!('pathByLang' in link) || !link.pathByLang) {
+        return { href: link.href, text: link.text };
+      }
+      const lang = language === 'es' ? 'es' : 'en';
+      const path = link.pathByLang[lang] ?? link.pathByLang.en ?? '';
+      const prefix = region === 'ar' ? '' : `${region}/`;
+      return { href: `${ESHOP}/${prefix}${path}`, text: link.text };
     }),
-  })), [region]);
+  })), [region, language]);
   
   useEffect(() => {
     if (isInView) {

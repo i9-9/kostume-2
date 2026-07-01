@@ -10,12 +10,11 @@ import { motion } from 'framer-motion';
 import { useLocation } from '../context/LocationContext';
 import menuItemsEs from '../data/es-menu'; 
 import menuItemsEn from '../data/en-menu';
+import { getEshopBase } from '../data/countries';
 
 const ProductCarousel = dynamic(() => import('../components/ProductCarousel'), { ssr: false });
 const Footer = dynamic(() => import('../components/Footer'), { ssr: false });
 const PopupModal = dynamic(() => import('../components/PopupModal'), { ssr: false });
-
-export type Region = 'Argentina' | 'Worldwide';
 
 export interface MenuItemProps {
   href: string;
@@ -23,6 +22,11 @@ export interface MenuItemProps {
   subcategories: string[];
   links: string[];
 }
+
+const marqueeByLang: Record<string, string> = {
+  es: '15% OFF POR TRANSFERENCIA BANCARIA - HASTA 3 CUOTAS SIN INTERÉS · ',
+  en: 'WORLDWIDE SHIPPING · ',
+};
 
 const Home: React.FC = () => {
   const { region, language } = useLocation();
@@ -36,21 +40,10 @@ const Home: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const externalLinks: Record<Region, string> = {
-    Argentina: 'https://eshop.kostumeweb.net/ar',
-    Worldwide: 'https://eshop.kostumeweb.net/us',
-  };
+  const externalLink = getEshopBase(region);
+  const marqueeText = marqueeByLang[language] ?? marqueeByLang.en;
+  const menu = language === 'es' ? menuItemsEs : menuItemsEn;
 
-  const marqueeText: Record<Region, string> = {
-    Argentina: '15% OFF POR TRANSFERENCIA BANCARIA - HASTA 3 CUOTAS SIN INTERÉS · ',
-    Worldwide: 'WORLDWIDE SHIPPING · ',
-  };
-
-  const menuItem: Record<Region, MenuItemProps[]> = {
-    Argentina: menuItemsEs,
-    Worldwide: menuItemsEn 
-  };
-  
   const pageVariants = {
     initial: { opacity: 0 },
     animate: { 
@@ -90,7 +83,7 @@ const Home: React.FC = () => {
         animate="animate"
         exit="exit"
       >
-        <Marquee marqueeText={marqueeText[region]} />
+        <Marquee marqueeText={marqueeText} />
         <div className="flex h-[100vh] min-h-0 w-full flex-col shrink-0">
           <Header />
           <div className="min-h-0 flex min-w-0 flex-1 flex-col">
@@ -101,13 +94,12 @@ const Home: React.FC = () => {
           Original ready-to-wear designed in Buenos Aires. Made in Argentina
         </h1>
         <ProductCarousel />
-        {/* <Gallery link={externalLinks[region]} location={region === 'Argentina' ? 'ar' : 'us'} /> */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <Footer region={region} />
+          <Footer region={region} language={language} />
         </motion.div>
       </motion.div>
       

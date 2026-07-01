@@ -7,7 +7,12 @@ import { useLocation } from "../context/LocationContext";
 
 const ProductCarousel: React.FC = () => {
   const { region } = useLocation();
-  const isArgentina = region === "Argentina";
+  const isArgentina = region === "ar";
+
+  const getProductLink = (product: { links: { ar: string; us: string } }) => {
+    if (isArgentina) return product.links.ar;
+    return product.links.us.replace('/us/', `/${region}/`);
+  };
   const [visibleCount, setVisibleCount] = useState(3);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -87,7 +92,7 @@ const ProductCarousel: React.FC = () => {
             return (
               <a
                 key={product.id}
-                href={isArgentina ? product.links.ar : product.links.us}
+                href={getProductLink(product)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-shrink-0 block select-none group"
